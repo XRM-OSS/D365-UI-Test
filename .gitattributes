@@ -1,0 +1,36 @@
+# These files are text and should be normalized (convert crlf => lf)
+*.cmd        text
+*.config     text
+*.Config     text
+*.cs         text diff=csharp
+*.csproj     text
+*.datasource text
+*.disco      text
+*.edmx       text
+*.map        text
+*.md         text
+*.msbuild    text
+*.ps1        text
+*.settings   text
+*.sln        text
+*.svcinfo    text
+*.svcmap     text
+*.t4properties text
+*.tt         text
+*.txt        text
+*.vspscc     text
+*.wsdl       text
+*.xaml       text
+*.xsd        text
+ 
+# Images should be treated as binary
+# (binary is a macro for -text -diff)
+*.ico        binary
+*.jepg       binary
+*.jpg        binary
+*.sdf        binary
+*.pdf        binary
+*.png        binary
+
+# Exclude report coverage from linguist
+reports/* linguist-documentation
