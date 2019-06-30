@@ -80,14 +80,30 @@ export class XrmUiTest
         return this.browser;
     }
 
-    openCRM = async (url: string, appId?: string) =>
+    openCRM = async (url: string, extendedProperties?: { appId?: string; userName?: string; password?: string}) =>
     {
         this._crmUrl = url;
-        this._appId = appId;
+        this._appId = extendedProperties && extendedProperties.appId;
 
         this._page = await this.browser.newPage();
         
         await this.page.goto(url);
+
+        if (extendedProperties && extendedProperties.userName && extendedProperties.password)
+        {
+            const userName = await this.page.waitForSelector("#i0116");
+            userName.type(extendedProperties.userName);
+
+            await userName.press("Enter");
+
+            const password = await this.page.waitForSelector("#i0118");
+            password.type(extendedProperties.password);
+
+            await password.press("Enter");
+
+            const remember = await this.page.waitForSelector("#idBtn_Back");
+            await remember.click();
+        }
 
         return this.page;
     }   
