@@ -1,12 +1,17 @@
 {
   "name": "d365-ui-test",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An unopinionated UI testing library for Dynamics 365 CE and Dynamics Portals. Powered by TypeScript and Puppeteer",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "test": "jest"
   },
+  "files": [
+    "LICENSE.md",
+    "README.md",
+    "dist"
+  ],
   "author": "Florian Kroenert",
   "license": "MIT",
   "devDependencies": {
