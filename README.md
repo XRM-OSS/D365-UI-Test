@@ -24,7 +24,7 @@ describe("Basic operations UCI", () => {
             headless: false
         })
         .then(browser => {            
-            return xrmTest.openCRM(url, { userName: user, password: password })
+            return xrmTest.open(url, { userName: user, password: password })
         })
         .then(page => {
             return xrmTest.openAppById("3cd81e96-2940-e811-a952-000d3ab20edc");

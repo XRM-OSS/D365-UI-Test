@@ -19,7 +19,7 @@ describe("Basic operations UCI", () => {
         .then(b => {
             browser = b;
             
-            return xrmTest.openCRM(url, { userName: user, password: password })
+            return xrmTest.open(url, { userName: user, password: password })
         })
         .then(p => {
             page = p;

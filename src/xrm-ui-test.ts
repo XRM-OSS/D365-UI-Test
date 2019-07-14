@@ -134,7 +134,7 @@ export class XrmUiTest
         return this.browser;
     }
 
-    openCRM = async (url: string, extendedProperties?: { appId?: string; userName?: string; password?: string}) =>
+    open = async (url: string, extendedProperties?: { appId?: string; userName?: string; password?: string}) =>
     {
         this._crmUrl = url;
         this._appId = extendedProperties && extendedProperties.appId;
