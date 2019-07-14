@@ -40,4 +40,8 @@ export class PortalUiTest {
 
         await this.page.waitForNavigation({ waitUntil: "networkidle2" });
     }
+
+    close = async () => {
+        await this.browser.close();
+    }
 }
