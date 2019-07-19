@@ -7,25 +7,21 @@ let browser: puppeteer.Browser = null;
 let page: puppeteer.Page = null;
 
 describe("Basic operations UCI", () => {
-    beforeAll(() => {
+    beforeAll(async() => {
         jest.setTimeout(60000);
 
         const config = fs.readFileSync("C:/temp/settings.txt", {encoding: 'utf-8'});
         const [url, user, password] = config.split(",");
 
-        return xrmTest.launch({
-            headless: false
-        })
-        .then(b => {
-            browser = b;
-            
-            return xrmTest.open(url, { userName: user, password: password })
-        })
-        .then(p => {
-            page = p;
-
-            return xrmTest.openAppById("3cd81e96-2940-e811-a952-000d3ab20edc");
+        browser = await xrmTest.launch({
+            headless: false,
+            args: ['--start-fullscreen'],
+            defaultViewport: null
         });
+
+        page = await xrmTest.open(url, { userName: user, password: password });
+        
+        await xrmTest.openAppById("3cd81e96-2940-e811-a952-000d3ab20edc");
     });
 
     test("It should set string field", async () => {

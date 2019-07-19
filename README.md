@@ -1,18 +1,20 @@
-# XRM-UI-Test
+# D365-UI-Test
+[![npm downloads](https://img.shields.io/npm/dt/d365-ui-test.svg)](http://npm-stats.com/~packages/d365-ui-test)
+
 ## What's this?
-XRM-UI-Test is an UI testing framework for easy and robust UI testing in Dynamics 365 CE and Dynamics 365 Portals.
+D365-UI-Test is an UI testing framework for easy and robust UI testing in Dynamics 365 CE and Dynamics 365 Portals.
 It is powered by TypeScript and Puppeteer.
 Various functions for interacting with CRM are implemented and can be used for executing your tests.
 
 ## What does a test look like?
-XRM-UI-Test is unopinionated, so we don't enforce a specific testing library.
+D365-UI-Test is unopinionated, so we don't enforce a specific testing library.
 The demo tests use [jest](https://jestjs.io/), but you could just as well use Mocha or someting completely different.
 
 Jest Test:
 ```TypeScript
 describe("Basic operations UCI", () => {
     // Login to CRM once for all tests in this module
-    beforeAll(() => {
+    beforeAll(async() => {
         jest.setTimeout(60000);
 
         // You don't need to do it this way, but I did not want to check in the data by accident
@@ -20,15 +22,15 @@ describe("Basic operations UCI", () => {
         const config = fs.readFileSync("C:/temp/settings.txt", {encoding: 'utf-8'});
         const [url, user, password] = config.split(",");
 
-        return xrmTest.launch({
-            headless: false
-        })
-        .then(browser => {            
-            return xrmTest.open(url, { userName: user, password: password })
-        })
-        .then(page => {
-            return xrmTest.openAppById("3cd81e96-2940-e811-a952-000d3ab20edc");
+        browser = await xrmTest.launch({
+            headless: false,
+            args: ['--start-fullscreen'],
+            defaultViewport: null
         });
+
+        page = await xrmTest.open(url, { userName: user, password: password });
+        
+        await xrmTest.openAppById("3cd81e96-2940-e811-a952-000d3ab20edc");
     });
 
     test("It should set string field", async () => {
@@ -61,9 +63,9 @@ The demo tests reside at `xrm-ui-test.spec.ts`, you can adjust them to your need
 EasyRepro focuses on interacting with the form mainly by simulating user inputs.
 When setting lookups, dealing with localization, renaming of labels and more topics, this seemed not the best option.
 The CRM provides us with various global JS objects, which allow interacting with the system.
-XRM-UI-Test tries to use these JS objects (such as Xrm.Navigation) as much as possible, as this API is not expected to change unexpectedly, yields fast and stable results and causes no issues with localization.
+D365-UI-Test tries to use these JS objects (such as Xrm.Navigation) as much as possible, as this API is not expected to change unexpectedly, yields fast and stable results and causes no issues with localization.
 
-XRM-UI-Test also does not limit itself to Dynamics 365 CE, but also for testing connected Portals.
+D365-UI-Test also does not limit itself to Dynamics 365 CE, but also for testing connected Portals.
 
 ## Current limitations
 There's a lot to do currently.
