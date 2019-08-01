@@ -51,13 +51,13 @@ describe("Basic operations UCI", () => {
 ```
 
 ## Getting started
-Right now this library is at the very beginning and there is no npm package yet.
-Later on there will be a npm package.
+Install this project using npm to get started: `npm install d365-ui-test`.
+Afterwards you can import it in your code like `import { XrmUiTest } from "d365-ui-test";`.
+Use a testing framework such as Jest or Mocha for creating a test suite and set up a XrmUiTest instance in the startup step for launching a Chrome session.
+Each of your tests can then be written inside the testing framework just as you're used to.
 
-Right now, you can try by cloning this repo and running `npm install`.
-Afterwards, you can execute the jest tests by running `npm run test`.
 You might want to create your own settings.txt file as in the example above or just enter your credentials inline.
-The demo tests reside at `xrm-ui-test.spec.ts`, you can adjust them to your needs.
+The demo tests reside at `spec/xrm-ui-test.spec.ts`, this might give you an idea.
 
 ## What's the difference to EasyRepro?
 EasyRepro focuses on interacting with the form mainly by simulating user inputs.
