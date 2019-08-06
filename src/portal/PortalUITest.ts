@@ -18,8 +18,7 @@ export class PortalUiTest {
         return this.browser;
     }
 
-    open = async (url: string, extendedProperties?: {}) =>
-    {
+    open = async (url: string, extendedProperties?: {}) => {
         this._portalUrl = url;
 
         await this.page.goto(`${this._portalUrl}`);
@@ -35,7 +34,7 @@ export class PortalUiTest {
 
         const passwordField = await this.page.waitForSelector("#Password");
         await passwordField.type(password);
-        
+
         await this.page.keyboard.press("enter");
 
         await this.page.waitForNavigation({ waitUntil: "networkidle2" });

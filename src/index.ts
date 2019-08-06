@@ -1,2 +1,2 @@
-export * from "./portal-ui-test";
-export * from "./xrm-ui-test";
+export * from "./portal/PortalUITest";
+export * from "./xrm/XrmUITest";
