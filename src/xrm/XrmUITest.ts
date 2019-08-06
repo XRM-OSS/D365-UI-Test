@@ -5,6 +5,7 @@ import { Dialog } from "./Dialog";
 import { Control } from "./Control";
 import { Attribute } from "./Attribute";
 import { SubGrid } from "./SubGrid";
+import { Form } from "./Form";
 
 export class XrmUiTest {
     private _browser: puppeteer.Browser;
@@ -17,6 +18,7 @@ export class XrmUiTest {
     private _dialog: Dialog;
     private _control: Control;
     private _attribute: Attribute;
+    private _form: Form;
     private _subGrid: SubGrid;
 
     get browser() {
@@ -67,6 +69,14 @@ export class XrmUiTest {
         return this._dialog;
     }
 
+    get Form() {
+        if (!this._form) {
+            this._form = new Form(this._page);
+        }
+
+        return this._form;
+    }
+
     get SubGrid() {
         if (!this._subGrid) {
             this._subGrid = new SubGrid(this._page);
@@ -76,7 +86,8 @@ export class XrmUiTest {
     }
 
     launch = async (launchOptions?: puppeteer.LaunchOptions) => {
-        this._browser = await puppeteer.launch(launchOptions);
+        // tslint:disable-next-line:no-null-keyword
+        this._browser = await puppeteer.launch({ ...{ defaultViewport: null }, ...launchOptions });
         return this.browser;
     }
 
@@ -85,9 +96,9 @@ export class XrmUiTest {
         this._appId = extendedProperties && extendedProperties.appId;
 
         this._page = await this.browser.newPage();
-        await this.page.setViewport({width: 1920, height: 1080 });
 
-        await this.page.goto(url);
+        await this.page.goto(url, { waitUntil: "load" });
+        await this.page.waitForNavigation({ waitUntil: "networkidle2" });
 
         if (extendedProperties && extendedProperties.userName && extendedProperties.password) {
             console.log(url);
@@ -100,7 +111,13 @@ export class XrmUiTest {
             await userName.press("Enter");
             await this.page.waitFor(1000);
 
-            const password = await this.page.waitForSelector("#i0118");
+            let password = await this.page.$("#i0118");
+
+            if (!password) {
+                await this.page.waitForNavigation({ waitUntil: "networkidle0" });
+                password = await this.page.$("#passwordInput");
+            }
+
             password.type(extendedProperties.password);
 
             await this.page.waitFor(1000);

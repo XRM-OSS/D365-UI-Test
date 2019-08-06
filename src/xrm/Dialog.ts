@@ -13,9 +13,11 @@ export class Dialog {
 
         if (confirmButton) {
             await confirmButton.click();
-            await this._page.waitForNavigation({ waitUntil: "networkidle0" });
 
-            await this._page.waitFor(5000);
+            await this._page.waitFor(() => !document.querySelector("#butBegin") && !document.querySelector("button[data-id='ignore_save']"));
+
+            await this._page.waitForNavigation({ waitUntil: "networkidle2" });
+            await this._page.waitFor(2000);
         }
     }
 }

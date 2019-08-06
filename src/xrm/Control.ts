@@ -1,4 +1,5 @@
 import * as puppeteer from "puppeteer";
+import { EnsureXrmGetter } from "./Global";
 
 export class Control {
     private _page: puppeteer.Page;
@@ -7,9 +8,11 @@ export class Control {
         this._page = page;
     }
 
-    get = (controlName: string) => {
-        this._page.evaluate((controlName) => {
-            const xrm = window.Xrm;
+    get = async (controlName: string) => {
+        await EnsureXrmGetter(this._page);
+
+        return await this._page.evaluate((controlName) => {
+            const xrm = window.oss_FindXrm();
             const control = xrm.Page.getControl(controlName);
 
             return {

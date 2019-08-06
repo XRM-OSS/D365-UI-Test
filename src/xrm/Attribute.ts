@@ -1,4 +1,5 @@
 import * as puppeteer from "puppeteer";
+import { EnsureXrmGetter } from "./Global";
 
 export class Attribute {
     private _page: puppeteer.Page;
@@ -8,12 +9,16 @@ export class Attribute {
     }
 
     getValue = async (attributeName: string) => {
-        return await this._page.evaluate((attributeName) => { const xrm = window.Xrm; return xrm.Page.getAttribute(attributeName).getValue(); }, attributeName);
+        await EnsureXrmGetter(this._page);
+
+        return await this._page.evaluate((attributeName) => { const xrm = window.oss_FindXrm(); return xrm.Page.getAttribute(attributeName).getValue(); }, attributeName);
     }
 
     setValue = async (attributeName: string, value: any) => {
+        await EnsureXrmGetter(this._page);
+
         await this._page.evaluate((a, v) => {
-            const xrm = window.Xrm;
+            const xrm = window.oss_FindXrm();
             const attribute = xrm.Page.getAttribute(a);
 
             let editable = false;

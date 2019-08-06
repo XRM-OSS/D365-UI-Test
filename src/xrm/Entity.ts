@@ -1,4 +1,5 @@
 import * as puppeteer from "puppeteer";
+import { EnsureXrmGetter } from "./Global";
 
 export class Entity {
     private _page: puppeteer.Page;
@@ -8,18 +9,12 @@ export class Entity {
     }
 
     save = async () => {
+        await EnsureXrmGetter(this._page);
+
         await this._page.evaluate(() => {
-            const xrm = window.Xrm;
+            const xrm = window.oss_FindXrm();
 
             xrm.Page.data.entity.save();
-        });
-    }
-
-    reset = async () => {
-        return this._page.evaluate((a, v) => {
-            const xrm = window.Xrm;
-
-            xrm.Page.getAttribute().forEach(a => a.setSubmitMode("never"));
         });
     }
 
@@ -31,17 +26,15 @@ export class Entity {
         }
 
         await deleteButton.click();
-
-        await this._page.waitFor(5000);
+        await this._page.waitFor(() => !!document.querySelector("#butBegin") || !!document.querySelector("#confirmButton"));
 
         const confirmButton = await this._page.$("#butBegin") || await this._page.$("#confirmButton");
 
-        if (confirmButton) {
-            await confirmButton.click();
-            await this._page.waitForNavigation({ waitUntil: "networkidle2" });
-        }
-        else {
+        if (!confirmButton) {
             throw new Error("Failed to find delete confirmation button");
         }
+
+        await confirmButton.click();
+        await this._page.waitForNavigation({ waitUntil: "networkidle2" });
     }
 }
