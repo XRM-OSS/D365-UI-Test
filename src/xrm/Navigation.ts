@@ -15,7 +15,7 @@ export class Navigation {
 
         return Promise.all([
             this._page.evaluate((entityName: string) => {
-                const xrm = window.oss_FindXrm(); return xrm.Navigation.openForm({ entityName: entityName }) }
+                const xrm = window.oss_FindXrm(); return xrm.Navigation.openForm({ entityName: entityName }); }
             , entityName),
 
             this._page.waitForNavigation({ waitUntil: "load" }),

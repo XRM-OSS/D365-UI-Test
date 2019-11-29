@@ -6,6 +6,7 @@ import { Control } from "./Control";
 import { Attribute } from "./Attribute";
 import { SubGrid } from "./SubGrid";
 import { Form } from "./Form";
+import { Button } from "./Button";
 
 export class XrmUiTest {
     private _browser: puppeteer.Browser;
@@ -20,6 +21,7 @@ export class XrmUiTest {
     private _attribute: Attribute;
     private _form: Form;
     private _subGrid: SubGrid;
+    private _button: Button;
 
     get browser() {
         return this._browser;
@@ -35,6 +37,14 @@ export class XrmUiTest {
         }
 
         return this._navigation;
+    }
+
+    get Button() {
+        if (!this._button) {
+            this._button = new Button(this._page);
+        }
+
+        return this._button;
     }
 
     get Entity() {
