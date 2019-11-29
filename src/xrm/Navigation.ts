@@ -19,7 +19,6 @@ export class Navigation {
             , entityName),
 
             this._page.waitForNavigation({ waitUntil: "load" }),
-            this._page.waitForNavigation({ waitUntil: "domcontentloaded" }),
             this._page.waitForNavigation({ waitUntil: "networkidle0" })
         ]);
     }
@@ -33,15 +32,14 @@ export class Navigation {
             }, entityName, entityId),
 
             this._page.waitForNavigation({ waitUntil: "load" }),
-            this._page.waitForNavigation({ waitUntil: "domcontentloaded" }),
             this._page.waitForNavigation({ waitUntil: "networkidle0" })
         ]);
     }
 
     openAppById = async(appId: string) => {
         return Promise.all([
-            this._page.goto(`${this._crmUrl}/main.aspx?appid=${appId}`, { waitUntil: "load" }),
-            this._page.waitForNavigation( { waitUntil: "networkidle0" } )
+            this._page.waitForNavigation( { waitUntil: "networkidle0" } ),
+            this._page.goto(`${this._crmUrl}/main.aspx?appid=${appId}`, { waitUntil: "load" })
         ]);
     };
 }

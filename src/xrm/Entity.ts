@@ -14,7 +14,7 @@ export class Entity {
         return Promise.all([
             this._page.evaluate(() => {
                 const xrm = window.oss_FindXrm();
-                
+
                 return xrm.Page.data.entity.save();
             }),
             this._page.waitForNavigation({ waitUntil: "networkidle0" })
@@ -24,21 +24,18 @@ export class Entity {
     delete = async() => {
         const deleteButton = await Promise.race([ this._page.waitForSelector("li[Command$='DeletePrimaryRecord']"), this._page.waitForSelector("li[id*='DeletePrimaryRecord']") ]);
 
-        if (!deleteButton) 
-        {
+        if (!deleteButton) {
             throw new Error("Failed to find delete button");
         }
 
         await deleteButton.click();
-        
+
         const confirmButton = await Promise.race([ this._page.waitForSelector("#butBegin"), this._page.waitForSelector("#confirmButton")]);
 
-        if (confirmButton)
-        {
-            return Promise.all([ confirmButton.click(), this._page.waitForNavigation({ waitUntil: "networkidle0" }) ])
+        if (confirmButton) {
+            return Promise.all([ confirmButton.click(), this._page.waitForNavigation({ waitUntil: "networkidle0" }) ]);
         }
-        else 
-        {
+        else {
             throw new Error("Failed to find delete confirmation button");
         }
     }
