@@ -11,7 +11,7 @@ export class Control {
     get = async (controlName: string) => {
         await EnsureXrmGetter(this._page);
 
-        return await this._page.evaluate((controlName) => {
+        return this._page.evaluate((controlName: string) => {
             const xrm = window.oss_FindXrm();
             const control = xrm.Page.getControl(controlName);
 

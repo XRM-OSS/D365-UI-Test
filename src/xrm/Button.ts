@@ -16,7 +16,7 @@ export class Button {
         const button = await this._page.$("#moreCommands a");
 
         if (button) {
-            await button.click();
+            return button.click();
         }
     }
 
@@ -46,6 +46,6 @@ export class Button {
             throw new Error("Failed to find button");
         }
 
-        await button.click();
+        return button.click();
     }
 }

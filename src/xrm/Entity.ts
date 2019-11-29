@@ -11,30 +11,35 @@ export class Entity {
     save = async () => {
         await EnsureXrmGetter(this._page);
 
-        await this._page.evaluate(() => {
-            const xrm = window.oss_FindXrm();
-
-            xrm.Page.data.entity.save();
-        });
+        return Promise.all([
+            this._page.evaluate(() => {
+                const xrm = window.oss_FindXrm();
+                
+                return xrm.Page.data.entity.save();
+            }),
+            this._page.waitForNavigation({ waitUntil: "networkidle0" })
+        ]);
     }
 
     delete = async() => {
-        const deleteButton = await this._page.$("li[Command$='DeletePrimaryRecord']") || await this._page.$("li[id*='DeletePrimaryRecord']");
+        const deleteButton = await Promise.race([ this._page.waitForSelector("li[Command$='DeletePrimaryRecord']"), this._page.waitForSelector("li[id*='DeletePrimaryRecord']") ]);
 
-        if (!deleteButton) {
+        if (!deleteButton) 
+        {
             throw new Error("Failed to find delete button");
         }
 
         await deleteButton.click();
-        await this._page.waitFor(() => !!document.querySelector("#butBegin") || !!document.querySelector("#confirmButton"));
+        
+        const confirmButton = await Promise.race([ this._page.waitForSelector("#butBegin"), this._page.waitForSelector("#confirmButton")]);
 
-        const confirmButton = await this._page.$("#butBegin") || await this._page.$("#confirmButton");
-
-        if (!confirmButton) {
+        if (confirmButton)
+        {
+            return Promise.all([ confirmButton.click(), this._page.waitForNavigation({ waitUntil: "networkidle0" }) ])
+        }
+        else 
+        {
             throw new Error("Failed to find delete confirmation button");
         }
-
-        await confirmButton.click();
-        await this._page.waitForNavigation({ waitUntil: "networkidle2" });
     }
 }

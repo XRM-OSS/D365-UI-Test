@@ -9,7 +9,7 @@ export class Dialog {
 
     confirmDuplicateDetection = async() => {
         await this._page.waitFor(2000);
-        const confirmButton = await this._page.$("#butBegin") || await this._page.$("button[data-id='ignore_save']");
+        const confirmButton = await Promise.race([ this._page.waitForSelector("#butBegin"), this._page.waitForSelector("button[data-id='ignore_save']") ]);
 
         if (confirmButton) {
             await confirmButton.click();
