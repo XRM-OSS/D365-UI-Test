@@ -18,7 +18,6 @@ export class Navigation {
                 const xrm = window.oss_FindXrm(); return xrm.Navigation.openForm({ entityName: entityName }); }
             , entityName),
 
-            this._page.waitForNavigation({ waitUntil: "load" }),
             this._page.waitForNavigation({ waitUntil: "networkidle0" })
         ]);
     }
@@ -31,7 +30,6 @@ export class Navigation {
                 const xrm = window.oss_FindXrm(); return xrm.Navigation.openForm({ entityName: entityName, entityId: entityId });
             }, entityName, entityId),
 
-            this._page.waitForNavigation({ waitUntil: "load" }),
             this._page.waitForNavigation({ waitUntil: "networkidle0" })
         ]);
     }
