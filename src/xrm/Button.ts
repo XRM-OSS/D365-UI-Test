@@ -1,8 +1,8 @@
 import * as puppeteer from "puppeteer";
 
 interface ButtonIdentifier {
-    byDataId: string;
-    byLabel: string;
+    byDataId?: string;
+    byLabel?: string;
 }
 
 export class Button {
