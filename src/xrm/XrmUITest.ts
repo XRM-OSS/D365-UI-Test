@@ -107,8 +107,10 @@ export class XrmUiTest {
 
         this._page = await this.browser.newPage();
 
-        await this.page.goto(url, { waitUntil: "load" });
-        await this.page.waitForNavigation({ waitUntil: "networkidle2" });
+        await Promise.all([
+            this.page.goto(url, { waitUntil: "load" }),
+            this.page.waitForNavigation({ waitUntil: "networkidle0" })
+        ]);
 
         if (extendedProperties && extendedProperties.userName && extendedProperties.password) {
             console.log(url);
@@ -128,17 +130,14 @@ export class XrmUiTest {
                 password = await this.page.$("#passwordInput");
             }
 
-            password.type(extendedProperties.password);
-
-            await this.page.waitFor(1000);
-            await password.press("Enter");
-            await this.page.waitFor(1000);
+            await password.type(extendedProperties.password);
 
             const remember = await this.page.waitForSelector("#idBtn_Back");
-            await remember.click();
-            await this.page.waitFor(1000);
-
-            await this.page.waitForNavigation({ waitUntil: "networkidle0" });
+            
+            await Promise.all([
+                this.page.waitForNavigation({ waitUntil: "networkidle0" }),
+                remember.click()
+            ])
         }
 
         return this.page;

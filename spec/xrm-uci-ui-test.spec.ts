@@ -1,6 +1,7 @@
 import { XrmUiTest } from "../src";
 import * as fs from "fs";
 import * as puppeteer from "puppeteer";
+import * as path from "path";
 
 const xrmTest = new XrmUiTest();
 let browser: puppeteer.Browser = undefined;
@@ -10,7 +11,7 @@ describe("Basic operations UCI", () => {
     beforeAll(async() => {
         jest.setTimeout(60000);
 
-        const config = fs.readFileSync("C:/temp/settings.txt", {encoding: "utf-8"});
+        const config = fs.readFileSync(path.resolve(__dirname, "../../settings.txt"), {encoding: "utf-8"});
         const [url, user, password] = config.split(",");
 
         browser = await xrmTest.launch({
@@ -20,7 +21,7 @@ describe("Basic operations UCI", () => {
 
         page = await xrmTest.open(url, { userName: user, password: password });
 
-        await xrmTest.Navigation.openAppById("3cd81e96-2940-e811-a952-000d3ab20edc");
+        await xrmTest.Navigation.openAppById("d365default");
     });
 
     test("It should set string field", async () => {
@@ -88,7 +89,7 @@ describe("Basic operations UCI", () => {
         await xrmTest.Entity.reset();
     });*/
 
-    test("It should create and delete record", async () => {
+    /*test("It should create and delete record", async () => {
         jest.setTimeout(60000);
         await xrmTest.Navigation.openCreateForm("account");
 
@@ -101,7 +102,7 @@ describe("Basic operations UCI", () => {
         await xrmTest.Dialog.confirmDuplicateDetection();
 
         await xrmTest.Entity.delete();
-    });
+    });*/
 
     afterAll(() => {
         return xrmTest.close();
