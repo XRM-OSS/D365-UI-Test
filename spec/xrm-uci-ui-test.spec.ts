@@ -16,7 +16,9 @@ describe("Basic operations UCI", () => {
 
         browser = await xrmTest.launch({
             headless: false,
-            args: ["--start-fullscreen"]
+            args: [
+                "--start-fullscreen"
+            ]
         });
 
         page = await xrmTest.open(url, { userName: user, password: password });
