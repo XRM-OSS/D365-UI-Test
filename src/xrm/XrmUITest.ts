@@ -141,7 +141,9 @@ export class XrmUiTest {
                 await password.press("Enter");
             }
             else {
+                // For some reason we need the else in here, without it errors will occur
                 await password.type(extendedProperties.password);
+                await password.press("Enter");
             }
 
             const remember = await this.page.waitForSelector("#idBtn_Back");
