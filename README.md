@@ -51,6 +51,11 @@ describe("Basic operations UCI", () => {
 ```
 
 ## Getting started
+### Writing tests
+There is already a demo project for writing tests with jest available here: https://github.com/DigitalFlow/D365-UI-Test-Jest-Demo
+Just follow the instructions in there for getting started.
+
+### Contributing
 Install this project using npm to get started: `npm install d365-ui-test`.
 Afterwards you can import it in your code like `import { XrmUiTest } from "d365-ui-test";`.
 Use a testing framework such as Jest or Mocha for creating a test suite and set up a XrmUiTest instance in the startup step for launching a Chrome session.
