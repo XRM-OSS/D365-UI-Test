@@ -1,11 +1,13 @@
 import * as puppeteer from "puppeteer";
 import { EnsureXrmGetter } from "./Global";
+import { XrmUiTest } from "./XrmUITest";
 
 export class Entity {
     private _page: puppeteer.Page;
 
-    constructor(page: puppeteer.Page) {
-        this._page = page;
+    constructor(private xrmUiTest: XrmUiTest) {
+        this._page = xrmUiTest.page;
+        this.xrmUiTest = xrmUiTest;
     }
 
     save = async () => {
@@ -15,10 +17,40 @@ export class Entity {
             this._page.evaluate(() => {
                 const xrm = window.oss_FindXrm();
 
-                return xrm.Page.data.entity.save();
+                return xrm.Page.data.save();
             }),
             this._page.waitForNavigation({ waitUntil: "networkidle0" })
         ]);
+    }
+
+    getId = async () => {
+        await EnsureXrmGetter(this._page);
+
+        return this._page.evaluate(() => {
+            const xrm = window.oss_FindXrm();
+
+            return xrm.Page.data.entity.getId();
+        });
+    }
+
+    getEntityName = async () => {
+        await EnsureXrmGetter(this._page);
+
+        return this._page.evaluate(() => {
+            const xrm = window.oss_FindXrm();
+
+            return xrm.Page.data.entity.getEntityName();
+        });
+    }
+
+    getEntityReference = async () => {
+        await EnsureXrmGetter(this._page);
+
+        return this._page.evaluate(() => {
+            const xrm = window.oss_FindXrm();
+
+            return xrm.Page.data.entity.getEntityReference();
+        });
     }
 
     delete = async() => {

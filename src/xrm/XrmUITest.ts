@@ -31,9 +31,13 @@ export class XrmUiTest {
         return this._page;
     }
 
+    get crmUrl() {
+        return this._crmUrl;
+    }
+
     get Navigation() {
         if (!this._navigation) {
-            this._navigation = new Navigation(this._crmUrl, this._page);
+            this._navigation = new Navigation(this);
         }
 
         return this._navigation;
@@ -41,7 +45,7 @@ export class XrmUiTest {
 
     get Button() {
         if (!this._button) {
-            this._button = new Button(this._page);
+            this._button = new Button(this);
         }
 
         return this._button;
@@ -49,7 +53,7 @@ export class XrmUiTest {
 
     get Entity() {
         if (!this._entity) {
-            this._entity = new Entity(this._page);
+            this._entity = new Entity(this);
         }
 
         return this._entity;
@@ -57,7 +61,7 @@ export class XrmUiTest {
 
     get Attribute() {
         if (!this._attribute) {
-            this._attribute = new Attribute(this._page);
+            this._attribute = new Attribute(this);
         }
 
         return this._attribute;
@@ -65,7 +69,7 @@ export class XrmUiTest {
 
     get Control() {
         if (!this._control) {
-            this._control = new Control(this._page);
+            this._control = new Control(this);
         }
 
         return this._control;
@@ -73,7 +77,7 @@ export class XrmUiTest {
 
     get Dialog() {
         if (!this._dialog) {
-            this._dialog = new Dialog(this._page);
+            this._dialog = new Dialog(this);
         }
 
         return this._dialog;
@@ -81,7 +85,7 @@ export class XrmUiTest {
 
     get Form() {
         if (!this._form) {
-            this._form = new Form(this._page);
+            this._form = new Form(this);
         }
 
         return this._form;
@@ -89,7 +93,7 @@ export class XrmUiTest {
 
     get SubGrid() {
         if (!this._subGrid) {
-            this._subGrid = new SubGrid(this._page);
+            this._subGrid = new SubGrid(this);
         }
 
         return this._subGrid;
@@ -107,8 +111,13 @@ export class XrmUiTest {
 
         this._page = await this.browser.newPage();
 
-        await this.page.goto(url, { waitUntil: "load" });
-        await this.page.waitForNavigation({ waitUntil: "networkidle2" });
+        // Work around issues with linux user agents
+        this.page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chromium/60.0.3112.78 Safari/537.36");
+
+        await Promise.all([
+            this.page.goto(url, { waitUntil: "load" }),
+            this.page.waitForNavigation({ waitUntil: "networkidle0" })
+        ]);
 
         if (extendedProperties && extendedProperties.userName && extendedProperties.password) {
             console.log(url);
@@ -128,17 +137,15 @@ export class XrmUiTest {
                 password = await this.page.$("#passwordInput");
             }
 
-            password.type(extendedProperties.password);
-
-            await this.page.waitFor(1000);
-            await password.press("Enter");
-            await this.page.waitFor(1000);
+            await password.type(extendedProperties.password);
 
             const remember = await this.page.waitForSelector("#idBtn_Back");
-            await remember.click();
-            await this.page.waitFor(1000);
-
-            await this.page.waitForNavigation({ waitUntil: "networkidle0" });
+            
+            await Promise.all([
+                this.page.waitForNavigation({ waitUntil: "networkidle0" }),
+                this.page.waitForNavigation({ waitUntil: "load" }),
+                remember.click()
+            ])
         }
 
         return this.page;

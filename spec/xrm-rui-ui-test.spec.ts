@@ -1,6 +1,7 @@
 import { XrmUiTest } from "../src";
 import * as fs from "fs";
 import * as puppeteer from "puppeteer";
+import * as path from "path";
 
 const xrmTest = new XrmUiTest();
 let browser: puppeteer.Browser = undefined;
@@ -10,7 +11,7 @@ describe("Basic operations RUI", () => {
     beforeAll(async() => {
         jest.setTimeout(60000);
 
-        const config = fs.readFileSync("C:/temp/settings.txt", {encoding: "utf-8"});
+        const config = fs.readFileSync(path.resolve(__dirname, "../../settings.txt"), {encoding: "utf-8"});
         const [url, user, password] = config.split(",");
 
         browser = await xrmTest.launch({
