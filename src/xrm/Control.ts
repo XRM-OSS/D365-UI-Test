@@ -1,11 +1,13 @@
 import * as puppeteer from "puppeteer";
 import { EnsureXrmGetter } from "./Global";
+import { XrmUiTest } from "./XrmUITest";
 
 export class Control {
     private _page: puppeteer.Page;
 
-    constructor(page: puppeteer.Page) {
-        this._page = page;
+    constructor(private xrmUiTest: XrmUiTest) {
+        this._page = xrmUiTest.page;
+        this.xrmUiTest = xrmUiTest;
     }
 
     get = async (controlName: string) => {

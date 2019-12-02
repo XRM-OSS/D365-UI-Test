@@ -31,9 +31,13 @@ export class XrmUiTest {
         return this._page;
     }
 
+    get crmUrl() {
+        return this._crmUrl;
+    }
+
     get Navigation() {
         if (!this._navigation) {
-            this._navigation = new Navigation(this._crmUrl, this._page);
+            this._navigation = new Navigation(this);
         }
 
         return this._navigation;
@@ -41,7 +45,7 @@ export class XrmUiTest {
 
     get Button() {
         if (!this._button) {
-            this._button = new Button(this._page);
+            this._button = new Button(this);
         }
 
         return this._button;
@@ -49,7 +53,7 @@ export class XrmUiTest {
 
     get Entity() {
         if (!this._entity) {
-            this._entity = new Entity(this._page);
+            this._entity = new Entity(this);
         }
 
         return this._entity;
@@ -57,7 +61,7 @@ export class XrmUiTest {
 
     get Attribute() {
         if (!this._attribute) {
-            this._attribute = new Attribute(this._page);
+            this._attribute = new Attribute(this);
         }
 
         return this._attribute;
@@ -65,7 +69,7 @@ export class XrmUiTest {
 
     get Control() {
         if (!this._control) {
-            this._control = new Control(this._page);
+            this._control = new Control(this);
         }
 
         return this._control;
@@ -73,7 +77,7 @@ export class XrmUiTest {
 
     get Dialog() {
         if (!this._dialog) {
-            this._dialog = new Dialog(this._page);
+            this._dialog = new Dialog(this);
         }
 
         return this._dialog;
@@ -81,7 +85,7 @@ export class XrmUiTest {
 
     get Form() {
         if (!this._form) {
-            this._form = new Form(this._page);
+            this._form = new Form(this);
         }
 
         return this._form;
@@ -89,7 +93,7 @@ export class XrmUiTest {
 
     get SubGrid() {
         if (!this._subGrid) {
-            this._subGrid = new SubGrid(this._page);
+            this._subGrid = new SubGrid(this);
         }
 
         return this._subGrid;

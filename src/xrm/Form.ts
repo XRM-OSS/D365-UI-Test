@@ -1,5 +1,6 @@
 import * as puppeteer from "puppeteer";
 import { EnsureXrmGetter } from "./Global";
+import { XrmUiTest } from "./XrmUITest";
 
 interface FormIdentifier {
     byName: string;
@@ -9,8 +10,9 @@ interface FormIdentifier {
 export class Form {
     private _page: puppeteer.Page;
 
-    constructor(page: puppeteer.Page) {
-        this._page = page;
+    constructor(private xrmUiTest: XrmUiTest) {
+        this._page = xrmUiTest.page;
+        this.xrmUiTest = xrmUiTest;
     }
 
     reset = async () => {

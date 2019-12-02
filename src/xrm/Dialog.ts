@@ -1,10 +1,12 @@
 import * as puppeteer from "puppeteer";
+import { XrmUiTest } from "./XrmUITest";
 
 export class Dialog {
     private _page: puppeteer.Page;
 
-    constructor(page: puppeteer.Page) {
-        this._page = page;
+    constructor(private xrmUiTest: XrmUiTest) {
+        this._page = xrmUiTest.page;
+        this.xrmUiTest = xrmUiTest;
     }
 
     confirmDuplicateDetection = async() => {

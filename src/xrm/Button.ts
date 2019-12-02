@@ -1,4 +1,5 @@
 import * as puppeteer from "puppeteer";
+import { XrmUiTest } from "./XrmUITest";
 
 interface ButtonIdentifier {
     byDataId?: string;
@@ -8,8 +9,9 @@ interface ButtonIdentifier {
 export class Button {
     private _page: puppeteer.Page;
 
-    constructor(page: puppeteer.Page) {
-        this._page = page;
+    constructor(private xrmUiTest: XrmUiTest) {
+        this._page = xrmUiTest.page;
+        this.xrmUiTest = xrmUiTest;
     }
 
     expandMoreCommands = async() => {

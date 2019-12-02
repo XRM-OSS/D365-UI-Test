@@ -1,13 +1,15 @@
 import * as puppeteer from "puppeteer";
 import { EnsureXrmGetter } from "./Global";
+import { XrmUiTest } from "./XrmUITest";
 
 export class Navigation {
     private _page: puppeteer.Page;
     private _crmUrl: string;
 
-    constructor(crmUrl: string, page: puppeteer.Page) {
-        this._page = page;
-        this._crmUrl = crmUrl;
+    constructor(private xrmUiTest: XrmUiTest) {
+        this._page = xrmUiTest.page;
+        this._crmUrl = xrmUiTest.crmUrl;
+        this.xrmUiTest = xrmUiTest;
     }
 
     openCreateForm = async (entityName: string) => {
