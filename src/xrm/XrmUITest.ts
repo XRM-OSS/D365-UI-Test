@@ -140,12 +140,12 @@ export class XrmUiTest {
             await password.type(extendedProperties.password);
 
             const remember = await this.page.waitForSelector("#idBtn_Back");
-            
+
             await Promise.all([
                 this.page.waitForNavigation({ waitUntil: "networkidle0" }),
                 this.page.waitForNavigation({ waitUntil: "load" }),
                 remember.click()
-            ])
+            ]);
         }
 
         return this.page;

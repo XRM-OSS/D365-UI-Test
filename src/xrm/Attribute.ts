@@ -5,8 +5,8 @@ import { XrmUiTest } from "./XrmUITest";
 export class Attribute {
     private _page: puppeteer.Page;
 
-    constructor(page: puppeteer.Page, private xrmUiTest: XrmUiTest) {
-        this._page = page;
+    constructor(private xrmUiTest: XrmUiTest) {
+        this._page = xrmUiTest.page;
         this.xrmUiTest = xrmUiTest;
     }
 
