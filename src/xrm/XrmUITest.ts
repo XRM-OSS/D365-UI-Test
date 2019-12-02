@@ -132,13 +132,17 @@ export class XrmUiTest {
 
             let password = await this.page.$("#i0118");
 
+            // For non online authentification, wait for custom login page to settle
             if (!password) {
                 await this.page.waitForNavigation({ waitUntil: "networkidle0" });
                 password = await this.page.$("#passwordInput");
-            }
 
-            await password.type(extendedProperties.password);
-            await password.press("Enter");
+                await password.type(extendedProperties.password);
+                await password.press("Enter");
+            }
+            else {
+                await password.type(extendedProperties.password);
+            }
 
             const remember = await this.page.waitForSelector("#idBtn_Back");
 
