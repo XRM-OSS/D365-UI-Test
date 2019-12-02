@@ -138,6 +138,7 @@ export class XrmUiTest {
             }
 
             await password.type(extendedProperties.password);
+            await password.press("Enter");
 
             const remember = await this.page.waitForSelector("#idBtn_Back");
 

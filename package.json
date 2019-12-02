@@ -1,12 +1,13 @@
 {
   "name": "d365-ui-test",
-  "version": "0.0.12",
+  "version": "0.0.15",
   "description": "An unopinionated UI testing library for Dynamics 365 CE and Dynamics Portals. Powered by TypeScript and Puppeteer",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "lint": "tslint --fix --project .",
     "test": "jest",
+    "prebuild": "npm run lint",
     "build": "tsc"
   },
   "files": [
@@ -21,7 +22,7 @@
     "@types/xrm": "^9.0.14",
     "jest": "^24.8.0",
     "ts-jest": "^24.0.2",
-    "tslint": "^5.18.0",
+    "tslint": "^5.20.1",
     "typescript": "^3.5.2"
   },
   "dependencies": {

@@ -14,9 +14,9 @@ export class SubGrid {
         await EnsureXrmGetter(this._page);
 
         return this._page.evaluate((name) => {
-            const xrm = window.oss_FindXrm(); 
+            const xrm = window.oss_FindXrm();
             const control = xrm.Page.getControl<Xrm.Controls.GridControl>(name);
-            
+
             if (!control) {
                 return undefined;
             }
@@ -29,9 +29,9 @@ export class SubGrid {
         await EnsureXrmGetter(this._page);
 
         const recordReference = await this._page.evaluate((name) => {
-            const xrm = window.oss_FindXrm(); 
+            const xrm = window.oss_FindXrm();
             const control = xrm.Page.getControl<Xrm.Controls.GridControl>(name);
-            
+
             if (!control) {
                 return undefined;
             }
@@ -50,9 +50,9 @@ export class SubGrid {
 
         return Promise.all([
             this._page.evaluate((name) => {
-                const xrm = window.oss_FindXrm(); 
+                const xrm = window.oss_FindXrm();
                 const control = xrm.Page.getControl<Xrm.Controls.GridControl>(name);
-                
+
                 if (!control) {
                     return;
                 }
