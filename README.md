@@ -56,14 +56,17 @@ There is already a demo project for writing tests with jest available here: http
 
 Just follow the instructions in there for getting started.
 
-### Contributing
+### Without template project
 Install this project using npm to get started: `npm install d365-ui-test`.
+
 Afterwards you can import it in your code like `import { XrmUiTest } from "d365-ui-test";`.
+
 Use a testing framework such as Jest or Mocha for creating a test suite and set up a XrmUiTest instance in the startup step for launching a Chrome session.
 Each of your tests can then be written inside the testing framework just as you're used to.
 
 You might want to create your own settings.txt file as in the example above or just enter your credentials inline.
-The demo tests reside at `spec/xrm-ui-test.spec.ts`, this might give you an idea.
+The demo tests reside at `spec/xrm-ui-test.spec.ts`, the demo project can be found in the previous section.
+This might give you an idea.
 
 ## What's the difference to EasyRepro?
 EasyRepro focuses on interacting with the form mainly by simulating user inputs.
