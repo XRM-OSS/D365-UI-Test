@@ -123,52 +123,53 @@ export class XrmUiTest {
             this.page.waitForNavigation({ waitUntil: "networkidle0" })
         ]);
 
-        const userName = await this.page.waitForSelector("#i0116");
-        await userName.type(extendedProperties.userName);
-
-        await this.page.waitFor(1000);
-        await userName.press("Enter");
-        await this.page.waitFor(1000);
-
-        const password = await this.page.$("#i0118");
-
-        // For non online authentification, wait for custom login page to settle
-        if (!password) {
-            await this.page.waitForNavigation({ waitUntil: "networkidle0" });
-            console.log(`No online auth, handling custom auth. If nothing happens, please specify passwordFieldSelector and optionally userNameFieldSelector.`);
-
-            if (extendedProperties.userNameFieldSelector) {
-                console.log("Waiting for user name field: " + extendedProperties.userNameFieldSelector);
-                const userNameField = await this.page.waitFor(extendedProperties.userNameFieldSelector);
-                await userNameField.type(extendedProperties.userName);
-            }
-
-            if (extendedProperties.passwordFieldSelector) {
-                console.log("Waiting for password field: " + extendedProperties.passwordFieldSelector);
-                const passwordInput = await this.page.waitFor(extendedProperties.passwordFieldSelector);
-
-                await passwordInput.type(extendedProperties.password);
-                await passwordInput.press("Enter");
-            }
-        }
-        else {
-            // For some reason we need the else in here, without it errors will occur
-            await password.type(extendedProperties.password);
-            await password.press("Enter");
-        }
-
-        const remember = await this.page.waitForSelector("#idBtn_Back");
-
-        await Promise.all([
-            this.page.waitForNavigation({ waitUntil: "networkidle0" }),
-            this.page.waitForNavigation({ waitUntil: "load" }),
-            remember.click()
-        ]);
+        await this.enterUserName(extendedProperties);
+        await this.enterPassword(extendedProperties);
+        await this.dontRememberLogin();
 
         return this.page;
     }
 
     close = async () => {
         await this.browser.close();
+    }
+
+    private async dontRememberLogin() {
+        const remember = await this.page.waitForSelector("#idBtn_Back");
+        await remember.click();
+        return Promise.race([this.page.waitFor("#TabAppSwitcherNode"), this.page.waitFor("button[data-id='officewaffle']")]);
+    }
+
+    private async enterPassword(extendedProperties: { appId?: string; userName: string; password: string; userNameFieldSelector?: string; passwordFieldSelector?: string; }) {
+        const password = await this.page.$("#i0118");
+        // For non online authentification, wait for custom login page to settle
+        if (!password) {
+            await this.page.waitForNavigation({ waitUntil: "load" });
+            console.log(`No online auth, handling custom auth. If nothing happens, please specify passwordFieldSelector and optionally userNameFieldSelector.`);
+            if (extendedProperties.userNameFieldSelector) {
+                console.log("Waiting for user name field: " + extendedProperties.userNameFieldSelector);
+                const userNameField = await this.page.waitFor(extendedProperties.userNameFieldSelector);
+                await userNameField.type(extendedProperties.userName);
+            }
+            if (extendedProperties.passwordFieldSelector) {
+                console.log("Waiting for password field: " + extendedProperties.passwordFieldSelector);
+                const passwordInput = await this.page.waitFor(extendedProperties.passwordFieldSelector);
+                await passwordInput.type(extendedProperties.password);
+                return passwordInput.press("Enter");
+            }
+        }
+        else {
+            // For some reason we need the else in here, without it errors will occur
+            await password.type(extendedProperties.password);
+            return password.press("Enter");
+        }
+    }
+
+    private async enterUserName(extendedProperties: { appId?: string; userName: string; password: string; userNameFieldSelector?: string; passwordFieldSelector?: string; }) {
+        const userName = await this.page.waitForSelector("#i0116");
+        await userName.type(extendedProperties.userName);
+        await this.page.waitFor(1000);
+        await userName.press("Enter");
+        return this.page.waitFor(1000);
     }
 }

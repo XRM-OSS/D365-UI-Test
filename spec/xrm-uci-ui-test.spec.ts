@@ -22,8 +22,6 @@ describe("Basic operations UCI", () => {
         });
 
         page = await xrmTest.open(url, { userName: user, password: password });
-
-        await xrmTest.Navigation.openAppById("d365default");
     });
 
     test("It should set string field", async () => {
@@ -105,6 +103,21 @@ describe("Basic operations UCI", () => {
 
         await xrmTest.Entity.delete();
     });*/
+
+    /*
+    test("It should set quick create fields", async () => {
+        jest.setTimeout(60000);
+
+        await xrmTest.Navigation.openQuickCreate("account");
+        console.log("Form open");
+        await xrmTest.Attribute.setValue("name", "Test name");
+        await page.waitFor(50000);
+        const value = await xrmTest.Attribute.getValue("name");
+        expect(value).toBe("Test name");
+
+        await xrmTest.Form.reset();
+    });
+    */
 
     afterAll(() => {
         return xrmTest.close();

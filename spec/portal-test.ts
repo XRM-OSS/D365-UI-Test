@@ -3,26 +3,26 @@ import * as puppeteer from "puppeteer";
 import * as fs from "fs";
 
 const xrmTest = new XrmUiTest();
-let browser: puppeteer.Browser = null;
-let page: puppeteer.Page = null;
+let browser: puppeteer.Browser;
+let page: puppeteer.Page;
 
 const takeScreenShotOnFailure = (testName: string, func: () => any): any => {
     return async () => {
         try {
             return await func();
         }
-        catch (e){
+        catch (e) {
             const reportsExists = await new Promise((resolve, reject) => fs.exists("reports", (exists) => resolve(exists)));
-            
+
             if (!reportsExists) {
                 await new Promise((resolve, reject) => fs.mkdir("reports", (err) => err ? reject(err) : resolve()));
             }
 
-            await page.screenshot({path: `./${testName}.png`, })
+            await page.screenshot({path: `./${testName}.png`, });
             throw e;
         }
-    }
-}
+    };
+};
 
 describe("Basic operations UCI", () => {
     beforeAll(() => {
@@ -30,11 +30,11 @@ describe("Basic operations UCI", () => {
 
         return xrmTest.launch({
             headless: true,
-            args: ['--start-fullscreen']
+            args: ["--start-fullscreen"]
         })
         .then(b => {
             browser = b;
-            
+
             return browser.newPage();
         })
         .then(p => {
@@ -45,8 +45,8 @@ describe("Basic operations UCI", () => {
 
     test("It should create email", takeScreenShotOnFailure("emailTest", async () => {
         jest.setTimeout(60000);
-        
-        await page.goto("https://support-q90.microsoftcrmportals.com/de-DE/");
+
+        await page.goto("https://demo.microsoftcrmportals.com/de-DE/");
 
         const link = await page.waitForSelector("a[href*='kontakt']");
         await link.click();
@@ -54,25 +54,25 @@ describe("Basic operations UCI", () => {
         const emailLink = await page.waitForSelector("a[href*='email']");
         await emailLink.click();
 
-        await page.waitForSelector("#stihl_firstname");
-        await page.type("#stihl_firstname", "UI Test Firstname");
-        await page.type("#stihl_lastname", "UI Test Lastname");
+        await page.waitForSelector("#demo_firstname");
+        await page.type("#demo_firstname", "UI Test Firstname");
+        await page.type("#demo_lastname", "UI Test Lastname");
 
         await page.type("#emailaddress", "uitest@orbis.de");
-        await page.type("#stihl_street", "Planckstraße 10");
-        await page.type("#stihl_zippostalcode", "88677");
-        await page.type("#stihl_city", "Markdorf");
-        await page.select("#stihl_countrycode", "100000085");
+        await page.type("#demo_street", "Planckstraße 10");
+        await page.type("#demo_zippostalcode", "88677");
+        await page.type("#demo_city", "Markdorf");
+        await page.select("#demo_countrycode", "100000085");
         await page.type("#title", "Automated UI Test");
 
         await page.type("#description", "UI Test Firstname");
-        
+
         await page.evaluate(() => {
             (document.querySelector("#InsertButton") as any).click();
         });
 
         await page.waitForNavigation({ waitUntil: "networkidle0" });
-        
+
         const successDiv = await page.$(".alert-case-created");
         expect(successDiv).toBeDefined();
     }));

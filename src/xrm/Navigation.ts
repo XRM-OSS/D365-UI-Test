@@ -18,11 +18,11 @@ export class Navigation {
         return Promise.all([
             this._page.evaluate((entityName: string) => {
                 const xrm = window.oss_FindXrm();
-                return xrm.Navigation.openForm({ entityName: entityName }); }
+                xrm.Navigation.openForm({ entityName: entityName }); }
             , entityName),
 
-            this._page.waitForNavigation({ waitUntil: "load" }),
-            this._page.waitForNavigation({ waitUntil: "networkidle0" })
+            this._page.waitForNavigation({ waitUntil: "networkidle0" }),
+            this._page.waitForNavigation({ waitUntil: "load" })
         ]);
     }
 
@@ -32,11 +32,11 @@ export class Navigation {
         return Promise.all([
             this._page.evaluate((entityName: string, entityId: string) => {
                 const xrm = window.oss_FindXrm();
-                return xrm.Navigation.openForm({ entityName: entityName, entityId: entityId });
+                xrm.Navigation.openForm({ entityName: entityName, entityId: entityId });
             }, entityName, entityId),
 
-            this._page.waitForNavigation({ waitUntil: "load" }),
-            this._page.waitForNavigation({ waitUntil: "networkidle0" })
+            this._page.waitForNavigation({ waitUntil: "networkidle0" }),
+            this._page.waitForNavigation({ waitUntil: "load" })
         ]);
     }
 
@@ -49,15 +49,11 @@ export class Navigation {
                 return xrm.Navigation.openForm({ entityName: entityName, useQuickCreateForm: true });
             }, entityName),
 
-            this._page.waitForNavigation({ waitUntil: "load" }),
-            this._page.waitForNavigation({ waitUntil: "networkidle0" })
+            Promise.race([ this._page.waitFor("#globalquickcreate_save_button_NavBarGloablQuickCreate"), this._page.waitFor("#quickCreateSaveAndCloseBtn") ])
         ]);
     }
 
     openAppById = async(appId: string) => {
-        return Promise.all([
-            this._page.goto(`${this._crmUrl}/main.aspx?appid=${appId}`, { waitUntil: "load" }),
-            this._page.waitForNavigation({ waitUntil: "networkidle0" })
-        ]);
+        return this._page.goto(`${this._crmUrl}/main.aspx?appid=${appId}`, { waitUntil: "load" });
     }
 }
