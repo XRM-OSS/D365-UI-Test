@@ -54,6 +54,9 @@ export class Navigation {
     }
 
     openAppById = async(appId: string) => {
-        return this._page.goto(`${this._crmUrl}/main.aspx?appid=${appId}`, { waitUntil: "load" });
+        return Promise.all([
+            this._page.goto(`${this._crmUrl}/main.aspx?appid=${appId}`, { waitUntil: "load" }),
+            this._page.waitForNavigation({ waitUntil: "networkidle0" })
+        ]);
     }
 }
