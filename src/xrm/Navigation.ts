@@ -14,14 +14,14 @@ export class Navigation {
 
     openCreateForm = async (entityName: string) => {
         return Promise.all([
-            this._page.goto(`${this._crmUrl}/main.aspx?etn=${entityName}&newWindow=true&pagetype=entityrecord${this.xrmUiTest.AppId ? "appid=" + this.xrmUiTest.AppId : ""}`, { waitUntil: "load" }),
+            this._page.goto(`${this._crmUrl}/main.aspx?etn=${entityName}&pagetype=entityrecord${this.xrmUiTest.AppId ? "&appid=" + this.xrmUiTest.AppId : ""}`, { waitUntil: "load" }),
             this._page.waitForNavigation({ waitUntil: "networkidle0" })
         ]);
     }
 
     openUpdateForm = async (entityName: string, entityId: string) => {
         return Promise.all([
-            this._page.goto(`${this._crmUrl}/main.aspx?etn=${entityName}&id=${entityId}&newWindow=false&pagetype=entityrecord${this.xrmUiTest.AppId ? "appid=" + this.xrmUiTest.AppId : ""}`, { waitUntil: "load" }),
+            this._page.goto(`${this._crmUrl}/main.aspx?etn=${entityName}&id=${entityId}&pagetype=entityrecord${this.xrmUiTest.AppId ? "&appid=" + this.xrmUiTest.AppId : ""}`, { waitUntil: "load" }),
             this._page.waitForNavigation({ waitUntil: "networkidle0" })
         ]);
     }
@@ -40,6 +40,8 @@ export class Navigation {
     }
 
     openAppById = async(appId: string) => {
+        this.xrmUiTest.AppId = appId;
+
         return Promise.all([
             this._page.goto(`${this._crmUrl}/main.aspx?appid=${appId}`, { waitUntil: "load" }),
             this._page.waitForNavigation({ waitUntil: "networkidle0" })

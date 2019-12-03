@@ -103,6 +103,10 @@ export class XrmUiTest {
         return this._appId;
     }
 
+    set AppId(value) {
+        this._appId = value;
+    }
+
     launch = async (launchOptions?: puppeteer.LaunchOptions) => {
         // tslint:disable-next-line:no-null-keyword
         this._browser = await puppeteer.launch({ ...{ defaultViewport: null }, ...launchOptions });
