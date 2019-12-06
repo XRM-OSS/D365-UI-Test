@@ -8,6 +8,9 @@ import { SubGrid } from "./SubGrid";
 import { Form } from "./Form";
 import { Button } from "./Button";
 
+/**
+ * Main class for testing in D365
+ */
 export class XrmUiTest {
     private _browser: puppeteer.Browser;
     private _page: puppeteer.Page;
@@ -23,18 +26,30 @@ export class XrmUiTest {
     private _subGrid: SubGrid;
     private _button: Button;
 
+    /**
+     * Gets the browser object that was generated when launching puppeteer
+     */
     get browser() {
         return this._browser;
     }
 
+    /**
+     * Gets the page object that was generated when connecting to D365
+     */
     get page() {
         return this._page;
     }
 
+    /**
+     * Gets the D365 base URL
+     */
     get crmUrl() {
         return this._crmUrl;
     }
 
+    /**
+     * Gets the subfunctions for navigating in D365
+     */
     get Navigation() {
         if (!this._navigation) {
             this._navigation = new Navigation(this);
@@ -43,6 +58,9 @@ export class XrmUiTest {
         return this._navigation;
     }
 
+    /**
+     * Gets the subfunctions for using ribbon buttons in D365
+     */
     get Button() {
         if (!this._button) {
             this._button = new Button(this);
@@ -51,6 +69,9 @@ export class XrmUiTest {
         return this._button;
     }
 
+    /**
+     * Gets the subfunctions for interacting with the record in D365
+     */
     get Entity() {
         if (!this._entity) {
             this._entity = new Entity(this);
@@ -59,6 +80,9 @@ export class XrmUiTest {
         return this._entity;
     }
 
+    /**
+     * Gets the subfunctions for interacting with attributes in D365, for example getting or setting values
+     */
     get Attribute() {
         if (!this._attribute) {
             this._attribute = new Attribute(this);
@@ -67,6 +91,9 @@ export class XrmUiTest {
         return this._attribute;
     }
 
+    /**
+     * Gets the subfunctions for interacting with controls in D365, for example getting visibility or disable states
+     */
     get Control() {
         if (!this._control) {
             this._control = new Control(this);
@@ -75,6 +102,9 @@ export class XrmUiTest {
         return this._control;
     }
 
+    /**
+     * Gets the subfunctions for interacting with dialogs in D365, for example duplicate detection dialogs
+     */
     get Dialog() {
         if (!this._dialog) {
             this._dialog = new Dialog(this);
@@ -83,6 +113,9 @@ export class XrmUiTest {
         return this._dialog;
     }
 
+    /**
+     * Gets the subfunctions for interacting with forms in D365, for example opening different forms
+     */
     get Form() {
         if (!this._form) {
             this._form = new Form(this);
@@ -91,6 +124,9 @@ export class XrmUiTest {
         return this._form;
     }
 
+    /**
+     * Gets the subfunctions for interacting with subgrids in D365, for example refreshing or opening specific records
+     */
     get SubGrid() {
         if (!this._subGrid) {
             this._subGrid = new SubGrid(this);
@@ -99,14 +135,26 @@ export class XrmUiTest {
         return this._subGrid;
     }
 
+    /**
+     * Gets the currently opened AppId
+     */
     get AppId() {
         return this._appId;
     }
 
+    /**
+     * Sets the currently opened AppId. Is set automatically by calling Navigation.openAppById
+     */
     set AppId(value) {
         this._appId = value;
     }
 
+    /**
+     * Function for launching a puppeteer instance
+     * @param {puppeteer.launchOptions} [launchOptions] Launch options for launching puppeteer. Will be used for calling puppeteer.launch.
+     * @returns {puppeteer.Browser} Started browser instance
+     * @remarks defaultViewport in launchOptions is preset to null for using your clients default resolution. Overwrite defaultViewport to change.
+     */
     launch = async (launchOptions?: puppeteer.LaunchOptions) => {
         // tslint:disable-next-line:no-null-keyword
         this._browser = await puppeteer.launch({ ...{ defaultViewport: null }, ...launchOptions });
@@ -116,6 +164,7 @@ export class XrmUiTest {
     /**
      * @param { String } url Url of your D365 organization
      * @param { Object } extendedProperties Options for logging in. User name and password are required. If you have a custom authentication page, you should pass userNameFieldSelector if user name has to be reentered and passwordFieldSelector for password entry. These are css selectors for the inputs.
+     * @returns {puppeteer.Page} The page in which D365 was opened
      */
     open = async (url: string, extendedProperties: { appId?: string; userName: string; password: string, userNameFieldSelector?: string; passwordFieldSelector?: string }) => {
         this._crmUrl = url;
@@ -138,6 +187,9 @@ export class XrmUiTest {
         return this.page;
     }
 
+    /**
+     * Closes the puppeteer browser session
+     */
     close = async () => {
         await this.browser.close();
     }

@@ -2,6 +2,21 @@ import * as puppeteer from "puppeteer";
 import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
 
+/**
+ * State of a control
+ */
+export interface ControlState {
+    /**
+     * Whether the control is currently visible
+     */
+    isVisible: boolean;
+
+    /**
+     * Whether the control is currently disabled
+     */
+    isDisabled: boolean;
+}
+
 export class Control {
     private _page: puppeteer.Page;
 
@@ -10,7 +25,12 @@ export class Control {
         this.xrmUiTest = xrmUiTest;
     }
 
-    get = async (controlName: string) => {
+    /**
+     * Gets the state of the specified control
+     * @param controlName Name of the control to retrieve
+     * @returns Promise which fulfills with the current control state
+     */
+    get = async (controlName: string): Promise<ControlState> => {
         await EnsureXrmGetter(this._page);
 
         return this._page.evaluate((controlName: string) => {

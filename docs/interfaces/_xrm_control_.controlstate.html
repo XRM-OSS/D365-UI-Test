@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ButtonIdentifier | D365-UI-Test</title>
+	<title>ControlState | D365-UI-Test</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_xrm_button_.html">&quot;xrm/Button&quot;</a>
+					<a href="../modules/_xrm_control_.html">&quot;xrm/Control&quot;</a>
 				</li>
 				<li>
-					<a href="_xrm_button_.buttonidentifier.html">ButtonIdentifier</a>
+					<a href="_xrm_control_.controlstate.html">ControlState</a>
 				</li>
 			</ul>
-			<h1>Interface ButtonIdentifier</h1>
+			<h1>Interface ControlState</h1>
 		</div>
 	</div>
 </header>
@@ -70,8 +70,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Scheme to define how to access a button
-						Either by data-id (language independent) or by button label (language dependent, but easily visible in UI)</p>
+						<p>State of a control</p>
 					</div>
 				</div>
 			</section>
@@ -79,7 +78,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ButtonIdentifier</span>
+						<span class="target">ControlState</span>
 					</li>
 				</ul>
 			</section>
@@ -87,56 +86,46 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-not-exported">
+						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_xrm_button_.buttonidentifier.html#bydataid" class="tsd-kind-icon">by<wbr>Data<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_xrm_button_.buttonidentifier.html#bylabel" class="tsd-kind-icon">by<wbr>Label</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_xrm_control_.controlstate.html#isdisabled" class="tsd-kind-icon">is<wbr>Disabled</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_xrm_control_.controlstate.html#isvisible" class="tsd-kind-icon">is<wbr>Visible</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="bydataid" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> by<wbr>Data<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">by<wbr>Data<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="isdisabled" class="tsd-anchor"></a>
+					<h3>is<wbr>Disabled</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Disabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/df83d11/src/xrm/Button.ts#L13">xrm/Button.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/df83d11/src/xrm/Control.ts#L17">xrm/Control.ts:17</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Find button by data-id. You can find this in the HTML DOM when inspecting your form. Good if your tests need to be language independent</p>
+							<p>Whether the control is currently disabled</p>
 						</div>
-						<dl class="tsd-comment-tags">
-							<dt>example</dt>
-							<dd><p>account|NoRelationship|Form|mscrmaddons.am.form.createworkingitem.account</p>
-							</dd>
-						</dl>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="bylabel" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> by<wbr>Label</h3>
-					<div class="tsd-signature tsd-kind-icon">by<wbr>Label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="isvisible" class="tsd-anchor"></a>
+					<h3>is<wbr>Visible</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Visible<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/df83d11/src/xrm/Button.ts#L19">xrm/Button.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/df83d11/src/xrm/Control.ts#L12">xrm/Control.ts:12</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Find button by label. This is the plain button label that you can see in the UI. Be aware of language dependent button labels</p>
+							<p>Whether the control is currently visible</p>
 						</div>
-						<dl class="tsd-comment-tags">
-							<dt>example</dt>
-							<dd><p>Delete</p>
-							</dd>
-						</dl>
 					</div>
 				</section>
 			</section>
@@ -159,10 +148,10 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_xrm_attribute_.html">&quot;xrm/<wbr>Attribute&quot;</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_xrm_button_.html">&quot;xrm/<wbr>Button&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/_xrm_control_.html">&quot;xrm/<wbr>Control&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -191,18 +180,18 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/_xrm_button_.button.html" class="tsd-kind-icon">Button</a>
+						<a href="../classes/_xrm_control_.control.html" class="tsd-kind-icon">Control</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_xrm_button_.buttonidentifier.html" class="tsd-kind-icon">Button<wbr>Identifier</a>
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_xrm_control_.controlstate.html" class="tsd-kind-icon">Control<wbr>State</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_xrm_button_.buttonidentifier.html#bydataid" class="tsd-kind-icon">by<wbr>Data<wbr>Id</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_xrm_control_.controlstate.html#isdisabled" class="tsd-kind-icon">is<wbr>Disabled</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_xrm_button_.buttonidentifier.html#bylabel" class="tsd-kind-icon">by<wbr>Label</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_xrm_control_.controlstate.html#isvisible" class="tsd-kind-icon">is<wbr>Visible</a>
 							</li>
 						</ul>
 					</li>

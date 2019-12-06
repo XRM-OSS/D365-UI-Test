@@ -10,12 +10,24 @@ export class Attribute {
         this.xrmUiTest = xrmUiTest;
     }
 
+    /**
+     * Gets the value of the specified attribute
+     * @param attributeName Name of the attribute
+     * @returns Value of the specified attribute
+     */
     getValue = async (attributeName: string) => {
         await EnsureXrmGetter(this._page);
 
         return this._page.evaluate((attributeName: string) => { const xrm = window.oss_FindXrm(); return xrm.Page.getAttribute(attributeName).getValue(); }, attributeName);
     }
 
+    /**
+     * Sets the value of the specified attribute
+     * @param attributeName Name of the attribute
+     * @param value Value to set
+     * @param settleTime [200] Time to wait (ms) after setting value for letting onChange events occur.
+     * @returns Returns promise that resolves once value is set and settleTime is over
+     */
     setValue = async (attributeName: string, value: any, settleTime = 200) => {
         await EnsureXrmGetter(this._page);
 
@@ -38,6 +50,13 @@ export class Attribute {
         return this._page.waitFor(settleTime);
     }
 
+    /**
+     * Sets multiple attribute values at once
+     * @param values JS object with keys matching the attribute names and values containing the values to set
+     * @param settleTime [2000] Time to wait after setting the values for letting onChange events occur
+     * @returns Returns promise that resolves once values are set and settleTime is over
+     * @example XrmUiTest.Attribute.setValues({ name: "Account Name", creditlimit: 50000, customertypecode: 1, transactioncurrencyid: [{entityType: "transactioncurrency", name: "EURO", id: "someId"}] })
+     */
     setValues = async (values: {[key: string]: any}, settleTime = 2000) => {
         await EnsureXrmGetter(this._page);
 

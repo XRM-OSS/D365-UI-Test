@@ -10,6 +10,11 @@ export class SubGrid {
         this.xrmUiTest = xrmUiTest;
     }
 
+    /**
+     * Gets the record count of the specified subgrid
+     * @param {String} subgridName The control name of the subgrid to use
+     * @returns {Promise<number>} Promise which fulfills with the total record count
+     */
     getRecordCount = async( subgridName: string ) => {
         await EnsureXrmGetter(this._page);
 
@@ -25,6 +30,12 @@ export class SubGrid {
         }, subgridName);
     }
 
+    /**
+     * Opens the record in the subgrid at the n-th index
+     * @param {String} subgridName The control name of the subgrid to use
+     * @param {Number} recordNumber Index of the record to open
+     * @returns {Promise<void>} Promise which fulfills when record is opened
+     */
     openNthRecord = async( subgridName: string, recordNumber: number ) => {
         await EnsureXrmGetter(this._page);
 
@@ -45,21 +56,23 @@ export class SubGrid {
         return this.xrmUiTest.Navigation.openUpdateForm(recordReference.entityType, recordReference.id);
     }
 
+    /**
+     * Refreshes the specified subgrid
+     * @param {String} subgridName The control name of the subgrid to refresh
+     * @returns {Promise<void>} Promise which fulfills once refreshing is done
+     */
     refresh = async( subgridName: string) => {
         await EnsureXrmGetter(this._page);
 
-        return Promise.all([
-            this._page.evaluate((name) => {
-                const xrm = window.oss_FindXrm();
-                const control = xrm.Page.getControl<Xrm.Controls.GridControl>(name);
+        return this._page.evaluate((name) => {
+            const xrm = window.oss_FindXrm();
+            const control = xrm.Page.getControl<Xrm.Controls.GridControl>(name);
 
-                if (!control) {
-                    return;
-                }
+            if (!control) {
+                return;
+            }
 
-                return control.refresh();
-            }, subgridName),
-            this._page.waitForNavigation({ waitUntil: "networkidle0" })
-        ]);
+            return control.refresh();
+        }, subgridName);
     }
 }
