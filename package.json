@@ -8,7 +8,8 @@
     "lint": "tslint --fix --project .",
     "test": "jest",
     "prebuild": "npm run lint",
-    "build": "tsc"
+    "build": "tsc",
+    "docs": "typedoc"
   },
   "files": [
     "LICENSE.md",
@@ -23,6 +24,7 @@
     "jest": "^24.8.0",
     "ts-jest": "^24.0.2",
     "tslint": "^5.20.1",
+    "typedoc": "^0.15.3",
     "typescript": "^3.5.2"
   },
   "dependencies": {

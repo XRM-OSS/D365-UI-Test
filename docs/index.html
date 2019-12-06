@@ -1,0 +1,277 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>D365-UI-Test</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">D365-UI-Test</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> D365-UI-Test</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#d365-ui-test" id="d365-ui-test" style="color: inherit; text-decoration: none;">
+					<h1>D365-UI-Test</h1>
+				</a>
+				<p><a href="http://npm-stats.com/~packages/d365-ui-test"><img src="https://img.shields.io/npm/dt/d365-ui-test.svg" alt="npm downloads"></a></p>
+				<a href="#what39s-this" id="what39s-this" style="color: inherit; text-decoration: none;">
+					<h2>What&#39;s this?</h2>
+				</a>
+				<p>D365-UI-Test is an UI testing framework for easy and robust UI testing in Dynamics 365 CE and Dynamics 365 Portals.
+					It is powered by TypeScript and Puppeteer.
+				Various functions for interacting with CRM are implemented and can be used for executing your tests.</p>
+				<a href="#what-does-a-test-look-like" id="what-does-a-test-look-like" style="color: inherit; text-decoration: none;">
+					<h2>What does a test look like?</h2>
+				</a>
+				<p>D365-UI-Test is unopinionated, so we don&#39;t enforce a specific testing library.
+				The demo tests use <a href="https://jestjs.io/">jest</a>, but you could just as well use Mocha or someting completely different.</p>
+				<p>Jest Test:</p>
+				<pre><code class="language-TypeScript">describe(<span class="hljs-string">"Basic operations UCI"</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-comment">// Login to CRM once for all tests in this module</span>
+    beforeAll(<span class="hljs-keyword">async</span>() =&gt; {
+        jest.setTimeout(<span class="hljs-number">60000</span>);
+
+        <span class="hljs-comment">// You don't need to do it this way, but I did not want to check in the data by accident</span>
+        <span class="hljs-comment">// The file in this example looks like this: https://org.crm4.dynamics.com,user@org.onmicrosoft.com,password</span>
+        <span class="hljs-keyword">const</span> config = fs.readFileSync(<span class="hljs-string">"C:/temp/settings.txt"</span>, {encoding: <span class="hljs-string">'utf-8'</span>});
+        <span class="hljs-keyword">const</span> [url, user, password] = config.split(<span class="hljs-string">","</span>);
+
+        browser = <span class="hljs-keyword">await</span> xrmTest.launch({
+            headless: <span class="hljs-literal">false</span>,
+            args: [<span class="hljs-string">'--start-fullscreen'</span>],
+            defaultViewport: <span class="hljs-literal">null</span>
+        });
+
+        page = <span class="hljs-keyword">await</span> xrmTest.open(url, { userName: user, password: password });
+
+        <span class="hljs-keyword">await</span> xrmTest.openAppById(<span class="hljs-string">"3cd81e96-2940-e811-a952-000d3ab20edc"</span>);
+    });
+
+    test(<span class="hljs-string">"It should set string field"</span>, <span class="hljs-keyword">async</span> () =&gt; {
+        jest.setTimeout(<span class="hljs-number">60000</span>);
+
+        <span class="hljs-keyword">await</span> xrmTest.openCreateForm(<span class="hljs-string">"account"</span>);
+        <span class="hljs-keyword">await</span> xrmTest.setAttributeValue(<span class="hljs-string">"name"</span>, <span class="hljs-string">"Test name"</span>);
+
+        <span class="hljs-keyword">const</span> value = <span class="hljs-keyword">await</span> xrmTest.getAttributeValue(<span class="hljs-string">"name"</span>);
+        expect(value).toBe(<span class="hljs-string">"Test name"</span>);
+
+        <span class="hljs-keyword">await</span> xrmTest.reset();
+    });
+
+    afterAll(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        <span class="hljs-keyword">return</span> xrmTest.close();
+    });</code></pre>
+				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+					<h2>Getting started</h2>
+				</a>
+				<a href="#writing-tests" id="writing-tests" style="color: inherit; text-decoration: none;">
+					<h3>Writing tests</h3>
+				</a>
+				<p>There is already a demo project for writing tests with jest available here: <a href="https://github.com/DigitalFlow/D365-UI-Test-Jest-Demo">https://github.com/DigitalFlow/D365-UI-Test-Jest-Demo</a></p>
+				<p>Just follow the instructions in there for getting started.</p>
+				<a href="#without-template-project" id="without-template-project" style="color: inherit; text-decoration: none;">
+					<h3>Without template project</h3>
+				</a>
+				<p>Install this project using npm to get started: <code>npm install d365-ui-test</code>.</p>
+				<p>Afterwards you can import it in your code like <code>import { XrmUiTest } from &quot;d365-ui-test&quot;;</code>.</p>
+				<p>Use a testing framework such as Jest or Mocha for creating a test suite and set up a XrmUiTest instance in the startup step for launching a Chrome session.
+				Each of your tests can then be written inside the testing framework just as you&#39;re used to.</p>
+				<p>You might want to create your own settings.txt file as in the example above or just enter your credentials inline.
+					The demo tests reside at <code>spec/xrm-ui-test.spec.ts</code>, the demo project can be found in the previous section.
+				This might give you an idea.</p>
+				<a href="#what39s-the-difference-to-easyrepro" id="what39s-the-difference-to-easyrepro" style="color: inherit; text-decoration: none;">
+					<h2>What&#39;s the difference to EasyRepro?</h2>
+				</a>
+				<p>EasyRepro focuses on interacting with the form mainly by simulating user inputs.
+					When setting lookups, dealing with localization, renaming of labels and more topics, this seemed not the best option.
+					The CRM provides us with various global JS objects, which allow interacting with the system.
+				D365-UI-Test tries to use these JS objects (such as Xrm.Navigation) as much as possible, as this API is not expected to change unexpectedly, yields fast and stable results and causes no issues with localization.</p>
+				<p>D365-UI-Test also does not limit itself to Dynamics 365 CE, but also for testing connected Portals.</p>
+				<a href="#current-limitations" id="current-limitations" style="color: inherit; text-decoration: none;">
+					<h2>Current limitations</h2>
+				</a>
+				<p>There&#39;s a lot to do currently.</p>
+				<p>Opening create / update forms already works and you can set text / bool / number / currency / option set values.
+					Retrieving of values is also already possible.
+				In addition to that, you can assert control visibilities and disabled states.</p>
+				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+					<h2>License</h2>
+				</a>
+				<p>MIT licensed, have fun :)</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_index_.html">&quot;index&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_portal_portaluitest_.html">&quot;portal/<wbr>PortalUITest&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_utils_testutils_.html">&quot;utils/<wbr>Test<wbr>Utils&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_xrm_attribute_.html">&quot;xrm/<wbr>Attribute&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_xrm_button_.html">&quot;xrm/<wbr>Button&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_xrm_control_.html">&quot;xrm/<wbr>Control&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_xrm_dialog_.html">&quot;xrm/<wbr>Dialog&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_xrm_entity_.html">&quot;xrm/<wbr>Entity&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_xrm_form_.html">&quot;xrm/<wbr>Form&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_xrm_global_.html">&quot;xrm/<wbr>Global&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_xrm_navigation_.html">&quot;xrm/<wbr>Navigation&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_xrm_subgrid_.html">&quot;xrm/<wbr>Sub<wbr>Grid&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_xrm_xrmuitest_.html">&quot;xrm/<wbr>XrmUITest&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

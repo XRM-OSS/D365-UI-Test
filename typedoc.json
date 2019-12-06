@@ -1,0 +1,18 @@
+{
+    "src": [
+      "./src"
+    ],
+    "mode": "modules",
+    "includeDeclarations": true,
+    "tsconfig": "tsconfig.json",
+    "out": "./docs",
+    "excludePrivate": true,
+    "excludeProtected": true,
+    "excludeExternals": true,
+    "readme": "README.md",
+    "name": "D365-UI-Test",
+    "ignoreCompilerErrors": true,
+    "plugin": "none",
+    "listInvalidSymbolLinks": true,
+    "categorizeByGroup": false
+}

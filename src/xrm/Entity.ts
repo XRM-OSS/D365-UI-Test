@@ -65,7 +65,7 @@ export class Entity {
         const confirmButton = await Promise.race([ this._page.waitForSelector("#butBegin"), this._page.waitForSelector("#confirmButton")]);
 
         if (confirmButton) {
-            return Promise.all([ confirmButton.click(), this._page.waitForNavigation({ waitUntil: "networkidle0" }) ]);
+            return Promise.all([ confirmButton.click(), this._page.waitForNavigation({ waitUntil: "networkidle0", timeout: 60000 }) ]);
         }
         else {
             throw new Error("Failed to find delete confirmation button");
