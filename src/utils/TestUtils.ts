@@ -29,7 +29,7 @@ export namespace TestUtils {
      *     return xrmTest.Navigation.openAppById("default365");
      * }));
      */
-    export const takeScreenShotOnFailure = (page: puppeteer.Page, filePath: string, func: () => void): any => {
+    export const takeScreenShotOnFailure = (page: puppeteer.Page, filePath: string, func: () => void | Promise<void>): any => {
         return async () => {
             try {
                 await Promise.resolve(func());
@@ -73,5 +73,53 @@ export namespace TestUtils {
      */
     export const checkForFile = async (page: puppeteer.Page, pathName: string, fileEndings: Array<string>, sleepTime = 500): Promise<boolean> => {
         return checkForFileInternal(page, pathName, fileEndings, sleepTime);
+    };
+
+    class InflightRequests {
+        _page: puppeteer.Page;
+        _requests: Set<Request>;
+
+        constructor(page: puppeteer.Page) {
+          this._page = page;
+          this._requests = new Set();
+          this._onStarted = this._onStarted.bind(this);
+          this._onFinished = this._onFinished.bind(this);
+          this._page.on("request", this._onStarted);
+          this._page.on("requestfinished", this._onFinished);
+          this._page.on("requestfailed", this._onFinished);
+        }
+
+        _onStarted(request: any) { this._requests.add(request); }
+        _onFinished(request: any) { this._requests.delete(request); }
+
+        inflightRequests() { return Array.from(this._requests); }
+
+        dispose() {
+          this._page.removeListener("request", this._onStarted);
+          this._page.removeListener("requestfinished", this._onFinished);
+          this._page.removeListener("requestfailed", this._onFinished);
+        }
+    }
+
+    /**
+     * If you come across network timeouts when using this library, you can use this function for finding out which requests were causing this.
+     * @param page The page object for the current session
+     * @param func The function call that causes the navigation timeout
+     * @example await trackTimedOutRequest(page, () => xrmTest.Navigation.openAppById("d365default"));
+     */
+    export const trackTimedOutRequest = async (page: puppeteer.Page, func: () => void | Promise<void>) => {
+        const tracker = new InflightRequests(page);
+
+        try {
+            await Promise.resolve(func());
+        }
+        catch (e) {
+            console.log("Navigation failed: " + e.message);
+            const inflight = tracker.inflightRequests();
+            console.log(inflight.map((request: any) => "  " + request.url()).join("\n"));
+            tracker.dispose();
+
+            throw e;
+        }
     };
 }
