@@ -29,14 +29,19 @@ export class Navigation {
     openQuickCreate = async (entityName: string) => {
         await EnsureXrmGetter(this._page);
 
-        return Promise.all([
-            this._page.evaluate((entityName: string, entityId: string) => {
+        await Promise.all([
+            this._page.evaluate((entityName: string) => {
                 const xrm = window.oss_FindXrm();
-                return xrm.Navigation.openForm({ entityName: entityName, useQuickCreateForm: true });
+                xrm.Navigation.openForm({ entityName: entityName, useQuickCreateForm: true });
             }, entityName),
 
-            Promise.race([ this._page.waitFor("#globalquickcreate_save_button_NavBarGloablQuickCreate"), this._page.waitFor("#quickCreateSaveAndCloseBtn") ])
+            Promise.race([ this._page.waitFor("#quickCreateSaveAndCloseBtn"), this._page.waitFor("#globalquickcreate_save_button_NavBarGloablQuickCreate") ])
         ]);
+
+        return this._page.waitForFunction((entityName: string) => {
+            const xrm = window.oss_FindXrm();
+            return xrm && xrm.Page && xrm.Page.data && xrm.Page.data.entity && xrm.Page.data.entity.getEntityName() === entityName;
+        }, undefined, entityName);
     }
 
     openAppById = async(appId: string) => {

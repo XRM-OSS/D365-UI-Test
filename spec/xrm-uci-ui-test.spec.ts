@@ -86,10 +86,10 @@ describe("Basic operations UCI", () => {
         expect(value.entityType).toBe(lookup.entityType);
         expect(value.name).toBe(lookup.name);
 
-        await xrmTest.Entity.reset();
-    });*/
+        await xrmTest.Entity.noSubmit();
+    });
 
-    /*test("It should create and delete record", async () => {
+    test("It should create and delete record", async () => {
         jest.setTimeout(60000);
         await xrmTest.Navigation.openCreateForm("account");
 
@@ -102,9 +102,8 @@ describe("Basic operations UCI", () => {
         await xrmTest.Dialog.confirmDuplicateDetection();
 
         await xrmTest.Entity.delete();
-    });*/
+    });
 
-    /*
     test("It should set quick create fields", async () => {
         jest.setTimeout(60000);
 
@@ -115,7 +114,7 @@ describe("Basic operations UCI", () => {
         const value = await xrmTest.Attribute.getValue("name");
         expect(value).toBe("Test name");
 
-        await xrmTest.Form.reset();
+        const id = await xrmTest.Entity.save();
     });
     */
 
