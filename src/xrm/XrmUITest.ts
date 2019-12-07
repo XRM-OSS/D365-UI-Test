@@ -161,6 +161,26 @@ export class XrmUiTest {
         return this.browser;
     }
 
+    private registerIgnoreUrls = async (page: puppeteer.Page) => {
+        await page.setRequestInterception(true);
+
+        // These URLs take sometimes more than 2 minutes to load, just abort them
+        const ignoreUrlPaths = [
+            "https://browser.pipe.aria.microsoft.com/Collector/3.0/?qsp=true&content-type=application%2Fbond-compact-binary&client-id=NO_AUTH",
+            "https://dc.services.visualstudio.com/v2/track"
+        ];
+
+        page.on("request", req => {
+            const requestUrl = req.url();
+
+            if (ignoreUrlPaths.some(u => requestUrl.startsWith(u))) {
+                req.abort();
+            } else {
+                req.continue();
+            }
+        });
+    }
+
     /**
      * @param { String } url Url of your D365 organization
      * @param { Object } extendedProperties Options for logging in. User name and password are required. If you have a custom authentication page, you should pass userNameFieldSelector if user name has to be reentered and passwordFieldSelector for password entry. These are css selectors for the inputs.
@@ -183,6 +203,8 @@ export class XrmUiTest {
         await this.enterUserName(extendedProperties);
         await this.enterPassword(extendedProperties);
         await this.dontRememberLogin();
+
+        await this.registerIgnoreUrls(this.page);
 
         return this.page;
     }
