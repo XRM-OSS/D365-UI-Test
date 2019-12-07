@@ -7,6 +7,7 @@ import { Attribute } from "./Attribute";
 import { SubGrid } from "./SubGrid";
 import { Form } from "./Form";
 import { Button } from "./Button";
+import { Tab } from "./Tab";
 
 /**
  * Main class for testing in D365
@@ -25,6 +26,7 @@ export class XrmUiTest {
     private _form: Form;
     private _subGrid: SubGrid;
     private _button: Button;
+    private _tab: Tab;
 
     /**
      * Gets the browser object that was generated when launching puppeteer
@@ -133,6 +135,17 @@ export class XrmUiTest {
         }
 
         return this._subGrid;
+    }
+
+    /**
+     * Gets the subfunctions for interacting with tabs in D365, for example to open one
+     */
+    get Tab() {
+        if (!this._tab) {
+            this._tab = new Tab(this);
+        }
+
+        return this._tab;
     }
 
     /**
