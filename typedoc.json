@@ -2,7 +2,7 @@
     "src": [
       "./src"
     ],
-    "mode": "modules",
+    "mode": "file",
     "includeDeclarations": true,
     "tsconfig": "tsconfig.json",
     "out": "./docs",

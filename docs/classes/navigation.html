@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SubGrid | D365-UI-Test</title>
+	<title>Navigation | D365-UI-Test</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_xrm_subgrid_.html">&quot;xrm/SubGrid&quot;</a>
-				</li>
-				<li>
-					<a href="_xrm_subgrid_.subgrid.html">SubGrid</a>
+					<a href="navigation.html">Navigation</a>
 				</li>
 			</ul>
-			<h1>Class SubGrid</h1>
+			<h1>Class Navigation</h1>
 		</div>
 	</div>
 </header>
@@ -71,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">SubGrid</span>
+						<span class="target">Navigation</span>
 					</li>
 				</ul>
 			</section>
@@ -82,15 +79,16 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_xrm_subgrid_.subgrid.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="navigation.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_xrm_subgrid_.subgrid.html#getrecordcount" class="tsd-kind-icon">get<wbr>Record<wbr>Count</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_xrm_subgrid_.subgrid.html#opennthrecord" class="tsd-kind-icon">open<wbr>Nth<wbr>Record</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_xrm_subgrid_.subgrid.html#refresh" class="tsd-kind-icon">refresh</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="navigation.html#openappbyid" class="tsd-kind-icon">open<wbr>App<wbr>ById</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="navigation.html#opencreateform" class="tsd-kind-icon">open<wbr>Create<wbr>Form</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="navigation.html#openquickcreate" class="tsd-kind-icon">open<wbr>Quick<wbr>Create</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="navigation.html#openupdateform" class="tsd-kind-icon">open<wbr>Update<wbr>Form</a></li>
 							</ul>
 						</section>
 					</div>
@@ -102,22 +100,22 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Sub<wbr>Grid<span class="tsd-signature-symbol">(</span>xrmUiTest<span class="tsd-signature-symbol">: </span><a href="_xrm_xrmuitest_.xrmuitest.html" class="tsd-signature-type">XrmUiTest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_xrm_subgrid_.subgrid.html" class="tsd-signature-type">SubGrid</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Navigation<span class="tsd-signature-symbol">(</span>xrmUiTest<span class="tsd-signature-symbol">: </span><a href="xrmuitest.html" class="tsd-signature-type">XrmUiTest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="navigation.html" class="tsd-signature-type">Navigation</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/547fbf9/src/xrm/SubGrid.ts#L6">xrm/SubGrid.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/94db106/src/xrm/Navigation.ts#L7">xrm/Navigation.ts:7</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>xrmUiTest: <a href="_xrm_xrmuitest_.xrmuitest.html" class="tsd-signature-type">XrmUiTest</a></h5>
+									<h5>xrmUiTest: <a href="xrmuitest.html" class="tsd-signature-type">XrmUiTest</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_xrm_subgrid_.subgrid.html" class="tsd-signature-type">SubGrid</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="navigation.html" class="tsd-signature-type">Navigation</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -125,112 +123,97 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getrecordcount" class="tsd-anchor"></a>
-					<h3>get<wbr>Record<wbr>Count</h3>
+					<a name="openappbyid" class="tsd-anchor"></a>
+					<h3>open<wbr>App<wbr>ById</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Record<wbr>Count<span class="tsd-signature-symbol">(</span>subgridName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">open<wbr>App<wbr>ById<span class="tsd-signature-symbol">(</span>appId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/547fbf9/src/xrm/SubGrid.ts#L18">xrm/SubGrid.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/94db106/src/xrm/Navigation.ts#L47">xrm/Navigation.ts:47</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Gets the record count of the specified subgrid</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>subgridName: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>The control name of the subgrid to use</p>
-										</div>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Promise which fulfills with the total record count</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="opennthrecord" class="tsd-anchor"></a>
-					<h3>open<wbr>Nth<wbr>Record</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">open<wbr>Nth<wbr>Record<span class="tsd-signature-symbol">(</span>subgridName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recordNumber<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/547fbf9/src/xrm/SubGrid.ts#L39">xrm/SubGrid.ts:39</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Opens the record in the subgrid at the n-th index</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>subgridName: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>The control name of the subgrid to use</p>
-										</div>
-									</div>
-								</li>
-								<li>
-									<h5>recordNumber: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>Index of the record to open</p>
-										</div>
-									</div>
+									<h5>appId: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Promise which fulfills when record is opened</p>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="refresh" class="tsd-anchor"></a>
-					<h3>refresh</h3>
+					<a name="opencreateform" class="tsd-anchor"></a>
+					<h3>open<wbr>Create<wbr>Form</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">refresh<span class="tsd-signature-symbol">(</span>subgridName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">open<wbr>Create<wbr>Form<span class="tsd-signature-symbol">(</span>entityName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/547fbf9/src/xrm/SubGrid.ts#L64">xrm/SubGrid.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/94db106/src/xrm/Navigation.ts#L15">xrm/Navigation.ts:15</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Refreshes the specified subgrid</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>subgridName: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>The control name of the subgrid to refresh</p>
-										</div>
-									</div>
+									<h5>entityName: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Promise which fulfills once refreshing is done</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="openquickcreate" class="tsd-anchor"></a>
+					<h3>open<wbr>Quick<wbr>Create</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">open<wbr>Quick<wbr>Create<span class="tsd-signature-symbol">(</span>entityName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">JSHandle</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/94db106/src/xrm/Navigation.ts#L29">xrm/Navigation.ts:29</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>entityName: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">JSHandle</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="openupdateform" class="tsd-anchor"></a>
+					<h3>open<wbr>Update<wbr>Form</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">open<wbr>Update<wbr>Form<span class="tsd-signature-symbol">(</span>entityName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, entityId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/94db106/src/xrm/Navigation.ts#L22">xrm/Navigation.ts:22</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>entityName: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>entityId: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -242,73 +225,76 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_index_.html">&quot;index&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_portal_portaluitest_.html">&quot;portal/<wbr>PortalUITest&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_utils_testutils_.html">&quot;utils/<wbr>Test<wbr>Utils&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_xrm_attribute_.html">&quot;xrm/<wbr>Attribute&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_xrm_button_.html">&quot;xrm/<wbr>Button&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_xrm_control_.html">&quot;xrm/<wbr>Control&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_xrm_dialog_.html">&quot;xrm/<wbr>Dialog&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_xrm_entity_.html">&quot;xrm/<wbr>Entity&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_xrm_form_.html">&quot;xrm/<wbr>Form&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_xrm_global_.html">&quot;xrm/<wbr>Global&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_xrm_navigation_.html">&quot;xrm/<wbr>Navigation&quot;</a>
-					</li>
-					<li class="current tsd-kind-external-module">
-						<a href="../modules/_xrm_subgrid_.html">&quot;xrm/<wbr>Sub<wbr>Grid&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_xrm_tab_.html">&quot;xrm/<wbr>Tab&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_xrm_xrmuitest_.html">&quot;xrm/<wbr>XrmUITest&quot;</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="attribute.html" class="tsd-kind-icon">Attribute</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="button.html" class="tsd-kind-icon">Button</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="control.html" class="tsd-kind-icon">Control</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="dialog.html" class="tsd-kind-icon">Dialog</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="entity.html" class="tsd-kind-icon">Entity</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="form.html" class="tsd-kind-icon">Form</a>
+					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_xrm_subgrid_.subgrid.html" class="tsd-kind-icon">Sub<wbr>Grid</a>
+					<li class="current tsd-kind-class">
+						<a href="navigation.html" class="tsd-kind-icon">Navigation</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_xrm_subgrid_.subgrid.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="navigation.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_xrm_subgrid_.subgrid.html#getrecordcount" class="tsd-kind-icon">get<wbr>Record<wbr>Count</a>
+								<a href="navigation.html#openappbyid" class="tsd-kind-icon">open<wbr>App<wbr>ById</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_xrm_subgrid_.subgrid.html#opennthrecord" class="tsd-kind-icon">open<wbr>Nth<wbr>Record</a>
+								<a href="navigation.html#opencreateform" class="tsd-kind-icon">open<wbr>Create<wbr>Form</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_xrm_subgrid_.subgrid.html#refresh" class="tsd-kind-icon">refresh</a>
+								<a href="navigation.html#openquickcreate" class="tsd-kind-icon">open<wbr>Quick<wbr>Create</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="navigation.html#openupdateform" class="tsd-kind-icon">open<wbr>Update<wbr>Form</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-class">
+						<a href="portaluitest.html" class="tsd-kind-icon">Portal<wbr>UiTest</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="subgrid.html" class="tsd-kind-icon">Sub<wbr>Grid</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="tab.html" class="tsd-kind-icon">Tab</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="xrmuitest.html" class="tsd-kind-icon">Xrm<wbr>UiTest</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="../interfaces/buttonidentifier.html" class="tsd-kind-icon">Button<wbr>Identifier</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/controlstate.html" class="tsd-kind-icon">Control<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="../interfaces/formidentifier.html" class="tsd-kind-icon">Form<wbr>Identifier</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#ensurexrmgetter" class="tsd-kind-icon">Ensure<wbr>Xrm<wbr>Getter</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

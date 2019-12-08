@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Dialog | D365-UI-Test</title>
+	<title>Control | D365-UI-Test</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_xrm_dialog_.html">&quot;xrm/Dialog&quot;</a>
-				</li>
-				<li>
-					<a href="_xrm_dialog_.dialog.html">Dialog</a>
+					<a href="control.html">Control</a>
 				</li>
 			</ul>
-			<h1>Class Dialog</h1>
+			<h1>Class Control</h1>
 		</div>
 	</div>
 </header>
@@ -71,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Dialog</span>
+						<span class="target">Control</span>
 					</li>
 				</ul>
 			</section>
@@ -82,13 +79,14 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_xrm_dialog_.dialog.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="control.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_xrm_dialog_.dialog.html#confirmduplicatedetection" class="tsd-kind-icon">confirm<wbr>Duplicate<wbr>Detection</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="control.html#get" class="tsd-kind-icon">get</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="control.html#getoptions" class="tsd-kind-icon">get<wbr>Options</a></li>
 							</ul>
 						</section>
 					</div>
@@ -100,22 +98,22 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Dialog<span class="tsd-signature-symbol">(</span>xrmUiTest<span class="tsd-signature-symbol">: </span><a href="_xrm_xrmuitest_.xrmuitest.html" class="tsd-signature-type">XrmUiTest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_xrm_dialog_.dialog.html" class="tsd-signature-type">Dialog</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Control<span class="tsd-signature-symbol">(</span>xrmUiTest<span class="tsd-signature-symbol">: </span><a href="xrmuitest.html" class="tsd-signature-type">XrmUiTest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="control.html" class="tsd-signature-type">Control</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/547fbf9/src/xrm/Dialog.ts#L5">xrm/Dialog.ts:5</a></li>
+									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/94db106/src/xrm/Control.ts#L21">xrm/Control.ts:21</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>xrmUiTest: <a href="_xrm_xrmuitest_.xrmuitest.html" class="tsd-signature-type">XrmUiTest</a></h5>
+									<h5>xrmUiTest: <a href="xrmuitest.html" class="tsd-signature-type">XrmUiTest</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_xrm_dialog_.dialog.html" class="tsd-signature-type">Dialog</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="control.html" class="tsd-signature-type">Control</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -123,19 +121,70 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="confirmduplicatedetection" class="tsd-anchor"></a>
-					<h3>confirm<wbr>Duplicate<wbr>Detection</h3>
+					<a name="get" class="tsd-anchor"></a>
+					<h3>get</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">confirm<wbr>Duplicate<wbr>Detection<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>controlName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/controlstate.html" class="tsd-signature-type">ControlState</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/547fbf9/src/xrm/Dialog.ts#L12">xrm/Dialog.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/94db106/src/xrm/Control.ts#L33">xrm/Control.ts:33</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the state of the specified control</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>controlName: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Name of the control to retrieve</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/controlstate.html" class="tsd-signature-type">ControlState</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise which fulfills with the current control state</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getoptions" class="tsd-anchor"></a>
+					<h3>get<wbr>Options</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Options<span class="tsd-signature-symbol">(</span>controlName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">OptionSetValue</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/94db106/src/xrm/Control.ts#L52">xrm/Control.ts:52</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the options of the specified option set control</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>controlName: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Name of the control to retrieve</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">OptionSetValue</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise which fulfills with the control&#39;s options</p>
 						</li>
 					</ul>
 				</section>
@@ -147,67 +196,70 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_index_.html">&quot;index&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_portal_portaluitest_.html">&quot;portal/<wbr>PortalUITest&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_utils_testutils_.html">&quot;utils/<wbr>Test<wbr>Utils&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_xrm_attribute_.html">&quot;xrm/<wbr>Attribute&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_xrm_button_.html">&quot;xrm/<wbr>Button&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_xrm_control_.html">&quot;xrm/<wbr>Control&quot;</a>
-					</li>
-					<li class="current tsd-kind-external-module">
-						<a href="../modules/_xrm_dialog_.html">&quot;xrm/<wbr>Dialog&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_xrm_entity_.html">&quot;xrm/<wbr>Entity&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_xrm_form_.html">&quot;xrm/<wbr>Form&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_xrm_global_.html">&quot;xrm/<wbr>Global&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_xrm_navigation_.html">&quot;xrm/<wbr>Navigation&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_xrm_subgrid_.html">&quot;xrm/<wbr>Sub<wbr>Grid&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_xrm_tab_.html">&quot;xrm/<wbr>Tab&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_xrm_xrmuitest_.html">&quot;xrm/<wbr>XrmUITest&quot;</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="attribute.html" class="tsd-kind-icon">Attribute</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="button.html" class="tsd-kind-icon">Button</a>
+					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_xrm_dialog_.dialog.html" class="tsd-kind-icon">Dialog</a>
+					<li class="current tsd-kind-class">
+						<a href="control.html" class="tsd-kind-icon">Control</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_xrm_dialog_.dialog.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="control.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_xrm_dialog_.dialog.html#confirmduplicatedetection" class="tsd-kind-icon">confirm<wbr>Duplicate<wbr>Detection</a>
+								<a href="control.html#get" class="tsd-kind-icon">get</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="control.html#getoptions" class="tsd-kind-icon">get<wbr>Options</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-class">
+						<a href="dialog.html" class="tsd-kind-icon">Dialog</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="entity.html" class="tsd-kind-icon">Entity</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="form.html" class="tsd-kind-icon">Form</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="navigation.html" class="tsd-kind-icon">Navigation</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="portaluitest.html" class="tsd-kind-icon">Portal<wbr>UiTest</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="subgrid.html" class="tsd-kind-icon">Sub<wbr>Grid</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="tab.html" class="tsd-kind-icon">Tab</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="xrmuitest.html" class="tsd-kind-icon">Xrm<wbr>UiTest</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="../interfaces/buttonidentifier.html" class="tsd-kind-icon">Button<wbr>Identifier</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/controlstate.html" class="tsd-kind-icon">Control<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="../interfaces/formidentifier.html" class="tsd-kind-icon">Form<wbr>Identifier</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#ensurexrmgetter" class="tsd-kind-icon">Ensure<wbr>Xrm<wbr>Getter</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
