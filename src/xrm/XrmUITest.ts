@@ -208,6 +208,9 @@ export class XrmUiTest {
         // Work around issues with linux user agents
         this.page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chromium/60.0.3112.78 Safari/537.36");
 
+        // Register ignore URLs that sometimes cause trouble with timeouts
+        await this.registerIgnoreUrls(this.page);
+
         await Promise.all([
             this.page.goto(url, { waitUntil: "load" }),
             this.page.waitForNavigation({ waitUntil: "networkidle0" })
@@ -216,8 +219,6 @@ export class XrmUiTest {
         await this.enterUserName(extendedProperties);
         await this.enterPassword(extendedProperties);
         await this.dontRememberLogin();
-
-        await this.registerIgnoreUrls(this.page);
 
         return this.page;
     }
