@@ -49,9 +49,9 @@ export namespace TestUtils {
         };
     };
 
-    const checkForFileInternal = async (page: puppeteer.Page, pathName: string, fileEndings: Array<string>, sleepTime = 500, tries = 0): Promise<boolean> => {
-        if (tries >= 10) {
-            return Promise.reject("Tried 10 times, aborting");
+    const checkForFileInternal = async (page: puppeteer.Page, pathName: string, fileEndings: Array<string>, sleepTime: number, numberOfTries: number, tries = 0): Promise<boolean> => {
+        if (numberOfTries >= 10) {
+            return Promise.reject(`Tried ${numberOfTries} times, aborting`);
         }
 
         const found = await new Promise((resolve, reject) => fs.readdir(pathName, (err, files) => err ? reject(err) : resolve(files.some(f => fileEndings.some(e => f.endsWith(e))))));
@@ -61,7 +61,7 @@ export namespace TestUtils {
         }
 
         await page.waitFor(sleepTime);
-        return checkForFileInternal(page, pathName, fileEndings, sleepTime, ++tries);
+        return checkForFileInternal(page, pathName, fileEndings, sleepTime, numberOfTries, ++tries);
     };
 
     /**
@@ -69,10 +69,11 @@ export namespace TestUtils {
      * @param page Puppeteer page object for current session
      * @param pathName Folder path to search
      * @param fileEndings File ending to search for. Can be full name as well
-     * @param sleepTime Time to wait between checks, @default 500
+     * @param sleepTime [500] Time to wait between checks
+     * @param numberOfTries[10] Number of tries to do
      */
-    export const checkForFile = async (page: puppeteer.Page, pathName: string, fileEndings: Array<string>, sleepTime = 500): Promise<boolean> => {
-        return checkForFileInternal(page, pathName, fileEndings, sleepTime);
+    export const checkForFile = async (page: puppeteer.Page, pathName: string, fileEndings: Array<string>, sleepTime = 500, numberOfTries = 10): Promise<boolean> => {
+        return checkForFileInternal(page, pathName, fileEndings, sleepTime, numberOfTries);
     };
 
     class InflightRequests {

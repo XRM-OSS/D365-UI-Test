@@ -2,6 +2,9 @@ import * as puppeteer from "puppeteer";
 import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
 
+/**
+ * Module for interacting with D365 Attributes
+ */
 export class Attribute {
     private _page: puppeteer.Page;
 

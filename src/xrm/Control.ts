@@ -17,6 +17,9 @@ export interface ControlState {
     isDisabled: boolean;
 }
 
+/**
+ * Module for interacting with D365 Controls
+ */
 export class Control {
     private _page: puppeteer.Page;
 

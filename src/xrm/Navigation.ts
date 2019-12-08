@@ -2,6 +2,9 @@ import * as puppeteer from "puppeteer";
 import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
 
+/**
+ * Module for navigating in D365
+ */
 export class Navigation {
     private _page: puppeteer.Page;
     private _crmUrl: string;
@@ -12,6 +15,11 @@ export class Navigation {
         this.xrmUiTest = xrmUiTest;
     }
 
+    /**
+     * Opens a create form for the specified entity
+     * @param entityName The entity to open the form for
+     * @returns Promise which resolves once form is fully loaded
+     */
     openCreateForm = async (entityName: string) => {
         return Promise.all([
             this._page.goto(`${this._crmUrl}/main.aspx?etn=${entityName}&pagetype=entityrecord${this.xrmUiTest.AppId ? "&appid=" + this.xrmUiTest.AppId : ""}`, { waitUntil: "load", timeout: 60000 }),
@@ -19,6 +27,12 @@ export class Navigation {
         ]);
     }
 
+    /**
+     * Opens an update form for an existing record
+     * @param entityName The entity to open the form for
+     * @param entityId The id of the record to open
+     * @returns Promise which resolves once form is fully loaded
+     */
     openUpdateForm = async (entityName: string, entityId: string) => {
         return Promise.all([
             this._page.goto(`${this._crmUrl}/main.aspx?etn=${entityName}&id=${entityId}&pagetype=entityrecord${this.xrmUiTest.AppId ? "&appid=" + this.xrmUiTest.AppId : ""}`, { waitUntil: "load", timeout: 60000 }),
@@ -26,6 +40,11 @@ export class Navigation {
         ]);
     }
 
+    /**
+     * Opens a quick create form for the specified entity
+     * @param entityName The entity to open the form for
+     * @returns Promise which resolves once form is fully loaded
+     */
     openQuickCreate = async (entityName: string) => {
         await EnsureXrmGetter(this._page);
 
@@ -44,6 +63,11 @@ export class Navigation {
         }, undefined, entityName);
     }
 
+    /**
+     * Opens the specified UCI app
+     * @param appId The id of the app to open
+     * @returns Promise which resolves once the app is fully loaded
+     */
     openAppById = async(appId: string) => {
         this.xrmUiTest.AppId = appId;
 

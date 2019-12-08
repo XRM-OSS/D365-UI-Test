@@ -1,7 +1,7 @@
 import * as puppeteer from "puppeteer";
 
 /**
- * @summary Main class for testing in Portals
+ * Main class for testing in Portals
  */
 export class PortalUiTest {
     private _browser: puppeteer.Browser;

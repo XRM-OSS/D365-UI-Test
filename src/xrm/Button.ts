@@ -5,7 +5,7 @@ import { XrmUiTest } from "./XrmUITest";
  * Scheme to define how to access a button
  * Either by data-id (language independent) or by button label (language dependent, but easily visible in UI)
  */
-interface ButtonIdentifier {
+export interface ButtonIdentifier {
     /**
      * Find button by data-id. You can find this in the HTML DOM when inspecting your form. Good if your tests need to be language independent
      * @example account|NoRelationship|Form|mscrmaddons.am.form.createworkingitem.account
@@ -19,6 +19,9 @@ interface ButtonIdentifier {
     byLabel?: string;
 }
 
+/**
+ * Module for interacting with D365 Buttons
+ */
 export class Button {
     private _page: puppeteer.Page;
 

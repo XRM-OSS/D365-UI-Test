@@ -2,11 +2,25 @@ import * as puppeteer from "puppeteer";
 import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
 
-interface FormIdentifier {
-    byName: string;
-    byId: string;
+/**
+ * Scheme to describe a form reference
+ * Either by name or by id
+ */
+export interface FormIdentifier {
+    /**
+     * The name of the form
+     */
+    byName?: string;
+
+    /**
+     * The id of the form
+     */
+    byId?: string;
 }
 
+/**
+ * Module for interacting with D365 Forms
+ */
 export class Form {
     private _page: puppeteer.Page;
 
@@ -15,7 +29,20 @@ export class Form {
         this.xrmUiTest = xrmUiTest;
     }
 
+    /**
+     * Sets all attributes to submit mode none. This is useful if you don't want to save and just change the page. No prompt for unsaved data will open.
+     * @returns Promise which resolves once all attribute submit modes are set
+     * @deprecated Please use noSubmit
+     */
     reset = async () => {
+        return this.noSubmit();
+    }
+
+    /**
+     * Sets all attributes to submit mode none. This is useful if you don't want to save and just change the page. No prompt for unsaved data will open.
+     * @returns Promise which resolves once all attribute submit modes are set.
+     */
+    noSubmit = async () => {
         await EnsureXrmGetter(this._page);
 
         return this._page.evaluate((a, v) => {
@@ -25,6 +52,11 @@ export class Form {
         });
     }
 
+    /**
+     * Switches to the specified form
+     * @param identifier Defines which form to switch to
+     * @returns Promise which resolves once the selected form is loaded
+     */
     switch = async (identifier: FormIdentifier) => {
         await EnsureXrmGetter(this._page);
 

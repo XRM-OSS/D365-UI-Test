@@ -2,6 +2,9 @@ import * as puppeteer from "puppeteer";
 import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
 
+/**
+ * Module for interacting with D365 entity records
+ */
 export class Entity {
     private _page: puppeteer.Page;
 
@@ -13,6 +16,7 @@ export class Entity {
     /**
      * Sets all attributes to submit mode none. This is useful if you don't want to save and just change the page. No prompt for unsaved data will open.
      * @returns Promise which resolves once all attribute submit modes are set
+     * @deprecated Use Form.noSubmit instead
      */
     noSubmit = async () => {
         await EnsureXrmGetter(this._page);
@@ -59,6 +63,10 @@ export class Entity {
         return this.getId();
     }
 
+    /**
+     * Get the id of the currently opened record
+     * @returns Promise which resolves with the id
+     */
     getId = async () => {
         await EnsureXrmGetter(this._page);
 
@@ -69,6 +77,10 @@ export class Entity {
         });
     }
 
+    /**
+     * Get the name of the currently opened record
+     * @returns Promise which resolves with the name
+     */
     getEntityName = async () => {
         await EnsureXrmGetter(this._page);
 
@@ -79,6 +91,10 @@ export class Entity {
         });
     }
 
+    /**
+     * Get the entity reference of the currently opened record
+     * @returns Promise which resolves with the entity reference
+     */
     getEntityReference = async () => {
         await EnsureXrmGetter(this._page);
 
@@ -89,6 +105,11 @@ export class Entity {
         });
     }
 
+    /**
+     * Delete the current record
+     * @returns Promise which resolves once deletion is done
+     * @remarks Delete button on form will be used
+     */
     delete = async() => {
         const deleteButton = await Promise.race([ this._page.waitForSelector("li[Command$='DeletePrimaryRecord']"), this._page.waitForSelector("li[id*='DeletePrimaryRecord']") ]);
 
