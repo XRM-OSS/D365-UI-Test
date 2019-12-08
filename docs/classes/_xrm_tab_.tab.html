@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ButtonIdentifier | D365-UI-Test</title>
+	<title>Tab | D365-UI-Test</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,32 +54,24 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_xrm_button_.html">&quot;xrm/Button&quot;</a>
+					<a href="../modules/_xrm_tab_.html">&quot;xrm/Tab&quot;</a>
 				</li>
 				<li>
-					<a href="_xrm_button_.buttonidentifier.html">ButtonIdentifier</a>
+					<a href="_xrm_tab_.tab.html">Tab</a>
 				</li>
 			</ul>
-			<h1>Interface ButtonIdentifier</h1>
+			<h1>Class Tab</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Scheme to define how to access a button
-						Either by data-id (language independent) or by button label (language dependent, but easily visible in UI)</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ButtonIdentifier</span>
+						<span class="target">Tab</span>
 					</li>
 				</ul>
 			</section>
@@ -87,57 +79,82 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-not-exported">
-							<h3>Properties</h3>
+						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_xrm_button_.buttonidentifier.html#bydataid" class="tsd-kind-icon">by<wbr>Data<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_xrm_button_.buttonidentifier.html#bylabel" class="tsd-kind-icon">by<wbr>Label</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_xrm_tab_.tab.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_xrm_tab_.tab.html#open" class="tsd-kind-icon">open</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="bydataid" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> by<wbr>Data<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">by<wbr>Data<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/547fbf9/src/xrm/Button.ts#L13">xrm/Button.ts:13</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Find button by data-id. You can find this in the HTML DOM when inspecting your form. Good if your tests need to be language independent</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>example</dt>
-							<dd><p>account|NoRelationship|Form|mscrmaddons.am.form.createworkingitem.account</p>
-							</dd>
-						</dl>
-					</div>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Tab<span class="tsd-signature-symbol">(</span>xrmUiTest<span class="tsd-signature-symbol">: </span><a href="_xrm_xrmuitest_.xrmuitest.html" class="tsd-signature-type">XrmUiTest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_xrm_tab_.tab.html" class="tsd-signature-type">Tab</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/547fbf9/src/xrm/Tab.ts#L6">xrm/Tab.ts:6</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>xrmUiTest: <a href="_xrm_xrmuitest_.xrmuitest.html" class="tsd-signature-type">XrmUiTest</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_xrm_tab_.tab.html" class="tsd-signature-type">Tab</a></h4>
+						</li>
+					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="bylabel" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> by<wbr>Label</h3>
-					<div class="tsd-signature tsd-kind-icon">by<wbr>Label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/547fbf9/src/xrm/Button.ts#L19">xrm/Button.ts:19</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Find button by label. This is the plain button label that you can see in the UI. Be aware of language dependent button labels</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>example</dt>
-							<dd><p>Delete</p>
-							</dd>
-						</dl>
-					</div>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="open" class="tsd-anchor"></a>
+					<h3>open</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">open<span class="tsd-signature-symbol">(</span>tabName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/547fbf9/src/xrm/Tab.ts#L18">xrm/Tab.ts:18</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Opens the specified tab on the form</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>tabName: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Name of the tab to open</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise which fulfills with the current control state</p>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -159,7 +176,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_xrm_attribute_.html">&quot;xrm/<wbr>Attribute&quot;</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_xrm_button_.html">&quot;xrm/<wbr>Button&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -183,7 +200,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_xrm_subgrid_.html">&quot;xrm/<wbr>Sub<wbr>Grid&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/_xrm_tab_.html">&quot;xrm/<wbr>Tab&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -193,19 +210,16 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/_xrm_button_.button.html" class="tsd-kind-icon">Button</a>
-					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_xrm_button_.buttonidentifier.html" class="tsd-kind-icon">Button<wbr>Identifier</a>
+					<li class="current tsd-kind-class tsd-parent-kind-external-module">
+						<a href="_xrm_tab_.tab.html" class="tsd-kind-icon">Tab</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_xrm_button_.buttonidentifier.html#bydataid" class="tsd-kind-icon">by<wbr>Data<wbr>Id</a>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="_xrm_tab_.tab.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="_xrm_button_.buttonidentifier.html#bylabel" class="tsd-kind-icon">by<wbr>Label</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_xrm_tab_.tab.html#open" class="tsd-kind-icon">open</a>
 							</li>
 						</ul>
 					</li>
