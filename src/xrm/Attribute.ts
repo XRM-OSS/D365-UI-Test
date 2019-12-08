@@ -11,6 +11,20 @@ export class Attribute {
     }
 
     /**
+     * Gets the required level of the specified attribute
+     * @param attributeName Name of the attribute
+     * @returns Required level of the specified attribute
+     */
+    getRequiredLevel = async (attributeName: string) => {
+        await EnsureXrmGetter(this._page);
+
+        return this._page.evaluate((attributeName: string) => {
+            const xrm = window.oss_FindXrm();
+            return xrm.Page.getAttribute(attributeName).getRequiredLevel();
+        }, attributeName);
+    }
+
+    /**
      * Gets the value of the specified attribute
      * @param attributeName Name of the attribute
      * @returns Value of the specified attribute
@@ -18,7 +32,10 @@ export class Attribute {
     getValue = async (attributeName: string) => {
         await EnsureXrmGetter(this._page);
 
-        return this._page.evaluate((attributeName: string) => { const xrm = window.oss_FindXrm(); return xrm.Page.getAttribute(attributeName).getValue(); }, attributeName);
+        return this._page.evaluate((attributeName: string) => {
+            const xrm = window.oss_FindXrm();
+            return xrm.Page.getAttribute(attributeName).getValue();
+        }, attributeName);
     }
 
     /**

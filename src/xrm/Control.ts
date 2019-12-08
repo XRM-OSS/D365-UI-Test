@@ -43,4 +43,20 @@ export class Control {
             };
         }, controlName);
     }
+
+    /**
+     * Gets the options of the specified option set control
+     * @param controlName Name of the control to retrieve
+     * @returns Promise which fulfills with the control's options
+     */
+    getOptions = async (controlName: string): Promise<Array<Xrm.OptionSetValue>> => {
+        await EnsureXrmGetter(this._page);
+
+        return this._page.evaluate((controlName: string) => {
+            const xrm = window.oss_FindXrm();
+            const control = xrm.Page.getControl<Xrm.Controls.OptionSetControl>(controlName);
+
+            return (control as any).getOptions();
+        }, controlName);
+    }
 }
