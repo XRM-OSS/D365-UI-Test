@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>FormIdentifier | D365-UI-Test</title>
+	<title>01_ Startup | D365-UI-Test</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,79 +54,59 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="formidentifier.html">FormIdentifier</a>
+					<a href="index.html">Pages</a>
+				</li>
+				<li>
+					<a href="01_Startup.html">01_ Startup</a>
 				</li>
 			</ul>
-			<h1>Interface FormIdentifier</h1>
+			<h1> 01_ Startup</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Scheme to describe a form reference
-						Either by name or by id</p>
-					</div>
-				</div>
-			</section>
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">FormIdentifier</span>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel-group tsd-index-group">
-				<h2>Index</h2>
-				<section class="tsd-panel tsd-index-panel">
-					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="formidentifier.html#byid" class="tsd-kind-icon">by<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="formidentifier.html#byname" class="tsd-kind-icon">by<wbr>Name</a></li>
-							</ul>
-						</section>
-					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="byid" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> by<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">by<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/a9cf4f4/src/xrm/Form.ts#L18">xrm/Form.ts:18</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The id of the form</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="byname" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> by<wbr>Name</h3>
-					<div class="tsd-signature tsd-kind-icon">by<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/a9cf4f4/src/xrm/Form.ts#L13">xrm/Form.ts:13</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The name of the form</p>
-						</div>
-					</div>
-				</section>
-			</section>
+			<div class="tsd-panel tsd-typography">
+				<a href="#startup" id="startup" style="color: inherit; text-decoration: none;">
+					<h1>Startup</h1>
+				</a>
+				<p>This tutorial is going to show you how to startup D365-UI-Test.</p>
+				<a href="#basics" id="basics" style="color: inherit; text-decoration: none;">
+					<h2>Basics</h2>
+				</a>
+				<p>Below snippet can be used in an init function of your test framework (e.g. &quot;beforeAll&quot; in jest):</p>
+				<pre><code class="language-javascript"><span class="hljs-comment">// When saving the settings file with the credentials directly in this directory, be sure to exclude it using .gitignore</span>
+<span class="hljs-keyword">const</span> config = fs.readFileSync(path.resolve(__dirname, <span class="hljs-string">"settings.txt"</span>), {<span class="hljs-attr">encoding</span>: <span class="hljs-string">"utf-8"</span>});
+<span class="hljs-comment">// Easiest way to store credentials is to just separate url, username and password by comma in the file</span>
+<span class="hljs-keyword">const</span> [url, user, password] = config.split(<span class="hljs-string">","</span>);
+
+<span class="hljs-comment">// Pass headless: true for DevOps and when you don't want to see what puppeteer is doing.</span>
+<span class="hljs-comment">// For debugging, setting headless: false is easier as you see what's happening</span>
+<span class="hljs-keyword">const</span> browser = <span class="hljs-keyword">await</span> xrmTest.launch({
+    <span class="hljs-attr">headless</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">args</span>: [
+        <span class="hljs-string">"--start-fullscreen"</span>
+    ]
+});
+
+<span class="hljs-comment">// You will probably want to declare the page variable in outer scope as you might need to access it for implementing your own interactions with puppeteer.</span>
+<span class="hljs-keyword">const</span> page = <span class="hljs-keyword">await</span> xrmTest.open(url, { <span class="hljs-attr">userName</span>: user, <span class="hljs-attr">password</span>: password });</code></pre>
+				<a href="#d365-online-organizations" id="d365-online-organizations" style="color: inherit; text-decoration: none;">
+					<h2>D365 Online Organizations</h2>
+				</a>
+				<p>Authentication with the default Microsoft D365 authentication provider is implemented by default. Nothing to take care of.</p>
+				<a href="#custom-auth-pages" id="custom-auth-pages" style="color: inherit; text-decoration: none;">
+					<h2>Custom Auth Pages</h2>
+				</a>
+				<p>When having a custom authentication page that you get redirected to on login, you have to provide D365-UI-Test with some additional information.</p>
+				<p>In some cases these authentication pages need the user name and the password, in some cases only the password is needed. The password is of course always needed.</p>
+				<p>The <code>xrmTest.open</code> function is able to use this information:</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> page = <span class="hljs-keyword">await</span> xrmTest.open(url, { <span class="hljs-attr">userName</span>: user, <span class="hljs-attr">password</span>: password, <span class="hljs-attr">passwordFieldSelector</span>: <span class="hljs-string">"#password_input"</span>, <span class="hljs-attr">userNameFieldSelector</span>: <span class="hljs-string">"#userName_input"</span> });</code></pre>
+				<p>The values for passwordFieldSelector and userNameFieldSelector need to be valid CSS selectors that help D365-UI-Test finding the correct inputs for logging you in.
+				You can find them out using your browser&#39;s DOM developer tools. Usually they will have an ID set as above.</p>
+				<p>For sending this information the enter button will be pressed, no need to specify a login button selector.</p>
+			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
@@ -134,14 +114,14 @@
 					<li class="label ">
 						<span>Pages</span>
 					</li>
-					<li class=" ">
-						<a href="../pages/01_Startup.html">01_<wbr> <wbr>Startup</a>
+					<li class="current ">
+						<a href="01_Startup.html">01_<wbr> <wbr>Startup</a>
 					</li>
 					<li class=" ">
-						<a href="../pages/02_Navigation.html">02_<wbr> <wbr>Navigation</a>
+						<a href="02_Navigation.html">02_<wbr> <wbr>Navigation</a>
 					</li>
 					<li class=" ">
-						<a href="../pages/03_Attributes.html">03_<wbr> <wbr>Attributes</a>
+						<a href="03_Attributes.html">03_<wbr> <wbr>Attributes</a>
 					</li>
 				</ul>
 			</nav>
@@ -154,63 +134,6 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class">
-						<a href="../classes/attribute.html" class="tsd-kind-icon">Attribute</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/button.html" class="tsd-kind-icon">Button</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/control.html" class="tsd-kind-icon">Control</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/dialog.html" class="tsd-kind-icon">Dialog</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/entity.html" class="tsd-kind-icon">Entity</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/form.html" class="tsd-kind-icon">Form</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/navigation.html" class="tsd-kind-icon">Navigation</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/portaluitest.html" class="tsd-kind-icon">Portal<wbr>UiTest</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/subgrid.html" class="tsd-kind-icon">Sub<wbr>Grid</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/tab.html" class="tsd-kind-icon">Tab</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/xrmuitest.html" class="tsd-kind-icon">Xrm<wbr>UiTest</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="buttonidentifier.html" class="tsd-kind-icon">Button<wbr>Identifier</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="controlstate.html" class="tsd-kind-icon">Control<wbr>State</a>
-					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface">
-						<a href="formidentifier.html" class="tsd-kind-icon">Form<wbr>Identifier</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="formidentifier.html#byid" class="tsd-kind-icon">by<wbr>Id</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="formidentifier.html#byname" class="tsd-kind-icon">by<wbr>Name</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				<ul class="after-current">
-					<li class=" tsd-kind-function">
-						<a href="../globals.html#ensurexrmgetter" class="tsd-kind-icon">Ensure<wbr>Xrm<wbr>Getter</a>
-					</li>
 				</ul>
 			</nav>
 		</div>

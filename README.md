@@ -3,7 +3,7 @@
 
 ## What's this?
 D365-UI-Test is an UI testing framework for easy and robust UI testing in Dynamics 365 CE and Dynamics 365 Portals.
-It is powered by TypeScript and Puppeteer.
+It is powered by TypeScript and Puppeteer. You can write your tests in plain JS or in TypeScript.
 Various functions for interacting with CRM are implemented and can be used for executing your tests.
 
 ## What does a test look like?
