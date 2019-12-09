@@ -35,15 +35,20 @@ export namespace TestUtils {
                 await Promise.resolve(func());
             }
             catch (e) {
-                const reportsExists = fs.existsSync(path.resolve(__dirname, "../reports"));
+                // Page can be null in case puppeteer fails to start. Accessing it to take a screenshot would fail and overwrite the root exception
+                if (page) {
+                    const dirName = path.dirname(filePath);
+                    const folderExists = fs.existsSync(dirName);
 
-                if (!reportsExists) {
-                    fs.mkdirSync(path.resolve(__dirname, "../reports"));
+                    if (!folderExists) {
+                        fs.mkdirSync(dirName);
+                    }
+
+                    console.log("Saving error screenshot to " + filePath);
+
+                    await page.screenshot({ path: filePath });
                 }
 
-                console.log("Saving error screenshot to " + filePath);
-
-                await page.screenshot({ path: filePath });
                 throw e;
             }
         };
