@@ -55,7 +55,7 @@ export namespace TestUtils {
     };
 
     const checkForFileInternal = async (page: puppeteer.Page, pathName: string, fileEndings: Array<string>, sleepTime: number, numberOfTries: number, tries = 0): Promise<boolean> => {
-        if (numberOfTries >= 10) {
+        if (tries >= numberOfTries) {
             return Promise.reject(`Tried ${numberOfTries} times, aborting`);
         }
 
@@ -75,7 +75,7 @@ export namespace TestUtils {
      * @param pathName Folder path to search
      * @param fileEndings File ending to search for. Can be full name as well
      * @param sleepTime [500] Time to wait between checks
-     * @param numberOfTries[10] Number of tries to do
+     * @param numberOfTries [10] Number of tries to do
      */
     export const checkForFile = async (page: puppeteer.Page, pathName: string, fileEndings: Array<string>, sleepTime = 500, numberOfTries = 10): Promise<boolean> => {
         return checkForFileInternal(page, pathName, fileEndings, sleepTime, numberOfTries);
