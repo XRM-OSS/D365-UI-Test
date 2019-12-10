@@ -10,6 +10,7 @@
     "excludeProtected": true,
     "excludeExternals": true,
     "mdPagesSourcePath": "./tutorials",
+    "mdPagesLabel": "Tutorials",
     "theme": "markdown-pages",
     "readme": "README.md",
     "name": "D365-UI-Test",
