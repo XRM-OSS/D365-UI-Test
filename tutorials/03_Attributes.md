@@ -9,6 +9,12 @@ This has some advantages over other approaches:
 
 When setting an attribute value, we use the SDK for checking whether there is at least one visible and non-disabled control for this attribute, to ensure that a user would be able to set it as well.
 
+## Get required level
+The requirement level can be retrieved like this:
+```javascript
+const isRequired = await xrmTest.Attribute.getRequiredLevel("name");
+```
+
 ## Get Value
 Values can be retrieved like this:
 
