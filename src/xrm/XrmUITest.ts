@@ -224,6 +224,33 @@ export class XrmUiTest {
     }
 
     /**
+     * @param { String } url Url of your on premise D365 organization. For now, single sign on is expected.
+     * @param { Object } extendedProperties Options for logging in. User name and password are required. If you have a custom authentication page, you should pass userNameFieldSelector if user name has to be reentered and passwordFieldSelector for password entry. These are css selectors for the inputs.
+     * @returns {puppeteer.Page} The page in which D365 was opened
+     */
+    openOnPremise = async (url: string, extendedProperties: { appId?: string; }) => {
+        this._crmUrl = url;
+        this._appId = extendedProperties.appId;
+
+        this._page = await this.browser.newPage();
+
+        // Work around issues with linux user agents
+        this.page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chromium/60.0.3112.78 Safari/537.36");
+
+        // Register ignore URLs that sometimes cause trouble with timeouts
+        await this.registerIgnoreUrls(this.page);
+
+        await Promise.all([
+            this.page.goto(url, { waitUntil: "load" }),
+            this.page.waitForNavigation({ waitUntil: "networkidle0" })
+        ]);
+
+        await Promise.race([this.page.waitFor("#TabAppSwitcherNode"), this.page.waitFor("button[data-id='officewaffle']")]);
+
+        return this.page;
+    }
+
+    /**
      * Closes the puppeteer browser session
      */
     close = async () => {
