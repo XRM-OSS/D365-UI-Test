@@ -7,7 +7,7 @@ export const EnsureXrmGetter = async(page: puppeteer.Page) => {
         }
 
         window.oss_FindXrm = () => {
-            if (window.Xrm && (window.Xrm as any).Internal && (window.Xrm as any).Internal.isUci()) {
+            if (window.Xrm && (window.Xrm as any).Internal && (window.Xrm as any).Internal && (window.Xrm as any).Internal && (window.Xrm as any).Internal.isUci && (window.Xrm as any).Internal.isUci()) {
                 return window.Xrm;
             }
 
