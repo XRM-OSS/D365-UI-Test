@@ -35,10 +35,19 @@ export class Attribute {
     getValue = async (attributeName: string) => {
         await EnsureXrmGetter(this._page);
 
-        return this._page.evaluate((attributeName: string) => {
+        const value = await this._page.evaluate((attributeName: string) => {
             const xrm = window.oss_FindXrm();
-            return xrm.Page.getAttribute(attributeName).getValue();
+            const attribute = xrm.Page.getAttribute(attributeName);
+
+            const isDate = attribute.getAttributeType() === "datetime";
+            const value = attribute.getValue();
+
+            return (isDate && value != undefined) ? value.toISOString() : value;
         }, attributeName);
+
+        const date = Date.parse(value);
+
+        return (isNaN(date) ? value : new Date(date));
     }
 
     /**
@@ -49,6 +58,7 @@ export class Attribute {
      * @returns Returns promise that resolves once value is set and settleTime is over
      */
     setValue = async (attributeName: string, value: any, settleTime = 200) => {
+        const isDate = Object.prototype.toString.call(value) === "[object Date]";
         await EnsureXrmGetter(this._page);
 
         await this._page.evaluate((a: string, v: any) => {
@@ -63,9 +73,9 @@ export class Attribute {
                 throw new Error("Attribute has no unlocked and visible control, users can't set a value like that.");
             }
 
-            attribute.setValue(v);
+            attribute.setValue(attribute.getAttributeType() === "datetime" ? new Date(v) : v);
             attribute.fireOnChange();
-        }, attributeName, value);
+        }, attributeName, isDate ? value.toISOString() : value);
 
         return this._page.waitFor(settleTime);
     }
@@ -94,10 +104,17 @@ export class Attribute {
                     throw new Error("Attribute has no unlocked and visible control, users can't set a value like that.");
                 }
 
-                attribute.setValue(values[a]);
+                attribute.setValue(attribute.getAttributeType() === "datetime" ? new Date(values[a]) : values[a]);
                 attribute.fireOnChange();
             });
-        }, values);
+        }, Object.keys(values).reduce((all, key) => {
+            const value = values[key];
+
+            const isDate = Object.prototype.toString.call(value) === "[object Date]";
+
+            all[key] = isDate ? value.toISOString() : value;
+            return all;
+        }, {} as {[key: string]: any}));
 
         return this._page.waitFor(settleTime);
     }

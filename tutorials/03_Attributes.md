@@ -45,6 +45,8 @@ await xrmTest.Attribute.setValues({
     "msdyn_taxexempt": true,
     // Decimal / Number / Currency
     "creditlimit": 123.12,
+    // Date
+    "birthdate": new Date(),
     // Lookup
     "oss_countryid": [{entityType: "oss_country", id: "{FF4F3346-8CFB-E611-80FE-5065F38B06F1}", name: "AT"}]
 });
