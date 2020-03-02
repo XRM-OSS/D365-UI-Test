@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Tab | D365-UI-Test</title>
+	<title>OpenProperties | D365-UI-Test</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="tab.html">Tab</a>
+					<a href="openproperties.html">OpenProperties</a>
 				</li>
 			</ul>
-			<h1>Class Tab</h1>
+			<h1>Interface OpenProperties</h1>
 		</div>
 	</div>
 </header>
@@ -67,7 +67,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Module for interacting with D365 Tabs</p>
+						<p>Parameters for opening Dynamics</p>
 					</div>
 				</div>
 			</section>
@@ -75,7 +75,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Tab</span>
+						<span class="target">OpenProperties</span>
 					</li>
 				</ul>
 			</section>
@@ -84,81 +84,94 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Constructors</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="tab.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Methods</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tab.html#open" class="tsd-kind-icon">open</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openproperties.html#appid" class="tsd-kind-icon">app<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openproperties.html#password" class="tsd-kind-icon">password</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openproperties.html#passwordfieldselector" class="tsd-kind-icon">password<wbr>Field<wbr>Selector</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openproperties.html#username" class="tsd-kind-icon">user<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openproperties.html#usernamefieldselector" class="tsd-kind-icon">user<wbr>Name<wbr>Field<wbr>Selector</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
-					<a name="constructor" class="tsd-anchor"></a>
-					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Tab<span class="tsd-signature-symbol">(</span>xrmUiTest<span class="tsd-signature-symbol">: </span><a href="xrmuitest.html" class="tsd-signature-type">XrmUiTest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="tab.html" class="tsd-signature-type">Tab</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/f0383fc/src/xrm/Tab.ts#L9">xrm/Tab.ts:9</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>xrmUiTest: <a href="xrmuitest.html" class="tsd-signature-type">XrmUiTest</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="tab.html" class="tsd-signature-type">Tab</a></h4>
-						</li>
-					</ul>
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="appid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> app<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">app<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/f0383fc/src/xrm/XrmUITest.ts#L19">xrm/XrmUITest.ts:19</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>ID of the Dynamics app to open after login</p>
+						</div>
+					</div>
 				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="open" class="tsd-anchor"></a>
-					<h3>open</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">open<span class="tsd-signature-symbol">(</span>tabName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/f0383fc/src/xrm/Tab.ts#L21">xrm/Tab.ts:21</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Opens the specified tab on the form</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>tabName: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>Name of the tab to open</p>
-										</div>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Promise which fulfills with the current control state</p>
-						</li>
-					</ul>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="password" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> password</h3>
+					<div class="tsd-signature tsd-kind-icon">password<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/f0383fc/src/xrm/XrmUITest.ts#L29">xrm/XrmUITest.ts:29</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Password to use for logging in. If left out, SSO is assumed.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="passwordfieldselector" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> password<wbr>Field<wbr>Selector</h3>
+					<div class="tsd-signature tsd-kind-icon">password<wbr>Field<wbr>Selector<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/f0383fc/src/xrm/XrmUITest.ts#L39">xrm/XrmUITest.ts:39</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>CSS selector for typing password on login page. Needed for custom authentication pages of ADFS only.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="username" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> user<wbr>Name</h3>
+					<div class="tsd-signature tsd-kind-icon">user<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/f0383fc/src/xrm/XrmUITest.ts#L24">xrm/XrmUITest.ts:24</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Username / email to use for logging in. If left out, it is assumed that CRM does not need explicit authentication (i.e. SSO)</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="usernamefieldselector" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> user<wbr>Name<wbr>Field<wbr>Selector</h3>
+					<div class="tsd-signature tsd-kind-icon">user<wbr>Name<wbr>Field<wbr>Selector<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/f0383fc/src/xrm/XrmUITest.ts#L34">xrm/XrmUITest.ts:34</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>CSS selector for typing user name / email on login page. Needed for custom authentication pages of ADFS only.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -219,62 +232,71 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class">
-						<a href="attribute.html" class="tsd-kind-icon">Attribute</a>
+						<a href="../classes/attribute.html" class="tsd-kind-icon">Attribute</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="button.html" class="tsd-kind-icon">Button</a>
+						<a href="../classes/button.html" class="tsd-kind-icon">Button</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="control.html" class="tsd-kind-icon">Control</a>
+						<a href="../classes/control.html" class="tsd-kind-icon">Control</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="dialog.html" class="tsd-kind-icon">Dialog</a>
+						<a href="../classes/dialog.html" class="tsd-kind-icon">Dialog</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="entity.html" class="tsd-kind-icon">Entity</a>
+						<a href="../classes/entity.html" class="tsd-kind-icon">Entity</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="form.html" class="tsd-kind-icon">Form</a>
+						<a href="../classes/form.html" class="tsd-kind-icon">Form</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="navigation.html" class="tsd-kind-icon">Navigation</a>
+						<a href="../classes/navigation.html" class="tsd-kind-icon">Navigation</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="portaluitest.html" class="tsd-kind-icon">Portal<wbr>UiTest</a>
+						<a href="../classes/portaluitest.html" class="tsd-kind-icon">Portal<wbr>UiTest</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="subgrid.html" class="tsd-kind-icon">Sub<wbr>Grid</a>
+						<a href="../classes/subgrid.html" class="tsd-kind-icon">Sub<wbr>Grid</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/tab.html" class="tsd-kind-icon">Tab</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/xrmuitest.html" class="tsd-kind-icon">Xrm<wbr>UiTest</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="buttonidentifier.html" class="tsd-kind-icon">Button<wbr>Identifier</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="controlstate.html" class="tsd-kind-icon">Control<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="formidentifier.html" class="tsd-kind-icon">Form<wbr>Identifier</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class">
-						<a href="tab.html" class="tsd-kind-icon">Tab</a>
+					<li class="current tsd-kind-interface">
+						<a href="openproperties.html" class="tsd-kind-icon">Open<wbr>Properties</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="tab.html#constructor" class="tsd-kind-icon">constructor</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="openproperties.html#appid" class="tsd-kind-icon">app<wbr>Id</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="tab.html#open" class="tsd-kind-icon">open</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="openproperties.html#password" class="tsd-kind-icon">password</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="openproperties.html#passwordfieldselector" class="tsd-kind-icon">password<wbr>Field<wbr>Selector</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="openproperties.html#username" class="tsd-kind-icon">user<wbr>Name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="openproperties.html#usernamefieldselector" class="tsd-kind-icon">user<wbr>Name<wbr>Field<wbr>Selector</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class">
-						<a href="xrmuitest.html" class="tsd-kind-icon">Xrm<wbr>UiTest</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/buttonidentifier.html" class="tsd-kind-icon">Button<wbr>Identifier</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/controlstate.html" class="tsd-kind-icon">Control<wbr>State</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/formidentifier.html" class="tsd-kind-icon">Form<wbr>Identifier</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/openproperties.html" class="tsd-kind-icon">Open<wbr>Properties</a>
-					</li>
 					<li class=" tsd-kind-function">
 						<a href="../globals.html#ensurexrmgetter" class="tsd-kind-icon">Ensure<wbr>Xrm<wbr>Getter</a>
 					</li>
