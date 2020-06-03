@@ -1,6 +1,6 @@
 {
   "name": "d365-ui-test",
-  "version": "0.0.39",
+  "version": "0.0.41",
   "description": "An unopinionated UI testing library for Dynamics 365 CE and Dynamics Portals. Powered by TypeScript and Puppeteer",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
