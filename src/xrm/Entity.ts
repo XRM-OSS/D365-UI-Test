@@ -122,7 +122,7 @@ export class Entity {
         const confirmButton = await Promise.race([ this._page.waitForSelector("#butBegin"), this._page.waitForSelector("#confirmButton")]);
 
         if (confirmButton) {
-            return Promise.all([ confirmButton.click(), this._page.waitForNavigation({ waitUntil: "networkidle0", timeout: this.xrmUiTest.settings.timeout }) ]);
+            return Promise.all([ confirmButton.click(), this._page.waitForNavigation({ waitUntil: "load", timeout: this.xrmUiTest.settings.timeout }) ]);
         }
         else {
             throw new Error("Failed to find delete confirmation button");
