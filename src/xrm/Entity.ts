@@ -119,7 +119,7 @@ export class Entity {
 
         await deleteButton.click();
 
-        const confirmButton = await Promise.race([ this._page.waitForSelector("#butBegin"), this._page.waitForSelector("#confirmButton")]);
+        const confirmButton = await Promise.race([ this._page.waitForSelector("#butBegin", { timeout: this.xrmUiTest.settings.timeout }), this._page.waitForSelector("#confirmButton", { timeout: this.xrmUiTest.settings.timeout })]);
 
         if (confirmButton) {
             return Promise.all([ confirmButton.click(), this._page.waitForNavigation({ waitUntil: "load", timeout: this.xrmUiTest.settings.timeout }) ]);
