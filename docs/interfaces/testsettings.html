@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>OpenProperties | D365-UI-Test</title>
+	<title>TestSettings | D365-UI-Test</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,28 +54,21 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="openproperties.html">OpenProperties</a>
+					<a href="testsettings.html">TestSettings</a>
 				</li>
 			</ul>
-			<h1>Interface OpenProperties</h1>
+			<h1>Interface TestSettings</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Parameters for opening Dynamics</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">OpenProperties</span>
+						<span class="target">TestSettings</span>
 					</li>
 				</ul>
 			</section>
@@ -86,11 +79,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openproperties.html#appid" class="tsd-kind-icon">app<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openproperties.html#password" class="tsd-kind-icon">password</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openproperties.html#passwordfieldselector" class="tsd-kind-icon">password<wbr>Field<wbr>Selector</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openproperties.html#username" class="tsd-kind-icon">user<wbr>Name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openproperties.html#usernamefieldselector" class="tsd-kind-icon">user<wbr>Name<wbr>Field<wbr>Selector</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="testsettings.html#timeout" class="tsd-kind-icon">timeout</a></li>
 							</ul>
 						</section>
 					</div>
@@ -99,78 +88,23 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="appid" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> app<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">app<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="timeout" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> timeout</h3>
+					<div class="tsd-signature tsd-kind-icon">timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/407bb9f/src/xrm/XrmUITest.ts#L20">xrm/XrmUITest.ts:20</a></li>
+							<li>Defined in domain/TestSettings.ts:6</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>ID of the Dynamics app to open after login</p>
+							<p>Default timeout for navigation events in ms</p>
 						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="password" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> password</h3>
-					<div class="tsd-signature tsd-kind-icon">password<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/407bb9f/src/xrm/XrmUITest.ts#L30">xrm/XrmUITest.ts:30</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Password to use for logging in. If left out, SSO is assumed.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="passwordfieldselector" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> password<wbr>Field<wbr>Selector</h3>
-					<div class="tsd-signature tsd-kind-icon">password<wbr>Field<wbr>Selector<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/407bb9f/src/xrm/XrmUITest.ts#L40">xrm/XrmUITest.ts:40</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>CSS selector for typing password on login page. Needed for custom authentication pages of ADFS only.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="username" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> user<wbr>Name</h3>
-					<div class="tsd-signature tsd-kind-icon">user<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/407bb9f/src/xrm/XrmUITest.ts#L25">xrm/XrmUITest.ts:25</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Username / email to use for logging in. If left out, it is assumed that CRM does not need explicit authentication (i.e. SSO)</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="usernamefieldselector" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> user<wbr>Name<wbr>Field<wbr>Selector</h3>
-					<div class="tsd-signature tsd-kind-icon">user<wbr>Name<wbr>Field<wbr>Selector<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/407bb9f/src/xrm/XrmUITest.ts#L35">xrm/XrmUITest.ts:35</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>CSS selector for typing user name / email on login page. Needed for custom authentication pages of ADFS only.</p>
-						</div>
+						<dl class="tsd-comment-tags">
+							<dt>default:</dt>
+							<dd><p>60000</p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 			</section>
@@ -273,33 +207,21 @@
 					<li class=" tsd-kind-interface">
 						<a href="formidentifier.html" class="tsd-kind-icon">Form<wbr>Identifier</a>
 					</li>
+					<li class=" tsd-kind-interface">
+						<a href="openproperties.html" class="tsd-kind-icon">Open<wbr>Properties</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="openproperties.html" class="tsd-kind-icon">Open<wbr>Properties</a>
+						<a href="testsettings.html" class="tsd-kind-icon">Test<wbr>Settings</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="openproperties.html#appid" class="tsd-kind-icon">app<wbr>Id</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="openproperties.html#password" class="tsd-kind-icon">password</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="openproperties.html#passwordfieldselector" class="tsd-kind-icon">password<wbr>Field<wbr>Selector</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="openproperties.html#username" class="tsd-kind-icon">user<wbr>Name</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="openproperties.html#usernamefieldselector" class="tsd-kind-icon">user<wbr>Name<wbr>Field<wbr>Selector</a>
+								<a href="testsettings.html#timeout" class="tsd-kind-icon">timeout</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface">
-						<a href="testsettings.html" class="tsd-kind-icon">Test<wbr>Settings</a>
-					</li>
 					<li class=" tsd-kind-function">
 						<a href="../globals.html#ensurexrmgetter" class="tsd-kind-icon">Ensure<wbr>Xrm<wbr>Getter</a>
 					</li>

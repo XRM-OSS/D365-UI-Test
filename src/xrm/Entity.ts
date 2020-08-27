@@ -45,9 +45,9 @@ export class Entity {
             }),
             Promise.race([
                 // This is the id of the notification that gets shown once a quick create record is saved
-                this._page.waitForSelector("div[id^=quickcreate_]"),
+                this._page.waitForSelector("div[id^=quickcreate_]", { timeout: this.xrmUiTest.settings.timeout }),
                 // On normal page save a reload will occur
-                this._page.waitForNavigation({ waitUntil: "networkidle0", timeout: 60000 })
+                this._page.waitForNavigation({ waitUntil: "networkidle0", timeout: this.xrmUiTest.settings.timeout })
             ])
         ]);
 
@@ -122,7 +122,7 @@ export class Entity {
         const confirmButton = await Promise.race([ this._page.waitForSelector("#butBegin"), this._page.waitForSelector("#confirmButton")]);
 
         if (confirmButton) {
-            return Promise.all([ confirmButton.click(), this._page.waitForNavigation({ waitUntil: "networkidle0", timeout: 60000 }) ]);
+            return Promise.all([ confirmButton.click(), this._page.waitForNavigation({ waitUntil: "networkidle0", timeout: this.xrmUiTest.settings.timeout }) ]);
         }
         else {
             throw new Error("Failed to find delete confirmation button");

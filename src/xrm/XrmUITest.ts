@@ -8,6 +8,7 @@ import { SubGrid } from "./SubGrid";
 import { Form } from "./Form";
 import { Button } from "./Button";
 import { Tab } from "./Tab";
+import { TestSettings } from "../domain/TestSettings";
 
 /**
  * Parameters for opening Dynamics
@@ -57,6 +58,25 @@ export class XrmUiTest {
     private _subGrid: SubGrid;
     private _button: Button;
     private _tab: Tab;
+
+    private _settings: TestSettings = {
+        // Default navigation timeout is 60 seconds
+        timeout: 60 * 1000
+    };
+
+    /**
+     * Default settings for various actions such as navigation
+     */
+    get settings() {
+        return this._settings;
+    }
+
+    /**
+     * Update settings
+     */
+    set settings(value: TestSettings) {
+        this._settings = { ...this._settings, ...value };
+    }
 
     /**
      * Gets the browser object that was generated when launching puppeteer
@@ -244,8 +264,8 @@ export class XrmUiTest {
         await this.registerIgnoreUrls(this.page);
 
         await Promise.all([
-            this.page.goto(url, { waitUntil: "load" }),
-            this.page.waitForNavigation({ waitUntil: "networkidle0" })
+            this.page.goto(url, { waitUntil: "load", timeout: this.settings.timeout }),
+            this.page.waitForNavigation({ waitUntil: "networkidle0", timeout: this.settings.timeout })
         ]);
 
         if (extendedProperties.userName) {
@@ -257,7 +277,10 @@ export class XrmUiTest {
             await this.dontRememberLogin();
         }
 
-        await Promise.race([this.page.waitFor("#TabAppSwitcherNode"), this.page.waitFor("button[data-id='officewaffle']")]);
+        await Promise.race([
+            this.page.waitFor("#TabAppSwitcherNode", { timeout: this.settings.timeout }),
+            this.page.waitFor("button[data-id='officewaffle']", { timeout: this.settings.timeout })
+        ]);
 
         return this.page;
     }
