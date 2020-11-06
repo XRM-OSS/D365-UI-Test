@@ -289,8 +289,11 @@ export class XrmUiTest {
         }
 
         if (extendedProperties.password) {
-            await this.enterPassword(extendedProperties);
-            await this.dontRememberLogin();
+            const handleRememberLogin = await this.enterPassword(extendedProperties);
+
+            if (handleRememberLogin) {
+                await this.dontRememberLogin();
+            }
         }
 
         if (extendedProperties.mfaSecret) {
@@ -334,7 +337,9 @@ export class XrmUiTest {
         // For non online authentification, wait for custom login page to settle
         if (!password) {
             await this.page.waitForNavigation({ waitUntil: "load" });
+
             console.log(`No online auth, handling custom auth. If nothing happens, please specify passwordFieldSelector and optionally userNameFieldSelector.`);
+
             if (extendedProperties.userNameFieldSelector) {
                 console.log("Waiting for user name field: " + extendedProperties.userNameFieldSelector);
                 const userNameField = await this.page.waitFor(extendedProperties.userNameFieldSelector);
@@ -344,13 +349,15 @@ export class XrmUiTest {
                 console.log("Waiting for password field: " + extendedProperties.passwordFieldSelector);
                 const passwordInput = await this.page.waitFor(extendedProperties.passwordFieldSelector);
                 await passwordInput.type(extendedProperties.password);
-                return passwordInput.press("Enter");
+                await passwordInput.press("Enter");
+                return false;
             }
         }
         else {
             // For some reason we need the else in here, without it errors will occur
             await password.type(extendedProperties.password);
-            return password.press("Enter");
+            await password.press("Enter");
+            return true;
         }
     }
 
