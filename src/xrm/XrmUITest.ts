@@ -9,6 +9,7 @@ import { Form } from "./Form";
 import { Button } from "./Button";
 import { Tab } from "./Tab";
 import { TestSettings } from "../domain/TestSettings";
+import * as speakeasy from "speakeasy";
 
 /**
  * Parameters for opening Dynamics
@@ -38,6 +39,21 @@ export interface OpenProperties {
      * CSS selector for typing password on login page. Needed for custom authentication pages of ADFS only.
      */
     passwordFieldSelector?: string;
+
+    /**
+     * Secret which you generated for using MFA. Only needed if you actually use MFA
+     */
+    mfaSecret?: string;
+
+    /**
+     * Enter css selector for mfaInput, if you use a non MS default MFA provider. If none provided, we will try finding the MS token input
+     */
+    mfaFieldSelector?: string;
+
+    /**
+     * If you use a non MS MFA provider and need to switch a toggle first before being able to insert token, specify the toggle field selector that has to be clicked before entering the MFA token here
+     */
+    mfaToggleFieldSelector?: string;
 }
 
 /**
@@ -275,6 +291,21 @@ export class XrmUiTest {
         if (extendedProperties.password) {
             await this.enterPassword(extendedProperties);
             await this.dontRememberLogin();
+        }
+
+        if (extendedProperties.mfaSecret) {
+            if (extendedProperties.mfaToggleFieldSelector) {
+                const mfaToggle = await this.page.waitFor(extendedProperties.mfaToggleFieldSelector, { timeout: this.settings.timeout });
+                await mfaToggle.click();
+                await this.page.waitFor(500);
+            }
+
+            const mfaInput = await this.page.waitFor(extendedProperties.mfaFieldSelector || "#idTxtBx_SAOTCC_OTC");
+            const token = speakeasy.totp({ secret: extendedProperties.mfaSecret });
+
+            await mfaInput.type(token);
+            await this.page.waitFor(500);
+            await mfaInput.press("Enter");
         }
 
         await Promise.race([

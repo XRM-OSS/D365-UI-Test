@@ -87,6 +87,9 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openproperties.html#appid" class="tsd-kind-icon">app<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openproperties.html#mfafieldselector" class="tsd-kind-icon">mfa<wbr>Field<wbr>Selector</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openproperties.html#mfasecret" class="tsd-kind-icon">mfa<wbr>Secret</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openproperties.html#mfatogglefieldselector" class="tsd-kind-icon">mfa<wbr>Toggle<wbr>Field<wbr>Selector</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openproperties.html#password" class="tsd-kind-icon">password</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openproperties.html#passwordfieldselector" class="tsd-kind-icon">password<wbr>Field<wbr>Selector</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openproperties.html#username" class="tsd-kind-icon">user<wbr>Name</a></li>
@@ -104,7 +107,7 @@
 					<div class="tsd-signature tsd-kind-icon">app<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/407bb9f/src/xrm/XrmUITest.ts#L20">xrm/XrmUITest.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/17ff6dd/src/xrm/XrmUITest.ts#L21">xrm/XrmUITest.ts:21</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -114,12 +117,57 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="mfafieldselector" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> mfa<wbr>Field<wbr>Selector</h3>
+					<div class="tsd-signature tsd-kind-icon">mfa<wbr>Field<wbr>Selector<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/17ff6dd/src/xrm/XrmUITest.ts#L51">xrm/XrmUITest.ts:51</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Enter css selector for mfaInput, if you use a non MS default MFA provider. If none provided, we will try finding the MS token input</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="mfasecret" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> mfa<wbr>Secret</h3>
+					<div class="tsd-signature tsd-kind-icon">mfa<wbr>Secret<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/17ff6dd/src/xrm/XrmUITest.ts#L46">xrm/XrmUITest.ts:46</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Secret which you generated for using MFA. Only needed if you actually use MFA</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="mfatogglefieldselector" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> mfa<wbr>Toggle<wbr>Field<wbr>Selector</h3>
+					<div class="tsd-signature tsd-kind-icon">mfa<wbr>Toggle<wbr>Field<wbr>Selector<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/17ff6dd/src/xrm/XrmUITest.ts#L56">xrm/XrmUITest.ts:56</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>If you use a non MS MFA provider and need to switch a toggle first before being able to insert token, specify the toggle field selector that has to be clicked before entering the MFA token here</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="password" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> password</h3>
 					<div class="tsd-signature tsd-kind-icon">password<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/407bb9f/src/xrm/XrmUITest.ts#L30">xrm/XrmUITest.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/17ff6dd/src/xrm/XrmUITest.ts#L31">xrm/XrmUITest.ts:31</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -134,7 +182,7 @@
 					<div class="tsd-signature tsd-kind-icon">password<wbr>Field<wbr>Selector<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/407bb9f/src/xrm/XrmUITest.ts#L40">xrm/XrmUITest.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/17ff6dd/src/xrm/XrmUITest.ts#L41">xrm/XrmUITest.ts:41</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -149,7 +197,7 @@
 					<div class="tsd-signature tsd-kind-icon">user<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/407bb9f/src/xrm/XrmUITest.ts#L25">xrm/XrmUITest.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/17ff6dd/src/xrm/XrmUITest.ts#L26">xrm/XrmUITest.ts:26</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -164,7 +212,7 @@
 					<div class="tsd-signature tsd-kind-icon">user<wbr>Name<wbr>Field<wbr>Selector<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/407bb9f/src/xrm/XrmUITest.ts#L35">xrm/XrmUITest.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/17ff6dd/src/xrm/XrmUITest.ts#L36">xrm/XrmUITest.ts:36</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -280,6 +328,15 @@
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="openproperties.html#appid" class="tsd-kind-icon">app<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="openproperties.html#mfafieldselector" class="tsd-kind-icon">mfa<wbr>Field<wbr>Selector</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="openproperties.html#mfasecret" class="tsd-kind-icon">mfa<wbr>Secret</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="openproperties.html#mfatogglefieldselector" class="tsd-kind-icon">mfa<wbr>Toggle<wbr>Field<wbr>Selector</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="openproperties.html#password" class="tsd-kind-icon">password</a>
