@@ -54,6 +54,11 @@ export interface OpenProperties {
      * If you use a non MS MFA provider and need to switch a toggle first before being able to insert token, specify the toggle field selector that has to be clicked before entering the MFA token here
      */
     mfaToggleFieldSelector?: string;
+
+    /**
+     * Choose whether dynamics should open in a new tab. True by default
+     */
+    openInNewTab?: boolean;
 }
 
 /**
@@ -79,6 +84,8 @@ export class XrmUiTest {
         // Default navigation timeout is 60 seconds
         timeout: 60 * 1000
     };
+
+    private rememberButtonId = "#idBtn_Back";
 
     /**
      * Default settings for various actions such as navigation
@@ -271,7 +278,7 @@ export class XrmUiTest {
         this._crmUrl = url;
         this._appId = extendedProperties.appId;
 
-        this._page = await this.browser.newPage();
+        this._page = (extendedProperties.openInNewTab == undefined || extendedProperties.openInNewTab) ? await this.browser.newPage() : (await this.browser.pages())[0];
 
         // Work around issues with linux user agents
         this.page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chromium/60.0.3112.78 Safari/537.36");
@@ -329,7 +336,7 @@ export class XrmUiTest {
     }
 
     private async dontRememberLogin() {
-        const remember = await this.page.waitForSelector("#idBtn_Back", {  });
+        const remember = await this.page.waitForSelector(this.rememberButtonId, { timeout: this.settings.timeout });
         return remember.click();
     }
 
@@ -349,9 +356,11 @@ export class XrmUiTest {
             if (extendedProperties.passwordFieldSelector) {
                 console.log("Waiting for password field: " + extendedProperties.passwordFieldSelector);
                 const passwordInput = await this.page.waitFor(extendedProperties.passwordFieldSelector);
+
                 await passwordInput.type(extendedProperties.password);
                 await passwordInput.press("Enter");
-                return false;
+
+                return true;
             }
         }
         else {
@@ -360,6 +369,8 @@ export class XrmUiTest {
             await password.press("Enter");
             return true;
         }
+
+        return false;
     }
 
     private async enterUserName(extendedProperties: OpenProperties) {
