@@ -314,6 +314,7 @@ export class XrmUiTest {
         await Promise.race([
             this.page.waitFor("button[data-id='officewaffleplaceholder']", { timeout: this.settings.timeout }),
             this.page.waitFor("#TabAppSwitcherNode", { timeout: this.settings.timeout }),
+            this.page.waitFor("#O365_MainLink_NavMenu", { timeout: this.settings.timeout }),
             this.page.waitFor("button[data-id='officewaffle']", { timeout: this.settings.timeout })
         ]);
 

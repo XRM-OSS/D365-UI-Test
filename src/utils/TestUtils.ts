@@ -29,12 +29,14 @@ export namespace TestUtils {
      *     return xrmTest.Navigation.openAppById("default365");
      * }));
      */
-    export const takeScreenShotOnFailure = (page: puppeteer.Page, filePath: string, func: () => void | Promise<void>): any => {
+    export const takeScreenShotOnFailure = (pageGetter: () => puppeteer.Page, filePath: string, func: () => void | Promise<void>): any => {
         return async () => {
             try {
                 await Promise.resolve(func());
             }
             catch (e) {
+                const page = pageGetter();
+
                 // Page can be null in case puppeteer fails to start. Accessing it to take a screenshot would fail and overwrite the root exception
                 if (page) {
                     const dirName = path.dirname(filePath);
