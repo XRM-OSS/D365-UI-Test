@@ -32,24 +32,43 @@ export class Entity {
 
     /**
      * Saves the record and returns the ID (both for quick create and "normal" create)
+     * @param ignoreDuplicateCheck [false] Whether to automatically ignore duplicate check warnings
      * @returns The id of the record
      */
-    save = async () => {
+    save = async (ignoreDuplicateCheck = false) => {
         await EnsureXrmGetter(this._page);
 
-        const [saveResult, raceResult] = await Promise.all([
-            this._page.evaluate(() => {
-                const xrm = window.oss_FindXrm();
+        const waitSelectors = [
+            // This is the id of the notification that gets shown once a quick create record is saved
+            this._page.waitForSelector("div[id^=quickcreate_]", { timeout: this.xrmUiTest.settings.timeout }),
 
-                return xrm.Page.data.save();
-            }),
-            Promise.race([
-                // This is the id of the notification that gets shown once a quick create record is saved
-                this._page.waitForSelector("div[id^=quickcreate_]", { timeout: this.xrmUiTest.settings.timeout }),
-                // On normal page save a reload will occur
-                this._page.waitForNavigation({ waitUntil: "networkidle0", timeout: this.xrmUiTest.settings.timeout })
-            ])
+            // On normal page save a reload will occur
+            this._page.waitForNavigation({ waitUntil: "networkidle0", timeout: this.xrmUiTest.settings.timeout })
+        ];
+
+        const saveResult = this._page.evaluate(() => {
+            const xrm = window.oss_FindXrm();
+
+            return xrm.Page.data.save();
+        });
+
+        await Promise.race([
+            ...waitSelectors,
+            // Wait for duplicate dialog
+            this._page.waitForSelector('button[data-id="ignore_save"]', { timeout: this.xrmUiTest.settings.timeout })
         ]);
+
+        const duplicateCheckButton = await this._page.$('button[data-id="ignore_save"]');
+
+        if (duplicateCheckButton) {
+            if (ignoreDuplicateCheck) {
+                await Promise.all([duplicateCheckButton.click(), saveResult, Promise.race(waitSelectors)]);
+            }
+            else {
+                await this._page.click('button[data-id="close_dialog"]');
+                throw new Error("Duplicate records found. Pass true for save parameter 'ignoreDuplicateCheck' for ignore and saving");
+            }
+        }
 
         const quickCreate = await this._page.$("div[id^=quickcreate_]");
 
