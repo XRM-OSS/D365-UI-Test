@@ -1,7 +1,7 @@
 {
   "name": "d365-ui-test",
   "version": "0.0.57",
-  "description": "An unopinionated UI testing library for Dynamics 365 CE and Dynamics Portals. Powered by TypeScript and Puppeteer",
+  "description": "An unopinionated UI testing library for Dynamics 365 CE and Dynamics Portals. Powered by TypeScript and playwright",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
@@ -25,7 +25,7 @@
     "tslint": "^5.20.1",
     "typedoc": "^0.15.3",
     "typedoc-plugin-markdown-pages": "^0.3.0",
-    "typescript": "^3.5.2"
+    "typescript": "^4.1.2"
   },
   "dependencies": {
     "@types/jest": "^24.0.15",

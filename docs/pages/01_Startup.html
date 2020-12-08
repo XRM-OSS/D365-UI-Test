@@ -81,7 +81,7 @@
 <span class="hljs-comment">// Easiest way to store credentials is to just separate url, username and password by comma in the file</span>
 <span class="hljs-keyword">const</span> [url, user, password] = config.split(<span class="hljs-string">","</span>);
 
-<span class="hljs-comment">// Pass headless: true for DevOps and when you don't want to see what puppeteer is doing.</span>
+<span class="hljs-comment">// Pass headless: true for DevOps and when you don't want to see what playwright is doing.</span>
 <span class="hljs-comment">// For debugging, setting headless: false is easier as you see what's happening</span>
 <span class="hljs-keyword">const</span> browser = <span class="hljs-keyword">await</span> xrmTest.launch({
     <span class="hljs-attr">headless</span>: <span class="hljs-literal">false</span>,
@@ -90,7 +90,7 @@
     ]
 });
 
-<span class="hljs-comment">// You will probably want to declare the page variable in outer scope as you might need to access it for implementing your own interactions with puppeteer.</span>
+<span class="hljs-comment">// You will probably want to declare the page variable in outer scope as you might need to access it for implementing your own interactions with playwright.</span>
 <span class="hljs-keyword">const</span> page = <span class="hljs-keyword">await</span> xrmTest.open(url, { <span class="hljs-attr">userName</span>: user, <span class="hljs-attr">password</span>: password });</code></pre>
 				<a href="#d365-online-organizations" id="d365-online-organizations" style="color: inherit; text-decoration: none;">
 					<h2>D365 Online Organizations</h2>

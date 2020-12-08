@@ -21,7 +21,7 @@ export namespace TestUtils {
 
     /**
      * Take screenshots on function failure. Useful for taking screenshots for failed tests. Will rethrow the error.
-     * @param page Page object of current puppeteer session
+     * @param page Page object of current playwright session
      * @param filePath Path where the screenshot should be saved on failure. Has to include file ending such as .png.
      * @param func Your actual test
      * @example
@@ -37,7 +37,7 @@ export namespace TestUtils {
             catch (e) {
                 const page = pageGetter();
 
-                // Page can be null in case puppeteer fails to start. Accessing it to take a screenshot would fail and overwrite the root exception
+                // Page can be null in case playwright fails to start. Accessing it to take a screenshot would fail and overwrite the root exception
                 if (page) {
                     const dirName = path.dirname(filePath);
                     const folderExists = fs.existsSync(dirName);
@@ -72,8 +72,8 @@ export namespace TestUtils {
     };
 
     /**
-     * Checks for a file to exist. Useful for validating if puppeteer downloads succeeded.
-     * @param page Puppeteer page object for current session
+     * Checks for a file to exist. Useful for validating if playwright downloads succeeded.
+     * @param page playwright page object for current session
      * @param pathName Folder path to search
      * @param fileEndings File ending to search for. Can be full name as well
      * @param sleepTime [500] Time to wait between checks

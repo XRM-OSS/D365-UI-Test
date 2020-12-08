@@ -14,12 +14,16 @@ describe("Basic operations RUI", () => {
         const config = fs.readFileSync(path.resolve(__dirname, "../../settings.txt"), {encoding: "utf-8"});
         const [url, user, password] = config.split(",");
 
-        browser = await xrmTest.launch({
+        await xrmTest.launch("chromium", {
             headless: false,
             args: ["--start-fullscreen"]
+        })
+        .then(([b, p]) => {
+            browser = b;
+            page = p;
         });
 
-        page = await xrmTest.open(url, { userName: user, password: password });
+        await xrmTest.open(url, { userName: user, password: password });
     });
 
     test("It should set string field", async () => {

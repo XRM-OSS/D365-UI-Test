@@ -10,7 +10,7 @@ const config = fs.readFileSync(path.resolve(__dirname, "settings.txt"), {encodin
 // Easiest way to store credentials is to just separate url, username and password by comma in the file
 const [url, user, password] = config.split(",");
 
-// Pass headless: true for DevOps and when you don't want to see what puppeteer is doing.
+// Pass headless: true for DevOps and when you don't want to see what playwright is doing.
 // For debugging, setting headless: false is easier as you see what's happening
 const browser = await xrmTest.launch({
     headless: false,
@@ -19,7 +19,7 @@ const browser = await xrmTest.launch({
     ]
 });
 
-// You will probably want to declare the page variable in outer scope as you might need to access it for implementing your own interactions with puppeteer.
+// You will probably want to declare the page variable in outer scope as you might need to access it for implementing your own interactions with playwright.
 const page = await xrmTest.open(url, { userName: user, password: password });
 ```
 

@@ -54,11 +54,6 @@ export interface OpenProperties {
      * If you use a non MS MFA provider and need to switch a toggle first before being able to insert token, specify the toggle field selector that has to be clicked before entering the MFA token here
      */
     mfaToggleFieldSelector?: string;
-
-    /**
-     * Choose whether dynamics should open in a new tab. True by default
-     */
-    openInNewTab?: boolean;
 }
 
 /**
@@ -66,6 +61,8 @@ export interface OpenProperties {
  */
 export class XrmUiTest {
     private _browser: playwright.Browser;
+    private _context: playwright.BrowserContext;
+
     private _page: playwright.Page;
     private _crmUrl: string;
     private _appId: string;
@@ -102,10 +99,17 @@ export class XrmUiTest {
     }
 
     /**
-     * Gets the browser object that was generated when launching puppeteer
+     * Gets the browser object that was generated when launching playwright
      */
     get browser() {
         return this._browser;
+    }
+
+    /**
+     * Gets the browser context object
+     */
+    get context() {
+        return this._context;
     }
 
     /**
@@ -236,20 +240,25 @@ export class XrmUiTest {
     }
 
     /**
-     * Function for launching a puppeteer instance
-     * @param {puppeteer.launchOptions} [launchOptions] Launch options for launching puppeteer. Will be used for calling puppeteer.launch.
-     * @returns {puppeteer.Browser} Started browser instance
+     * Function for launching a playwright instance
+     * @param {string} [browser] [chromium] Decide which browser to launch, options are chromium, firefox or webkit
+     * @param {playwright.launchOptions} [launchOptions] Launch options for launching playwright. Will be used for calling playwright.launch.
+     * @returns {playwright.Browser} Started browser instance
      * @remarks defaultViewport in launchOptions is preset to null for using your clients default resolution. Overwrite defaultViewport to change.
      */
-    launch = async (launchOptions?: puppeteer.LaunchOptions) => {
+    launch = async (browser: "chromium" | "firefox" | "webkit" = "chromium",
+        launchOptions?: playwright.LaunchOptions,
+        contextOptions?: playwright.BrowserContextOptions,
+    ): Promise<[playwright.Browser, playwright.Page]> => {
         // tslint:disable-next-line:no-null-keyword
-        this._browser = await puppeteer.launch({ ...{ defaultViewport: null }, ...launchOptions });
-        return this.browser;
+        this._browser = await playwright[browser].launch({ ...{ defaultViewport: null }, ...launchOptions });
+        this._context = await this._browser.newContext(contextOptions);
+        this._page = await this._browser.newPage();
+
+        return [this.browser, this._page];
     }
 
-    private registerIgnoreUrls = async (page: puppeteer.Page) => {
-        await page.setRequestInterception(true);
-
+    private registerIgnoreUrls = async (page: playwright.Page) => {
         // These URLs take sometimes more than 2 minutes to load, just abort them
         const ignoreUrlPaths = [
             "https://browser.pipe.aria.microsoft.com/Collector/3.0/?qsp=true&content-type=application%2Fbond-compact-binary&client-id=NO_AUTH",
@@ -258,13 +267,14 @@ export class XrmUiTest {
             "https://loki.delve.office.com/api/v1/configuration/Dynamics365UCI/"
         ];
 
-        page.on("request", req => {
-            const requestUrl = req.url();
+        page.route("**", route => {
+            const url = route.request().url();
 
-            if (ignoreUrlPaths.some(u => requestUrl.startsWith(u))) {
-                req.abort();
-            } else {
-                req.continue();
+            if (ignoreUrlPaths.some(ignoreUrl => ignoreUrl.startsWith(url))) {
+                route.abort();
+            }
+            else {
+                route.continue();
             }
         });
     }
@@ -272,23 +282,18 @@ export class XrmUiTest {
     /**
      * @param { String } url Url of your D365 organization
      * @param { Object } extendedProperties Options for logging in. User name and password are required. If you have a custom authentication page, you should pass userNameFieldSelector if user name has to be reentered and passwordFieldSelector for password entry. These are css selectors for the inputs.
-     * @returns {puppeteer.Page} The page in which D365 was opened
+     * @returns {void} Resolves as soon as D365 is logged in and open
      */
     open = async (url: string, extendedProperties: OpenProperties) => {
         this._crmUrl = url;
         this._appId = extendedProperties.appId;
-
-        this._page = (extendedProperties.openInNewTab == undefined || extendedProperties.openInNewTab) ? await this.browser.newPage() : (await this.browser.pages())[0];
-
-        // Work around issues with linux user agents
-        this.page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chromium/60.0.3112.78 Safari/537.36");
 
         // Register ignore URLs that sometimes cause trouble with timeouts
         await this.registerIgnoreUrls(this.page);
 
         await Promise.all([
             this.page.goto(url, { waitUntil: "load", timeout: this.settings.timeout }),
-            this.page.waitForNavigation({ waitUntil: "networkidle0", timeout: this.settings.timeout })
+            this.page.waitForNavigation({ waitUntil: "networkidle", timeout: this.settings.timeout })
         ]);
 
         if (extendedProperties.userName) {
@@ -305,32 +310,30 @@ export class XrmUiTest {
 
         if (extendedProperties.mfaSecret) {
             if (extendedProperties.mfaToggleFieldSelector) {
-                const mfaToggle = await this.page.waitFor(extendedProperties.mfaToggleFieldSelector, { timeout: this.settings.timeout });
+                const mfaToggle = await this.page.waitForSelector(extendedProperties.mfaToggleFieldSelector, { timeout: this.settings.timeout });
                 await mfaToggle.click();
-                await this.page.waitFor(500);
+                await this.page.waitForTimeout(500);
             }
 
-            const mfaInput = await this.page.waitFor(extendedProperties.mfaFieldSelector || "#idTxtBx_SAOTCC_OTC");
+            const mfaInput = await this.page.waitForSelector(extendedProperties.mfaFieldSelector || "#idTxtBx_SAOTCC_OTC");
             const token = speakeasy.totp({ secret: extendedProperties.mfaSecret });
 
             await mfaInput.type(token);
-            await this.page.waitFor(500);
+            await this.page.waitForTimeout(500);
             await mfaInput.press("Enter");
         }
 
-        await Promise.race([
-            this.page.waitFor("button[data-id='officewaffleplaceholder']", { timeout: this.settings.timeout }),
-            this.page.waitFor("#TabAppSwitcherNode", { timeout: this.settings.timeout }),
-            this.page.waitFor("#O365_MainLink_NavMenu", { timeout: this.settings.timeout }),
-            this.page.waitFor("button[data-id='officewaffle']", { timeout: this.settings.timeout }),
-            this.page.waitFor("#navTabAppSwitcherImage_TabAppSwitcherNode", { timeout: this.settings.timeout }),
+        return Promise.race([
+            this.page.waitForSelector("button[data-id='officewaffleplaceholder']", { timeout: this.settings.timeout }),
+            this.page.waitForSelector("#TabAppSwitcherNode", { timeout: this.settings.timeout }),
+            this.page.waitForSelector("#O365_MainLink_NavMenu", { timeout: this.settings.timeout }),
+            this.page.waitForSelector("button[data-id='officewaffle']", { timeout: this.settings.timeout }),
+            this.page.waitForSelector("#navTabAppSwitcherImage_TabAppSwitcherNode", { timeout: this.settings.timeout }),
         ]);
-
-        return this.page;
     }
 
     /**
-     * Closes the puppeteer browser session
+     * Closes the playwright browser session
      */
     close = async () => {
         await this.browser.close();
@@ -351,12 +354,12 @@ export class XrmUiTest {
 
             if (extendedProperties.userNameFieldSelector) {
                 console.log("Waiting for user name field: " + extendedProperties.userNameFieldSelector);
-                const userNameField = await this.page.waitFor(extendedProperties.userNameFieldSelector);
+                const userNameField = await this.page.waitForSelector(extendedProperties.userNameFieldSelector);
                 await userNameField.type(extendedProperties.userName);
             }
             if (extendedProperties.passwordFieldSelector) {
                 console.log("Waiting for password field: " + extendedProperties.passwordFieldSelector);
-                const passwordInput = await this.page.waitFor(extendedProperties.passwordFieldSelector);
+                const passwordInput = await this.page.waitForSelector(extendedProperties.passwordFieldSelector);
 
                 await passwordInput.type(extendedProperties.password);
                 await passwordInput.press("Enter");
@@ -377,8 +380,8 @@ export class XrmUiTest {
     private async enterUserName(extendedProperties: OpenProperties) {
         const userName = await this.page.waitForSelector("#i0116");
         await userName.type(extendedProperties.userName);
-        await this.page.waitFor(1000);
+        await this.page.waitForTimeout(1000);
         await userName.press("Enter");
-        return this.page.waitFor(1000);
+        return this.page.waitForTimeout(1000);
     }
 }

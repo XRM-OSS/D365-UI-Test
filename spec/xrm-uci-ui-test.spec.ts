@@ -14,14 +14,16 @@ describe("Basic operations UCI", () => {
         const config = fs.readFileSync(path.resolve(__dirname, "../../settings.txt"), {encoding: "utf-8"});
         const [url, user, password] = config.split(",");
 
-        browser = await xrmTest.launch({
+        await xrmTest.launch("chromium", {
             headless: false,
-            args: [
-                "--start-fullscreen"
-            ]
+            args: ["--start-fullscreen"]
+        })
+        .then(([b, p]) => {
+            browser = b;
+            page = p;
         });
 
-        page = await xrmTest.open(url, { userName: user, password: password });
+        await xrmTest.open(url, { userName: user, password: password });
     });
 
     test("It should set string field", async () => {
@@ -34,7 +36,7 @@ describe("Basic operations UCI", () => {
         const value = await xrmTest.Attribute.getValue("name");
         expect(value).toBe("Test name");
 
-        await xrmTest.Form.reset();
+        await xrmTest.Form.noSubmit();
     });
 
     test("It should set option field", async () => {
@@ -46,7 +48,7 @@ describe("Basic operations UCI", () => {
         const value = await xrmTest.Attribute.getValue("customertypecode");
         expect(value).toBe(3);
 
-        await xrmTest.Form.reset();
+        await xrmTest.Form.noSubmit();
     });
 
     test("It should set boolean field", async () => {
@@ -58,7 +60,7 @@ describe("Basic operations UCI", () => {
         const value = await xrmTest.Attribute.getValue("msdyn_taxexempt");
         expect(value).toBe(true);
 
-        await xrmTest.Form.reset();
+        await xrmTest.Form.noSubmit();
     });
 
     test("It should set money field", async () => {
@@ -70,7 +72,7 @@ describe("Basic operations UCI", () => {
         const value = await xrmTest.Attribute.getValue("creditlimit");
         expect(value).toBe(123.12);
 
-        await xrmTest.Form.reset();
+        await xrmTest.Form.noSubmit();
     });
 
     /*

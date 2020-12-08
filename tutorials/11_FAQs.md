@@ -1,7 +1,7 @@
 # FAQs
 
 ## Can I download files, e.g. reports, Excel exports or Documents Core Pack documents?
-Yes, you can. Just issue this puppeteer call before doing the actions that open the download dialog:
+Yes, you can. Just issue this playwright call before doing the actions that open the download dialog:
 
 ```javascript
 const client = await page.target().createCDPSession();

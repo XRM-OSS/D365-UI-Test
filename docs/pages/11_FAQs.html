@@ -74,7 +74,7 @@
 				<a href="#can-i-download-files-eg-reports-excel-exports-or-documents-core-pack-documents" id="can-i-download-files-eg-reports-excel-exports-or-documents-core-pack-documents" style="color: inherit; text-decoration: none;">
 					<h2>Can I download files, e.g. reports, Excel exports or Documents Core Pack documents?</h2>
 				</a>
-				<p>Yes, you can. Just issue this puppeteer call before doing the actions that open the download dialog:</p>
+				<p>Yes, you can. Just issue this playwright call before doing the actions that open the download dialog:</p>
 				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> client = <span class="hljs-keyword">await</span> page.target().createCDPSession();
 
 <span class="hljs-keyword">await</span> client.send(<span class="hljs-string">'Page.setDownloadBehavior'</span>, {
