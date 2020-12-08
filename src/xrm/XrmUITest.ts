@@ -1,4 +1,4 @@
-import * as puppeteer from "puppeteer";
+import * as playwright from "playwright";
 import { Navigation } from "./Navigation";
 import { Entity } from "./Entity";
 import { Dialog } from "./Dialog";
@@ -65,8 +65,8 @@ export interface OpenProperties {
  * Main class for testing in D365
  */
 export class XrmUiTest {
-    private _browser: puppeteer.Browser;
-    private _page: puppeteer.Page;
+    private _browser: playwright.Browser;
+    private _page: playwright.Page;
     private _crmUrl: string;
     private _appId: string;
 

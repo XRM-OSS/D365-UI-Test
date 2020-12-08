@@ -1,4 +1,4 @@
-import * as puppeteer from "puppeteer";
+import * as playwright from "playwright";
 import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
 
@@ -6,7 +6,7 @@ import { XrmUiTest } from "./XrmUITest";
  * Module for navigating in D365
  */
 export class Navigation {
-    private _page: puppeteer.Page;
+    private _page: playwright.Page;
     private _crmUrl: string;
 
     constructor(private xrmUiTest: XrmUiTest) {
@@ -23,7 +23,7 @@ export class Navigation {
     openCreateForm = async (entityName: string) => {
         return Promise.all([
             this._page.goto(`${this._crmUrl}/main.aspx?etn=${entityName}&pagetype=entityrecord${this.xrmUiTest.AppId ? "&appid=" + this.xrmUiTest.AppId : ""}`, { waitUntil: "load", timeout: this.xrmUiTest.settings.timeout }),
-            this._page.waitForNavigation({ waitUntil: "networkidle0", timeout: this.xrmUiTest.settings.timeout })
+            this._page.waitForNavigation({ waitUntil: "networkidle", timeout: this.xrmUiTest.settings.timeout })
         ]);
     }
 
@@ -36,7 +36,7 @@ export class Navigation {
     openUpdateForm = async (entityName: string, entityId: string) => {
         return Promise.all([
             this._page.goto(`${this._crmUrl}/main.aspx?etn=${entityName}&id=${entityId}&pagetype=entityrecord${this.xrmUiTest.AppId ? "&appid=" + this.xrmUiTest.AppId : ""}`, { waitUntil: "load", timeout: this.xrmUiTest.settings.timeout }),
-            this._page.waitForNavigation({ waitUntil: "networkidle0", timeout: this.xrmUiTest.settings.timeout })
+            this._page.waitForNavigation({ waitUntil: "networkidle", timeout: this.xrmUiTest.settings.timeout })
         ]);
     }
 
@@ -54,13 +54,13 @@ export class Navigation {
                 xrm.Navigation.openForm({ entityName: entityName, useQuickCreateForm: true });
             }, entityName),
 
-            Promise.race([ this._page.waitFor("#quickCreateSaveAndCloseBtn"), this._page.waitFor("#globalquickcreate_save_button_NavBarGloablQuickCreate") ])
+            Promise.race([ this._page.waitForSelector("#quickCreateSaveAndCloseBtn"), this._page.waitForSelector("#globalquickcreate_save_button_NavBarGloablQuickCreate") ])
         ]);
 
         return this._page.waitForFunction((entityName: string) => {
             const xrm = window.oss_FindXrm();
             return xrm && xrm.Page && xrm.Page.data && xrm.Page.data.entity && xrm.Page.data.entity.getEntityName() === entityName;
-        }, undefined, entityName);
+        }, entityName);
     }
 
     /**
@@ -73,7 +73,7 @@ export class Navigation {
 
         return Promise.all([
             this._page.goto(`${this._crmUrl}/main.aspx?appid=${appId}`, { waitUntil: "load", timeout: this.xrmUiTest.settings.timeout }),
-            this._page.waitForNavigation({ waitUntil: "networkidle0", timeout: this.xrmUiTest.settings.timeout })
+            this._page.waitForNavigation({ waitUntil: "networkidle", timeout: this.xrmUiTest.settings.timeout })
         ]);
     }
 }

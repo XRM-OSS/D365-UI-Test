@@ -1,4 +1,4 @@
-import * as puppeteer from "puppeteer";
+import * as playwright from "playwright";
 import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
 
@@ -6,7 +6,7 @@ import { XrmUiTest } from "./XrmUITest";
  * Module for interacting with D365 Attributes
  */
 export class Attribute {
-    private _page: puppeteer.Page;
+    private _page: playwright.Page;
 
     constructor(private xrmUiTest: XrmUiTest) {
         this._page = xrmUiTest.page;
@@ -61,7 +61,7 @@ export class Attribute {
         const isDate = Object.prototype.toString.call(value) === "[object Date]";
         await EnsureXrmGetter(this._page);
 
-        await this._page.evaluate((a: string, v: any) => {
+        await this._page.evaluate(([a, v]) => {
             const xrm = window.oss_FindXrm();
             const attribute = xrm.Page.getAttribute(a);
 
@@ -75,9 +75,9 @@ export class Attribute {
 
             attribute.setValue(attribute.getAttributeType() === "datetime" ? new Date(v) : v);
             attribute.fireOnChange();
-        }, attributeName, isDate ? value.toISOString() : value);
+        }, [ attributeName, isDate ? value.toISOString() : value ]);
 
-        return this._page.waitFor(settleTime);
+        return this._page.waitForTimeout(settleTime);
     }
 
     /**
@@ -116,6 +116,6 @@ export class Attribute {
             return all;
         }, {} as {[key: string]: any}));
 
-        return this._page.waitFor(settleTime);
+        return this._page.waitForTimeout(settleTime);
     }
 }

@@ -1,4 +1,4 @@
-import * as puppeteer from "puppeteer";
+import * as playwright from "playwright";
 import { XrmUiTest } from "./XrmUITest";
 
 /**
@@ -23,7 +23,7 @@ export interface ButtonIdentifier {
  * Module for interacting with D365 Buttons
  */
 export class Button {
-    private _page: puppeteer.Page;
+    private _page: playwright.Page;
 
     constructor(private xrmUiTest: XrmUiTest) {
         this._page = xrmUiTest.page;

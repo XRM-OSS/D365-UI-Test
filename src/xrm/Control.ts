@@ -1,4 +1,4 @@
-import * as puppeteer from "puppeteer";
+import * as playwright from "playwright";
 import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
 
@@ -21,7 +21,7 @@ export interface ControlState {
  * Module for interacting with D365 Controls
  */
 export class Control {
-    private _page: puppeteer.Page;
+    private _page: playwright.Page;
 
     constructor(private xrmUiTest: XrmUiTest) {
         this._page = xrmUiTest.page;

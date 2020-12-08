@@ -1,11 +1,11 @@
-import * as puppeteer from "puppeteer";
+import * as playwright from "playwright";
 import { XrmUiTest } from "./XrmUITest";
 
 /**
  * Module for interacting with D365 dialogs
  */
 export class Dialog {
-    private _page: puppeteer.Page;
+    private _page: playwright.Page;
 
     constructor(private xrmUiTest: XrmUiTest) {
         this._page = xrmUiTest.page;
@@ -18,8 +18,8 @@ export class Dialog {
      */
     confirmDuplicateDetection = async() => {
         await Promise.race([
-            this._page.waitFor(3000),
-            this._page.waitForNavigation({ waitUntil: "networkidle0" })
+            this._page.waitForTimeout(3000),
+            this._page.waitForNavigation({ waitUntil: "networkidle" })
         ]);
 
         const confirmButton = await this._page.$("#butBegin") || await this._page.$("button[data-id='ignore_save']");
@@ -27,7 +27,7 @@ export class Dialog {
         if (confirmButton) {
             return Promise.all([
                 confirmButton.click(),
-                this._page.waitForNavigation({ waitUntil: "networkidle0" })
+                this._page.waitForNavigation({ waitUntil: "networkidle" })
             ]);
         }
     }

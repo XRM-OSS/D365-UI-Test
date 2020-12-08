@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
-import * as puppeteer from "puppeteer";
+import * as playwright from "playwright";
 
 export namespace TestUtils {
     /**
@@ -29,7 +29,7 @@ export namespace TestUtils {
      *     return xrmTest.Navigation.openAppById("default365");
      * }));
      */
-    export const takeScreenShotOnFailure = (pageGetter: () => puppeteer.Page, filePath: string, func: () => void | Promise<void>): any => {
+    export const takeScreenShotOnFailure = (pageGetter: () => playwright.Page, filePath: string, func: () => void | Promise<void>): any => {
         return async () => {
             try {
                 await Promise.resolve(func());
@@ -56,7 +56,7 @@ export namespace TestUtils {
         };
     };
 
-    const checkForFileInternal = async (page: puppeteer.Page, pathName: string, fileEndings: Array<string>, sleepTime: number, numberOfTries: number, tries = 0): Promise<boolean> => {
+    const checkForFileInternal = async (page: playwright.Page, pathName: string, fileEndings: Array<string>, sleepTime: number, numberOfTries: number, tries = 0): Promise<boolean> => {
         if (tries >= numberOfTries) {
             return Promise.reject(`Tried ${numberOfTries} times, aborting`);
         }
@@ -67,7 +67,7 @@ export namespace TestUtils {
             return true;
         }
 
-        await page.waitFor(sleepTime);
+        await page.waitForTimeout(sleepTime);
         return checkForFileInternal(page, pathName, fileEndings, sleepTime, numberOfTries, ++tries);
     };
 
@@ -79,15 +79,15 @@ export namespace TestUtils {
      * @param sleepTime [500] Time to wait between checks
      * @param numberOfTries [10] Number of tries to do
      */
-    export const checkForFile = async (page: puppeteer.Page, pathName: string, fileEndings: Array<string>, sleepTime = 500, numberOfTries = 10): Promise<boolean> => {
+    export const checkForFile = async (page: playwright.Page, pathName: string, fileEndings: Array<string>, sleepTime = 500, numberOfTries = 10): Promise<boolean> => {
         return checkForFileInternal(page, pathName, fileEndings, sleepTime, numberOfTries);
     };
 
     class InflightRequests {
-        _page: puppeteer.Page;
+        _page: playwright.Page;
         _requests: Set<Request>;
 
-        constructor(page: puppeteer.Page) {
+        constructor(page: playwright.Page) {
           this._page = page;
           this._requests = new Set();
           this._onStarted = this._onStarted.bind(this);
@@ -115,7 +115,7 @@ export namespace TestUtils {
      * @param func The function call that causes the navigation timeout
      * @example await trackTimedOutRequest(page, () => xrmTest.Navigation.openAppById("d365default"));
      */
-    export const trackTimedOutRequest = async (page: puppeteer.Page, func: () => void | Promise<void>) => {
+    export const trackTimedOutRequest = async (page: playwright.Page, func: () => void | Promise<void>) => {
         const tracker = new InflightRequests(page);
 
         try {

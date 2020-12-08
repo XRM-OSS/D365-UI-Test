@@ -1,11 +1,11 @@
-import * as puppeteer from "puppeteer";
+import * as playwright from "playwright";
 
 /**
  * Main class for testing in Portals
  */
 export class PortalUiTest {
-    private _browser: puppeteer.Browser;
-    private _page: puppeteer.Page;
+    private _browser: playwright.Browser;
+    private _page: playwright.Page;
     private _portalUrl: string;
 
     get browser() {
@@ -16,8 +16,9 @@ export class PortalUiTest {
         return this._page;
     }
 
-    launch = async (launchOptions?: puppeteer.LaunchOptions) => {
-        this._browser = await puppeteer.launch(launchOptions);
+    launch = async (launchOptions?: playwright.LaunchOptions) => {
+        const context = new playwright.con
+        this._browser = await playwright.launch(launchOptions);
         return this.browser;
     }
 
@@ -25,12 +26,12 @@ export class PortalUiTest {
         this._portalUrl = url;
 
         await this.page.goto(`${this._portalUrl}`);
-        await this.page.waitForNavigation({ waitUntil: "networkidle2" });
+        await this.page.waitForNavigation({ waitUntil: "networkidle" });
     }
 
     login = async(userName: string, password: string) => {
         await this.page.goto(`${this._portalUrl}/signIn`);
-        await this.page.waitForNavigation({ waitUntil: "networkidle2" });
+        await this.page.waitForNavigation({ waitUntil: "networkidle" });
 
         const userNameField = await this.page.waitForSelector("#Username");
         await userNameField.type(userName);
@@ -40,7 +41,7 @@ export class PortalUiTest {
 
         await this.page.keyboard.press("enter");
 
-        await this.page.waitForNavigation({ waitUntil: "networkidle2" });
+        await this.page.waitForNavigation({ waitUntil: "networkidle" });
     }
 
     close = async () => {

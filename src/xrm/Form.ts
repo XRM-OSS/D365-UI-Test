@@ -1,4 +1,4 @@
-import * as puppeteer from "puppeteer";
+import * as playwright from "playwright";
 import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
 
@@ -22,7 +22,7 @@ export interface FormIdentifier {
  * Module for interacting with D365 Forms
  */
 export class Form {
-    private _page: puppeteer.Page;
+    private _page: playwright.Page;
 
     constructor(private xrmUiTest: XrmUiTest) {
         this._page = xrmUiTest.page;
@@ -45,7 +45,7 @@ export class Form {
     noSubmit = async () => {
         await EnsureXrmGetter(this._page);
 
-        return this._page.evaluate((a, v) => {
+        return this._page.evaluate(() => {
             const xrm = window.oss_FindXrm();
 
             xrm.Page.getAttribute().forEach(a => a.setSubmitMode("never"));
@@ -67,7 +67,7 @@ export class Form {
 
                     (xrm.Page.ui.formSelector.items.get(i) as any).navigate();
                 }, identifier.byId),
-                this._page.waitForNavigation({ waitUntil: "networkidle0" })
+                this._page.waitForNavigation({ waitUntil: "networkidle" })
             ]);
         }
         else if (identifier.byName) {
@@ -77,7 +77,7 @@ export class Form {
 
                     (xrm.Page.ui.formSelector.items as any).getByFilter((f: any) => f._label === i).navigate();
                 }, identifier.byName),
-                this._page.waitForNavigation({ waitUntil: "networkidle0" })
+                this._page.waitForNavigation({ waitUntil: "networkidle" })
             ]);
         }
         else {

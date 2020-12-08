@@ -1,4 +1,4 @@
-import * as puppeteer from "puppeteer";
+import * as playwright from "playwright";
 import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
 
@@ -6,7 +6,7 @@ import { XrmUiTest } from "./XrmUITest";
  * Module for interacting with D365 entity records
  */
 export class Entity {
-    private _page: puppeteer.Page;
+    private _page: playwright.Page;
 
     constructor(private xrmUiTest: XrmUiTest) {
         this._page = xrmUiTest.page;
@@ -21,7 +21,7 @@ export class Entity {
     noSubmit = async () => {
         await EnsureXrmGetter(this._page);
 
-        return this._page.evaluate((a: string, v: any) => {
+        return this._page.evaluate(() => {
             const xrm = window.oss_FindXrm();
 
             const attributes = xrm.Page.getAttribute();
@@ -43,7 +43,7 @@ export class Entity {
             this._page.waitForSelector("div[id^=quickcreate_]", { timeout: this.xrmUiTest.settings.timeout }),
 
             // On normal page save a reload will occur
-            this._page.waitForNavigation({ waitUntil: "networkidle0", timeout: this.xrmUiTest.settings.timeout })
+            this._page.waitForNavigation({ waitUntil: "networkidle", timeout: this.xrmUiTest.settings.timeout })
         ];
 
         const saveResult = this._page.evaluate(() => {

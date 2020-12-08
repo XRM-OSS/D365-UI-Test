@@ -1,6 +1,6 @@
-import * as puppeteer from "puppeteer";
+import * as playwright from "playwright";
 
-export const EnsureXrmGetter = async(page: puppeteer.Page) => {
+export const EnsureXrmGetter = async(page: playwright.Page) => {
     await page.evaluate(() => {
         if (!!window.oss_FindXrm) {
             return;

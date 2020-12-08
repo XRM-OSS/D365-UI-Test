@@ -20,6 +20,7 @@
   "license": "MIT",
   "devDependencies": {
     "jest": "^24.8.0",
+    "playwright": "^1.6.2",
     "ts-jest": "^24.0.2",
     "tslint": "^5.20.1",
     "typedoc": "^0.15.3",
@@ -27,11 +28,9 @@
     "typescript": "^3.5.2"
   },
   "dependencies": {
-    "@types/puppeteer": "^1.12.4",
-    "puppeteer": "^1.18.1",
-    "@types/speakeasy": "^2.0.5",
-    "speakeasy": "^2.0.0",
     "@types/jest": "^24.0.15",
-    "@types/xrm": "^9.0.14"
+    "@types/speakeasy": "^2.0.5",
+    "@types/xrm": "^9.0.14",
+    "speakeasy": "^2.0.0"
   }
 }

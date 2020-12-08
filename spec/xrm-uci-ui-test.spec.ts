@@ -1,11 +1,11 @@
 import { XrmUiTest } from "../src";
 import * as fs from "fs";
-import * as puppeteer from "puppeteer";
+import * as playwright from "playwright";
 import * as path from "path";
 
 const xrmTest = new XrmUiTest();
-let browser: puppeteer.Browser = undefined;
-let page: puppeteer.Page = undefined;
+let browser: playwright.Browser = undefined;
+let page: playwright.Page = undefined;
 
 describe("Basic operations UCI", () => {
     beforeAll(async() => {

@@ -1,10 +1,10 @@
 import { XrmUiTest } from "../src";
-import * as puppeteer from "puppeteer";
+import * as playwright from "playwright";
 import * as fs from "fs";
 
 const xrmTest = new XrmUiTest();
-let browser: puppeteer.Browser;
-let page: puppeteer.Page;
+let browser: playwright.Browser;
+let page: playwright.Page;
 
 const takeScreenShotOnFailure = (testName: string, func: () => any): any => {
     return async () => {
@@ -39,7 +39,7 @@ describe("Basic operations UCI", () => {
         })
         .then(p => {
             page = p;
-            return page.setViewport({ width: 1920, height: 1080 });
+            return page.setViewportSize({ width: 1920, height: 1080 });
         });
     });
 
@@ -62,7 +62,7 @@ describe("Basic operations UCI", () => {
         await page.type("#demo_street", "Planckstraße 10");
         await page.type("#demo_zippostalcode", "88677");
         await page.type("#demo_city", "Markdorf");
-        await page.select("#demo_countrycode", "100000085");
+        await page.selectOption("#demo_countrycode", "100000085");
         await page.type("#title", "Automated UI Test");
 
         await page.type("#description", "UI Test Firstname");
@@ -71,7 +71,7 @@ describe("Basic operations UCI", () => {
             (document.querySelector("#InsertButton") as any).click();
         });
 
-        await page.waitForNavigation({ waitUntil: "networkidle0" });
+        await page.waitForNavigation({ waitUntil: "networkidle" });
 
         const successDiv = await page.$(".alert-case-created");
         expect(successDiv).toBeDefined();
