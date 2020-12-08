@@ -51,7 +51,7 @@ export namespace TestUtils {
                     await page.screenshot({ path: filePath });
                 }
 
-                throw e;
+                throw(e);
             }
         };
     };
@@ -127,7 +127,7 @@ export namespace TestUtils {
             console.log(inflight.map((request: any) => "  " + request.url()).join("\n"));
             tracker.dispose();
 
-            throw e;
+            throw(e);
         }
     };
 }
