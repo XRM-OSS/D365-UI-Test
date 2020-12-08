@@ -11,9 +11,6 @@ describe("Basic operations RUI", () => {
     beforeAll(async() => {
         jest.setTimeout(60000);
 
-        const config = fs.readFileSync(path.resolve(__dirname, "../../settings.txt"), {encoding: "utf-8"});
-        const [url, user, password] = config.split(",");
-
         await xrmTest.launch("chromium", {
             headless: false,
             args: ["--start-fullscreen"]
@@ -22,6 +19,11 @@ describe("Basic operations RUI", () => {
             browser = b;
             page = p;
         });
+    });
+
+    test("It should log in", async () => {
+        const config = fs.readFileSync(path.resolve(__dirname, "../../settings.txt"), {encoding: "utf-8"});
+        const [url, user, password] = config.split(",");
 
         await xrmTest.open(url, { userName: user, password: password });
     });
