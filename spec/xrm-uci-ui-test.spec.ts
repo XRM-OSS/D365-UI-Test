@@ -5,6 +5,7 @@ import * as path from "path";
 
 const xrmTest = new XrmUiTest();
 let browser: playwright.Browser = undefined;
+let context: playwright.BrowserContext = undefined;
 let page: playwright.Page = undefined;
 
 describe("Basic operations UCI", () => {
@@ -13,10 +14,18 @@ describe("Basic operations UCI", () => {
 
         await xrmTest.launch("chromium", {
             headless: false,
-            args: ["--start-fullscreen"]
+            args: [
+                '--disable-setuid-sandbox',
+                '--disable-infobars',
+                '--start-fullscreen',
+                '--window-position=0,0',
+                '--window-size=1920,1080',
+                '--user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36"'
+            ]
         })
-        .then(([b, p]) => {
+        .then(([b, c, p]) => {
             browser = b;
+            context = c;
             page = p;
         });
     });
@@ -26,55 +35,54 @@ describe("Basic operations UCI", () => {
         const [url, user, password] = config.split(",");
 
         await xrmTest.open(url, { userName: user, password: password });
-    })
+    });
 
     test("It should set string field", async () => {
         jest.setTimeout(60000);
 
         await xrmTest.Navigation.openCreateForm("account");
+        await xrmTest.Form.noSubmit();
 
         await xrmTest.Attribute.setValue("name", "Test name");
 
         const value = await xrmTest.Attribute.getValue("name");
         expect(value).toBe("Test name");
-
-        await xrmTest.Form.noSubmit();
     });
 
     test("It should set option field", async () => {
         jest.setTimeout(60000);
+
         await xrmTest.Navigation.openCreateForm("account");
-
-        await xrmTest.Attribute.setValue("customertypecode", 3);
-
-        const value = await xrmTest.Attribute.getValue("customertypecode");
-        expect(value).toBe(3);
-
         await xrmTest.Form.noSubmit();
+
+        await xrmTest.Attribute.setValue("address1_shippingmethodcode", 1);
+
+        const value = await xrmTest.Attribute.getValue("address1_shippingmethodcode");
+        expect(value).toBe(1);
     });
 
     test("It should set boolean field", async () => {
         jest.setTimeout(60000);
+
         await xrmTest.Navigation.openCreateForm("account");
-
-        await xrmTest.Attribute.setValue("msdyn_taxexempt", true);
-
-        const value = await xrmTest.Attribute.getValue("msdyn_taxexempt");
-        expect(value).toBe(true);
-
         await xrmTest.Form.noSubmit();
+
+        await xrmTest.Attribute.setValue("creditonhold", true);
+
+        const value = await xrmTest.Attribute.getValue("creditonhold");
+        expect(value).toBe(true);
     });
 
     test("It should set money field", async () => {
         jest.setTimeout(60000);
+
         await xrmTest.Navigation.openCreateForm("account");
+        await xrmTest.Form.noSubmit();
 
         await xrmTest.Attribute.setValue("creditlimit", 123.12);
 
         const value = await xrmTest.Attribute.getValue("creditlimit");
         expect(value).toBe(123.12);
-
-        await xrmTest.Form.noSubmit();
     });
 
     /*

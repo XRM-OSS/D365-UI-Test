@@ -45,7 +45,7 @@ export class Attribute {
             return (isDate && value != undefined) ? value.toISOString() : value;
         }, attributeName);
 
-        const date = Date.parse(value);
+        const date = typeof(value) === "string" ? Date.parse(value) : NaN;
 
         return (isNaN(date) ? value : new Date(date));
     }
@@ -54,10 +54,10 @@ export class Attribute {
      * Sets the value of the specified attribute
      * @param attributeName Name of the attribute
      * @param value Value to set
-     * @param settleTime [200] Time to wait (ms) after setting value for letting onChange events occur.
+     * @param settleTime [500] Time to wait (ms) after setting value for letting onChange events occur.
      * @returns Returns promise that resolves once value is set and settleTime is over
      */
-    setValue = async (attributeName: string, value: any, settleTime = 200) => {
+    setValue = async (attributeName: string, value: any, settleTime = 500) => {
         const isDate = Object.prototype.toString.call(value) === "[object Date]";
         await EnsureXrmGetter(this._page);
 

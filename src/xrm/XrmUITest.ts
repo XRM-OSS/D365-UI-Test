@@ -243,19 +243,19 @@ export class XrmUiTest {
      * Function for launching a playwright instance
      * @param {string} [browser] [chromium] Decide which browser to launch, options are chromium, firefox or webkit
      * @param {playwright.launchOptions} [launchOptions] Launch options for launching playwright. Will be used for calling playwright.launch.
-     * @returns {playwright.Browser} Started browser instance
-     * @remarks defaultViewport in launchOptions is preset to null for using your clients default resolution. Overwrite defaultViewport to change.
+     * @returns {Array<playwright.Browser, playwright.BrowserContext, playwright.Page>} Started browser instance, browser context and page
+     * @remarks viewport in launchOptions is preset to null for using your clients default resolution. Overwrite viewport to change.
      */
     launch = async (browser: "chromium" | "firefox" | "webkit" = "chromium",
         launchOptions?: playwright.LaunchOptions,
         contextOptions?: playwright.BrowserContextOptions,
-    ): Promise<[playwright.Browser, playwright.Page]> => {
+    ): Promise<[playwright.Browser, playwright.BrowserContext, playwright.Page]> => {
+        this._browser = await playwright[browser].launch(launchOptions);
         // tslint:disable-next-line:no-null-keyword
-        this._browser = await playwright[browser].launch({ ...{ defaultViewport: null }, ...launchOptions });
-        this._context = await this._browser.newContext(contextOptions);
-        this._page = await this._browser.newPage();
+        this._context = await this._browser.newContext({ viewport: null, ...contextOptions });
+        this._page = await this._context.newPage();
 
-        return [this.browser, this._page];
+        return [this.browser, this._context, this._page];
     }
 
     private registerIgnoreUrls = async (page: playwright.Page) => {

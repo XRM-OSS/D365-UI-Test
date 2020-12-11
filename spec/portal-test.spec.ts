@@ -5,6 +5,7 @@ import * as fs from "fs";
 
 const xrmTest = new XrmUiTest();
 let browser: playwright.Browser;
+let context: playwright.BrowserContext;
 let page: playwright.Page;
 
 describe("Basic operations UCI", () => {
@@ -13,10 +14,18 @@ describe("Basic operations UCI", () => {
 
         await xrmTest.launch("chromium", {
             headless: false,
-            args: ["--start-fullscreen"]
+            args: [
+                '--disable-setuid-sandbox',
+                '--disable-infobars',
+                '--start-fullscreen',
+                '--window-position=0,0',
+                '--window-size=1920,1080',
+                '--user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36"'
+            ]
         })
-        .then(([b, p]) => {
+        .then(([b, c, p]) => {
             browser = b;
+            context = c;
             page = p;
         });
 
