@@ -6,7 +6,7 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "lint": "tslint --fix --project .",
-    "test": "jest",
+    "test": "jest --runInBand",
     "prebuild": "npm run lint",
     "build": "tsc",
     "docs": "typedoc"

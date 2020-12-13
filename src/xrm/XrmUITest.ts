@@ -280,6 +280,14 @@ export class XrmUiTest {
     }
 
     /**
+     * Waits for all pending UCI operations to settle
+     */
+    waitForIdleness = async () => {
+        await this._page.waitForFunction(() => (window as any).UCWorkBlockTracker && (window as any).UCWorkBlockTracker.isAppIdle(), { timeout: this.settings.timeout });
+    }
+
+    /**
+     * Opens your D365 organization and logs you in
      * @param { String } url Url of your D365 organization
      * @param { Object } extendedProperties Options for logging in. User name and password are required. If you have a custom authentication page, you should pass userNameFieldSelector if user name has to be reentered and passwordFieldSelector for password entry. These are css selectors for the inputs.
      * @returns {void} Resolves as soon as D365 is logged in and open

@@ -77,7 +77,8 @@ export class Attribute {
             attribute.fireOnChange();
         }, [ attributeName, isDate ? value.toISOString() : value ]);
 
-        return this._page.waitForTimeout(settleTime);
+        await this._page.waitForTimeout(settleTime);
+	await this.xrmUiTest.waitForIdleness();
     }
 
     /**
@@ -116,6 +117,7 @@ export class Attribute {
             return all;
         }, {} as {[key: string]: any}));
 
-        return this._page.waitForTimeout(settleTime);
+        await this._page.waitForTimeout(settleTime);
+        await this.xrmUiTest.waitForIdleness();
     }
 }

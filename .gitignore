@@ -41,3 +41,4 @@ paket-files/*
 **/node_modules/*
 **/dist/*
 temp/*
+reports/*

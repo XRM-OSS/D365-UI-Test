@@ -32,9 +32,9 @@ describe("Basic operations UCI", () => {
 
     test("It should log in", async () => {
         const config = fs.readFileSync(path.resolve(__dirname, "../../settings.txt"), {encoding: "utf-8"});
-        const [url, user, password] = config.split(",");
+        const [url, user, password, mfaSecret] = config.split(",");
 
-        await xrmTest.open(url, { userName: user, password: password });
+        await xrmTest.open(url, { userName: user, password: password, mfaSecret: mfaSecret ?? undefined });
     });
 
     test("It should set string field", async () => {
