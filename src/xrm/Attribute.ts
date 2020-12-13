@@ -35,19 +35,23 @@ export class Attribute {
     getValue = async (attributeName: string) => {
         await EnsureXrmGetter(this._page);
 
-        const value = await this._page.evaluate((attributeName: string) => {
+        const [attributeType, value] = await this._page.evaluate((attributeName: string) => {
             const xrm = window.oss_FindXrm();
             const attribute = xrm.Page.getAttribute(attributeName);
+            const attributeType = attribute.getAttributeType();
 
-            const isDate = attribute.getAttributeType() === "datetime";
+            const isDate = attributeType === "datetime";
             const value = attribute.getValue();
 
-            return (isDate && value != undefined) ? value.toISOString() : value;
+            return [ attributeType, (isDate && value != undefined) ? value.toISOString() : value ];
         }, attributeName);
 
-        const date = typeof(value) === "string" ? Date.parse(value) : NaN;
-
-        return (isNaN(date) ? value : new Date(date));
+        if (attributeType === "datetime" && typeof (value) === "string") {
+            return new Date(Date.parse(value));
+        }
+        else {
+            return value;
+        }
     }
 
     /**
