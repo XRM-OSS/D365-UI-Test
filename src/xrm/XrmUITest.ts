@@ -311,7 +311,7 @@ export class XrmUiTest {
         if (extendedProperties.password) {
             const handleRememberLogin = await this.enterPassword(extendedProperties);
 
-            if (handleRememberLogin) {
+            if (handleRememberLogin && !extendedProperties.mfaSecret) {
                 await this.dontRememberLogin();
             }
         }
@@ -323,12 +323,14 @@ export class XrmUiTest {
                 await this.page.waitForTimeout(500);
             }
 
-            const mfaInput = await this.page.waitForSelector(extendedProperties.mfaFieldSelector || "#idTxtBx_SAOTCC_OTC");
-            const token = speakeasy.totp({ secret: extendedProperties.mfaSecret });
+            const mfaInput = await this.page.waitForSelector(extendedProperties.mfaFieldSelector ?? "#idTxtBx_SAOTCC_OTC");
+            const token = speakeasy.totp({ secret: extendedProperties.mfaSecret, encoding: "base32" });
 
             await mfaInput.type(token);
             await this.page.waitForTimeout(500);
             await mfaInput.press("Enter");
+
+            await this.dontRememberLogin();            
         }
 
         return Promise.race([
@@ -362,23 +364,21 @@ export class XrmUiTest {
 
             if (extendedProperties.userNameFieldSelector) {
                 console.log("Waiting for user name field: " + extendedProperties.userNameFieldSelector);
-                const userNameField = await this.page.waitForSelector(extendedProperties.userNameFieldSelector);
-                await userNameField.type(extendedProperties.userName);
+                await this.page.fill(extendedProperties.userNameFieldSelector, extendedProperties.userName);
             }
             if (extendedProperties.passwordFieldSelector) {
                 console.log("Waiting for password field: " + extendedProperties.passwordFieldSelector);
-                const passwordInput = await this.page.waitForSelector(extendedProperties.passwordFieldSelector);
+                await this.page.fill(extendedProperties.passwordFieldSelector, extendedProperties.password);
 
-                await passwordInput.type(extendedProperties.password);
-                await passwordInput.press("Enter");
+                await this.page.press(extendedProperties.passwordFieldSelector, "Enter");
 
                 return true;
             }
         }
         else {
             // For some reason we need the else in here, without it errors will occur
-            await password.type(extendedProperties.password);
-            await password.press("Enter");
+            await password.fill(extendedProperties.password);
+            await this.page.keyboard.press("Enter");
             return true;
         }
 
