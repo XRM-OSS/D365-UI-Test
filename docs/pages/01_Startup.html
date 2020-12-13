@@ -106,6 +106,19 @@
 				<p>The values for passwordFieldSelector and userNameFieldSelector need to be valid CSS selectors that help D365-UI-Test finding the correct inputs for logging you in.
 				You can find them out using your browser&#39;s DOM developer tools. Usually they will have an ID set as above.</p>
 				<p>For sending this information the enter button will be pressed, no need to specify a login button selector.</p>
+				<a href="#multi-factor-auth-otp" id="multi-factor-auth-otp" style="color: inherit; text-decoration: none;">
+					<h2>Multi Factor Auth (OTP)</h2>
+				</a>
+				<p>Automatically generated OTP credentials are supported when using the default Microsoft Authenticator.</p>
+				<p>For doing this, register your Authenticator and when the QR code is displayed, click the button for the fallback option that states that you can&#39;t use a QR code.
+					Copy the secret.
+				You now just need to pass the secret as follows:</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> [url, user, password, mfaSecret] = config.split(<span class="hljs-string">","</span>);
+
+<span class="hljs-keyword">await</span> xrmTest.open(url, { <span class="hljs-attr">userName</span>: user, <span class="hljs-attr">password</span>: password, <span class="hljs-attr">mfaSecret</span>: mfaSecret ?? <span class="hljs-literal">undefined</span> });</code></pre>
+				<blockquote>
+					<p>Important: If the OTP codes are not accepted, check that the system clock on your machine is completely synchronized. Even a slight offset to the global NTP servers might result in incorrect tokens. </p>
+				</blockquote>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">

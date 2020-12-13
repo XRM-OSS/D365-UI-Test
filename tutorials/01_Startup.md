@@ -41,3 +41,18 @@ The values for passwordFieldSelector and userNameFieldSelector need to be valid 
 You can find them out using your browser's DOM developer tools. Usually they will have an ID set as above.
 
 For sending this information the enter button will be pressed, no need to specify a login button selector.
+
+## Multi Factor Auth (OTP)
+Automatically generated OTP credentials are supported when using the default Microsoft Authenticator.
+
+For doing this, register your Authenticator and when the QR code is displayed, click the button for the fallback option that states that you can't use a QR code.
+Copy the secret.
+You now just need to pass the secret as follows:
+
+```javascript
+const [url, user, password, mfaSecret] = config.split(",");
+
+await xrmTest.open(url, { userName: user, password: password, mfaSecret: mfaSecret ?? undefined });
+```
+
+> Important: If the OTP codes are not accepted, check that the system clock on your machine is completely synchronized. Even a slight offset to the global NTP servers might result in incorrect tokens. 
