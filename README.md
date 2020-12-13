@@ -13,41 +13,33 @@ The demo tests use [jest](https://jestjs.io/), but you could just as well use Mo
 Jest Test:
 ```TypeScript
 describe("Basic operations UCI", () => {
-    // Login to CRM once for all tests in this module
-    beforeAll(async() => {
+    beforeAll(async () => {
         jest.setTimeout(60000);
 
-        // You don't need to do it this way, but I did not want to check in the data by accident
-        // The file in this example looks like this: https://org.crm4.dynamics.com,user@org.onmicrosoft.com,password
-        const config = fs.readFileSync("C:/temp/settings.txt", {encoding: 'utf-8'});
-        const [url, user, password] = config.split(",");
-
-        browser = await xrmTest.launch({
+        await xrmTest.launch("chromium", {
             headless: false,
-            args: ['--start-fullscreen'],
-            defaultViewport: null
+            args: ["--start-fullscreen"]
+        })
+        .then(([b, c, p]) => {
+            browser = b;
+            context = c;
+            page = p;
         });
-
-        page = await xrmTest.open(url, { userName: user, password: password });
-        
-        await xrmTest.openAppById("3cd81e96-2940-e811-a952-000d3ab20edc");
     });
 
-    test("It should set string field", async () => {
-        jest.setTimeout(60000);
-        
-        await xrmTest.openCreateForm("account");
-        await xrmTest.setAttributeValue("name", "Test name");
+    test("Start D365", async () => {
+        const config = fs.readFileSync(path.join(__dirname, "../../settings.txt"), {encoding: 'utf-8'});
+        const [url, user, password] = config.split(",");
+    });
 
-        const value = await xrmTest.getAttributeValue("name");
-        expect(value).toBe("Test name");
-
-        await xrmTest.reset();
+    test("Open new account form", async () => {
+        await xrmTest.Navigation.openCreateForm("account");
     });
 
     afterAll(() => {
         return xrmTest.close();
     });
+});
 ```
 
 ## Getting started
