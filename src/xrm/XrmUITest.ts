@@ -330,16 +330,18 @@ export class XrmUiTest {
             await this.page.waitForTimeout(500);
             await mfaInput.press("Enter");
 
-            await this.dontRememberLogin();            
+            await this.dontRememberLogin();
         }
 
-        return Promise.race([
+        await Promise.race([
             this.page.waitForSelector("button[data-id='officewaffleplaceholder']", { timeout: this.settings.timeout }),
             this.page.waitForSelector("#TabAppSwitcherNode", { timeout: this.settings.timeout }),
             this.page.waitForSelector("#O365_MainLink_NavMenu", { timeout: this.settings.timeout }),
             this.page.waitForSelector("button[data-id='officewaffle']", { timeout: this.settings.timeout }),
             this.page.waitForSelector("#navTabAppSwitcherImage_TabAppSwitcherNode", { timeout: this.settings.timeout }),
         ]);
+
+        await this.waitForIdleness();
     }
 
     /**

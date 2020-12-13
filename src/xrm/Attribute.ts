@@ -78,7 +78,7 @@ export class Attribute {
         }, [ attributeName, isDate ? value.toISOString() : value ]);
 
         await this._page.waitForTimeout(settleTime);
-	await this.xrmUiTest.waitForIdleness();
+        await this.xrmUiTest.waitForIdleness();
     }
 
     /**
