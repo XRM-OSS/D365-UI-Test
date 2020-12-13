@@ -68,12 +68,16 @@ D365-UI-Test tries to use these JS objects (such as Xrm.Navigation) as much as p
 
 D365-UI-Test also does not limit itself to Dynamics 365 CE, but also for testing connected Portals.
 
-## Current limitations
-There's a lot to do currently.
-
-Opening create / update forms already works and you can set text / bool / number / currency / option set values.
-Retrieving of values is also already possible.
-In addition to that, you can assert control visibilities and disabled states.
+## Current Feature Set
+- Open and log in to D365 (MS OTP tokens / two factor auth is also supported)
+- Open an App
+- Open Create / Update Forms
+- Set values for all CRM field types
+- Get values of all CRM field types
+- Get visibility and readonly state for controls
+- Get subgrid record count, refresh subgrid, open n-th record of subgrid
+- Click ribbon Buttons
+- Download files
 
 ## License
 MIT licensed, have fun :)

@@ -79,41 +79,33 @@
 				The demo tests use <a href="https://jestjs.io/">jest</a>, but you could just as well use Mocha or someting completely different.</p>
 				<p>Jest Test:</p>
 				<pre><code class="language-TypeScript">describe(<span class="hljs-string">"Basic operations UCI"</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-    <span class="hljs-comment">// Login to CRM once for all tests in this module</span>
-    beforeAll(<span class="hljs-keyword">async</span>() =&gt; {
+    beforeAll(<span class="hljs-keyword">async</span> () =&gt; {
         jest.setTimeout(<span class="hljs-number">60000</span>);
 
-        <span class="hljs-comment">// You don't need to do it this way, but I did not want to check in the data by accident</span>
-        <span class="hljs-comment">// The file in this example looks like this: https://org.crm4.dynamics.com,user@org.onmicrosoft.com,password</span>
-        <span class="hljs-keyword">const</span> config = fs.readFileSync(<span class="hljs-string">"C:/temp/settings.txt"</span>, {encoding: <span class="hljs-string">'utf-8'</span>});
-        <span class="hljs-keyword">const</span> [url, user, password] = config.split(<span class="hljs-string">","</span>);
-
-        browser = <span class="hljs-keyword">await</span> xrmTest.launch({
+        <span class="hljs-keyword">await</span> xrmTest.launch(<span class="hljs-string">"chromium"</span>, {
             headless: <span class="hljs-literal">false</span>,
-            args: [<span class="hljs-string">'--start-fullscreen'</span>],
-            defaultViewport: <span class="hljs-literal">null</span>
+            args: [<span class="hljs-string">"--start-fullscreen"</span>]
+        })
+        .then(<span class="hljs-function">(<span class="hljs-params">[b, c, p]</span>) =&gt;</span> {
+            browser = b;
+            context = c;
+            page = p;
         });
-
-        page = <span class="hljs-keyword">await</span> xrmTest.open(url, { userName: user, password: password });
-
-        <span class="hljs-keyword">await</span> xrmTest.openAppById(<span class="hljs-string">"3cd81e96-2940-e811-a952-000d3ab20edc"</span>);
     });
 
-    test(<span class="hljs-string">"It should set string field"</span>, <span class="hljs-keyword">async</span> () =&gt; {
-        jest.setTimeout(<span class="hljs-number">60000</span>);
+    test(<span class="hljs-string">"Start D365"</span>, <span class="hljs-keyword">async</span> () =&gt; {
+        <span class="hljs-keyword">const</span> config = fs.readFileSync(path.join(__dirname, <span class="hljs-string">"../../settings.txt"</span>), {encoding: <span class="hljs-string">'utf-8'</span>});
+        <span class="hljs-keyword">const</span> [url, user, password] = config.split(<span class="hljs-string">","</span>);
+    });
 
-        <span class="hljs-keyword">await</span> xrmTest.openCreateForm(<span class="hljs-string">"account"</span>);
-        <span class="hljs-keyword">await</span> xrmTest.setAttributeValue(<span class="hljs-string">"name"</span>, <span class="hljs-string">"Test name"</span>);
-
-        <span class="hljs-keyword">const</span> value = <span class="hljs-keyword">await</span> xrmTest.getAttributeValue(<span class="hljs-string">"name"</span>);
-        expect(value).toBe(<span class="hljs-string">"Test name"</span>);
-
-        <span class="hljs-keyword">await</span> xrmTest.reset();
+    test(<span class="hljs-string">"Open new account form"</span>, <span class="hljs-keyword">async</span> () =&gt; {
+        <span class="hljs-keyword">await</span> xrmTest.Navigation.openCreateForm(<span class="hljs-string">"account"</span>);
     });
 
     afterAll(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
         <span class="hljs-keyword">return</span> xrmTest.close();
-    });</code></pre>
+    });
+});</code></pre>
 				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
 					<h2>Getting started</h2>
 				</a>
@@ -140,13 +132,20 @@
 					The CRM provides us with various global JS objects, which allow interacting with the system.
 				D365-UI-Test tries to use these JS objects (such as Xrm.Navigation) as much as possible, as this API is not expected to change unexpectedly, yields fast and stable results and causes no issues with localization.</p>
 				<p>D365-UI-Test also does not limit itself to Dynamics 365 CE, but also for testing connected Portals.</p>
-				<a href="#current-limitations" id="current-limitations" style="color: inherit; text-decoration: none;">
-					<h2>Current limitations</h2>
+				<a href="#current-feature-set" id="current-feature-set" style="color: inherit; text-decoration: none;">
+					<h2>Current Feature Set</h2>
 				</a>
-				<p>There&#39;s a lot to do currently.</p>
-				<p>Opening create / update forms already works and you can set text / bool / number / currency / option set values.
-					Retrieving of values is also already possible.
-				In addition to that, you can assert control visibilities and disabled states.</p>
+				<ul>
+					<li>Open and log in to D365 (MS OTP tokens / two factor auth is also supported)</li>
+					<li>Open an App</li>
+					<li>Open Create / Update Forms</li>
+					<li>Set values for all CRM field types</li>
+					<li>Get values of all CRM field types</li>
+					<li>Get visibility and readonly state for controls</li>
+					<li>Get subgrid record count, refresh subgrid, open n-th record of subgrid</li>
+					<li>Click ribbon Buttons</li>
+					<li>Download files</li>
+				</ul>
 				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
 					<h2>License</h2>
 				</a>
