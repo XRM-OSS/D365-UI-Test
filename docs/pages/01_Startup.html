@@ -76,7 +76,7 @@
 					<h2>Basics</h2>
 				</a>
 				<p>Below snippet can be used in an init function of your test framework (e.g. &quot;beforeAll&quot; in jest):</p>
-				<pre><code class="language-javascript"><span class="hljs-comment">// When saving the settings file with the credentials directly in this directory, be sure to exclude it using .gitignore</span>
+				<pre><code class="language-javascript"><span class="hljs-comment">// When saving the settings file with the credentials directly in this directory, be sure to exclude it using .gitignore (or store it one folder above your working folder)</span>
 <span class="hljs-keyword">const</span> config = fs.readFileSync(path.resolve(__dirname, <span class="hljs-string">"settings.txt"</span>), {<span class="hljs-attr">encoding</span>: <span class="hljs-string">"utf-8"</span>});
 <span class="hljs-comment">// Easiest way to store credentials is to just separate url, username and password by comma in the file</span>
 <span class="hljs-keyword">const</span> [url, user, password] = config.split(<span class="hljs-string">","</span>);
