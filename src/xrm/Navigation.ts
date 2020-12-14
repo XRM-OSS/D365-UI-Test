@@ -21,7 +21,7 @@ export class Navigation {
      * @returns Promise which resolves once form is fully loaded
      */
     openCreateForm = async (entityName: string) => {
-        await this._page.goto(`${this._crmUrl}/main.aspx?etn=${entityName}&pagetype=entityrecord${this.xrmUiTest.AppId ? "&appid=" + this.xrmUiTest.AppId : ""}`, { waitUntil: "load", timeout: this.xrmUiTest.settings.timeout });
+        await this._page.goto(`${this._crmUrl}/main.aspx?etn=${entityName}&pagetype=entityrecord${this.xrmUiTest.AppId ? "&appid=" + this.xrmUiTest.AppId : "&forceUCI=1"}`, { waitUntil: "load", timeout: this.xrmUiTest.settings.timeout });
         await this.xrmUiTest.waitForIdleness();
     }
 
@@ -32,7 +32,7 @@ export class Navigation {
      * @returns Promise which resolves once form is fully loaded
      */
     openUpdateForm = async (entityName: string, entityId: string) => {
-        await this._page.goto(`${this._crmUrl}/main.aspx?etn=${entityName}&id=${entityId}&pagetype=entityrecord${this.xrmUiTest.AppId ? "&appid=" + this.xrmUiTest.AppId : ""}`, { waitUntil: "load", timeout: this.xrmUiTest.settings.timeout });
+        await this._page.goto(`${this._crmUrl}/main.aspx?etn=${entityName}&id=${entityId}&pagetype=entityrecord${this.xrmUiTest.AppId ? "&appid=" + this.xrmUiTest.AppId : "&forceUCI=1"}`, { waitUntil: "load", timeout: this.xrmUiTest.settings.timeout });
         await this.xrmUiTest.waitForIdleness();
     }
 
