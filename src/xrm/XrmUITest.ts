@@ -300,7 +300,7 @@ export class XrmUiTest {
         await this.registerIgnoreUrls(this.page);
 
         await Promise.all([
-            this.page.goto(url, { waitUntil: "load", timeout: this.settings.timeout }),
+            this.page.goto(`${url}/main.aspx?forceUCI=1`, { waitUntil: "load", timeout: this.settings.timeout }),
             this.page.waitForNavigation({ waitUntil: "networkidle", timeout: this.settings.timeout })
         ]);
 
