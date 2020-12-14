@@ -42,10 +42,7 @@ export class Entity {
 
         const waitSelectors = [
             // This is the id of the notification that gets shown once a quick create record is saved
-            this._page.waitForSelector("div[id^=quickcreate_]", { timeout: this.xrmUiTest.settings.timeout }),
-
-            // On normal page save a reload will occur
-            this._page.waitForNavigation({ waitUntil: "networkidle", timeout: this.xrmUiTest.settings.timeout })
+            this._page.waitForSelector("div[id^=quickcreate_]", { timeout: this.xrmUiTest.settings.timeout })
         ];
 
         const saveResult = this._page.evaluate(() => {
@@ -56,6 +53,8 @@ export class Entity {
 
         await Promise.race([
             ...waitSelectors,
+            // Normal page should switch to idle again
+            this.xrmUiTest.waitForIdleness(),
             // Wait for duplicate dialog
             this._page.waitForSelector('button[data-id="ignore_save"]', { timeout: this.xrmUiTest.settings.timeout })
         ]);
@@ -64,7 +63,7 @@ export class Entity {
 
         if (duplicateCheckButton) {
             if (ignoreDuplicateCheck) {
-                await Promise.all([duplicateCheckButton.click(), saveResult, Promise.race(waitSelectors)]);
+                await Promise.all([duplicateCheckButton.click(), saveResult, Promise.race([...waitSelectors, this.xrmUiTest.waitForIdleness()])]);
             }
             else {
                 await this._page.click('button[data-id="close_dialog"]');

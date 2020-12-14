@@ -10,6 +10,7 @@ import { Button } from "./Button";
 import { Tab } from "./Tab";
 import { TestSettings } from "../domain/TestSettings";
 import * as speakeasy from "speakeasy";
+import { D365Selectors } from "../domain/D365Selectors";
 
 /**
  * Parameters for opening Dynamics
@@ -306,8 +307,7 @@ export class XrmUiTest {
         await this.registerIgnoreUrls(this.page);
 
         await Promise.all([
-            this.page.goto(`${url}/main.aspx?forceUCI=1`, { waitUntil: "load", timeout: this.settings.timeout }),
-            this.page.waitForNavigation({ waitUntil: "networkidle", timeout: this.settings.timeout })
+            this.page.goto(`${url}/main.aspx?forceUCI=1`, { waitUntil: "load", timeout: this.settings.timeout })
         ]);
 
         if (extendedProperties.userName) {
@@ -329,7 +329,7 @@ export class XrmUiTest {
                 await this.page.waitForTimeout(500);
             }
 
-            const mfaInput = await this.page.waitForSelector(extendedProperties.mfaFieldSelector ?? "#idTxtBx_SAOTCC_OTC");
+            const mfaInput = await this.page.waitForSelector(extendedProperties.mfaFieldSelector ?? D365Selectors.Login.otp);
             const token = speakeasy.totp({ secret: extendedProperties.mfaSecret, encoding: "base32" });
 
             await mfaInput.type(token);
@@ -363,7 +363,7 @@ export class XrmUiTest {
     }
 
     private async enterPassword(extendedProperties: OpenProperties) {
-        const password = await this.page.$("#i0118");
+        const password = await this.page.$(D365Selectors.Login.password);
         // For non online authentification, wait for custom login page to settle
         if (!password) {
             await this.page.waitForNavigation({ waitUntil: "load" });
@@ -394,10 +394,9 @@ export class XrmUiTest {
     }
 
     private async enterUserName(extendedProperties: OpenProperties) {
-        const userName = await this.page.waitForSelector("#i0116");
-        await userName.type(extendedProperties.userName);
+        await this.page.fill(D365Selectors.Login.userName, extendedProperties.userName);
         await this.page.waitForTimeout(1000);
-        await userName.press("Enter");
+        await this.page.press(D365Selectors.Login.userName, "Enter");
         return this.page.waitForTimeout(1000);
     }
 }

@@ -70,7 +70,7 @@ export class Form {
 
                     (xrm.Page.ui.formSelector.items.get(i) as any).navigate();
                 }, identifier.byId),
-                this._page.waitForNavigation({ waitUntil: "networkidle" })
+                this.xrmUiTest.waitForIdleness()
             ]);
         }
         else if (identifier.byName) {
@@ -80,7 +80,7 @@ export class Form {
 
                     (xrm.Page.ui.formSelector.items as any).getByFilter((f: any) => f._label === i).navigate();
                 }, identifier.byName),
-                this._page.waitForNavigation({ waitUntil: "networkidle" })
+                this.xrmUiTest.waitForIdleness()
             ]);
         }
         else {
