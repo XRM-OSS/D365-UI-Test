@@ -283,7 +283,11 @@ export class XrmUiTest {
      * Waits for all pending UCI operations to settle
      */
     waitForIdleness = async () => {
-        await this._page.waitForFunction(() => (window as any).UCWorkBlockTracker && (window as any).UCWorkBlockTracker.isAppIdle(), { timeout: this.settings.timeout });
+        await this._page.waitForFunction(
+            () => (window as any).UCWorkBlockTracker && (window as any).UCWorkBlockTracker.isAppIdle(),
+            [],
+            { timeout: this.settings.timeout }
+        );
     }
 
     /**
