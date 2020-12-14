@@ -13,7 +13,8 @@ export class Dialog {
     }
 
     /**
-     * @summary Waits for the duplicate detection dialog and closes it
+     * Waits for the duplicate detection dialog and closes it
+     *
      * @returns Promise which resolves once duplicate detection has been closed
      */
     confirmDuplicateDetection = async() => {

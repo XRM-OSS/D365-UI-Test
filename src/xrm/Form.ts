@@ -3,7 +3,7 @@ import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
 
 /**
- * @summary Scheme to describe a form reference
+ * Scheme to describe a form reference
  * Either by name or by id
  */
 export interface FormIdentifier {
@@ -19,7 +19,7 @@ export interface FormIdentifier {
 }
 
 /**
- * @summary Module for interacting with D365 Forms
+ * Module for interacting with D365 Forms
  */
 export class Form {
     private _page: playwright.Page;
@@ -30,7 +30,8 @@ export class Form {
     }
 
     /**
-     * @summary Sets all attributes to submit mode none. This is useful if you don't want to save and just change the page. No prompt for unsaved data will open.
+     * Sets all attributes to submit mode none. This is useful if you don't want to save and just change the page. No prompt for unsaved data will open.
+     *
      * @returns Promise which resolves once all attribute submit modes are set
      * @deprecated Please use noSubmit
      */
@@ -39,7 +40,8 @@ export class Form {
     }
 
     /**
-     * @summary Sets all attributes to submit mode none. This is useful if you don't want to save and just change the page. No prompt for unsaved data will open.
+     * Sets all attributes to submit mode none. This is useful if you don't want to save and just change the page. No prompt for unsaved data will open.
+     *
      * @returns Promise which resolves once all attribute submit modes are set.
      */
     noSubmit = async () => {
@@ -53,7 +55,8 @@ export class Form {
     }
 
     /**
-     * @summary Switches to the specified form
+     * Switches to the specified form
+     *
      * @param identifier Defines which form to switch to
      * @returns Promise which resolves once the selected form is loaded
      */

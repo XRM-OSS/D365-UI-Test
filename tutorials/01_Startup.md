@@ -5,22 +5,40 @@ This tutorial is going to show you how to startup D365-UI-Test.
 Below snippet can be used in an init function of your test framework (e.g. "beforeAll" in jest):
 
 ```javascript
-// When saving the settings file with the credentials directly in this directory, be sure to exclude it using .gitignore (or store it one folder above your working folder)
-const config = fs.readFileSync(path.resolve(__dirname, "settings.txt"), {encoding: "utf-8"});
-// Easiest way to store credentials is to just separate url, username and password by comma in the file
-const [url, user, password] = config.split(",");
+const xrmTest = new XrmUiTest();
 
+let browser: playwright.Browser = undefined;
+let context: playwright.BrowserContext = undefined;
+let page: playwright.Page = undefined;
+
+// Start the browser
 // Pass headless: true for DevOps and when you don't want to see what playwright is doing.
 // For debugging, setting headless: false is easier as you see what's happening
-const browser = await xrmTest.launch({
+await xrmTest.launch("chromium", {
     headless: false,
     args: [
-        "--start-fullscreen"
+        '--disable-setuid-sandbox',
+        '--disable-infobars',
+        '--start-fullscreen',
+        '--window-position=0,0',
+        '--window-size=1920,1080',
+        '--user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36"'
     ]
+})
+.then(([b, c, p]) => {
+    browser = b;
+    context = c;
+    page = p;
 });
 
-// You will probably want to declare the page variable in outer scope as you might need to access it for implementing your own interactions with playwright.
-const page = await xrmTest.open(url, { userName: user, password: password });
+// When saving the settings file with the credentials directly in this directory, be sure to exclude it using .gitignore (or store it one folder above your working folder)
+const config = fs.readFileSync(path.resolve(__dirname, "settings.txt"), {encoding: "utf-8"});
+
+// Easiest way to store credentials is to just separate url, username and password by comma in the file
+const [url, user, password, mfaSecret] = config.split(",");
+
+// Log into D365
+await xrmTest.open(url, { userName: user, password: password, mfaSecret: mfaSecret ?? undefined });
 ```
 
 ## D365 Online Organizations

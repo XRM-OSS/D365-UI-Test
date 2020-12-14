@@ -29,7 +29,8 @@ export class Control {
     }
 
     /**
-     * @summary Gets the state of the specified control
+     * Gets the state of the specified control
+     *
      * @param controlName Name of the control to retrieve
      * @returns Promise which fulfills with the current control state
      */
@@ -48,7 +49,8 @@ export class Control {
     }
 
     /**
-     * @summary Gets the options of the specified option set control
+     * Gets the options of the specified option set control
+     *
      * @param controlName Name of the control to retrieve
      * @returns Promise which fulfills with the control's options
      */

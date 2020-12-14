@@ -76,22 +76,40 @@
 					<h2>Basics</h2>
 				</a>
 				<p>Below snippet can be used in an init function of your test framework (e.g. &quot;beforeAll&quot; in jest):</p>
-				<pre><code class="language-javascript"><span class="hljs-comment">// When saving the settings file with the credentials directly in this directory, be sure to exclude it using .gitignore (or store it one folder above your working folder)</span>
-<span class="hljs-keyword">const</span> config = fs.readFileSync(path.resolve(__dirname, <span class="hljs-string">"settings.txt"</span>), {<span class="hljs-attr">encoding</span>: <span class="hljs-string">"utf-8"</span>});
-<span class="hljs-comment">// Easiest way to store credentials is to just separate url, username and password by comma in the file</span>
-<span class="hljs-keyword">const</span> [url, user, password] = config.split(<span class="hljs-string">","</span>);
+				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> xrmTest = <span class="hljs-keyword">new</span> XrmUiTest();
 
+<span class="hljs-keyword">let</span> browser: playwright.Browser = <span class="hljs-literal">undefined</span>;
+<span class="hljs-keyword">let</span> context: playwright.BrowserContext = <span class="hljs-literal">undefined</span>;
+<span class="hljs-keyword">let</span> page: playwright.Page = <span class="hljs-literal">undefined</span>;
+
+<span class="hljs-comment">// Start the browser</span>
 <span class="hljs-comment">// Pass headless: true for DevOps and when you don't want to see what playwright is doing.</span>
 <span class="hljs-comment">// For debugging, setting headless: false is easier as you see what's happening</span>
-<span class="hljs-keyword">const</span> browser = <span class="hljs-keyword">await</span> xrmTest.launch({
+<span class="hljs-keyword">await</span> xrmTest.launch(<span class="hljs-string">"chromium"</span>, {
     <span class="hljs-attr">headless</span>: <span class="hljs-literal">false</span>,
     <span class="hljs-attr">args</span>: [
-        <span class="hljs-string">"--start-fullscreen"</span>
+        <span class="hljs-string">'--disable-setuid-sandbox'</span>,
+        <span class="hljs-string">'--disable-infobars'</span>,
+        <span class="hljs-string">'--start-fullscreen'</span>,
+        <span class="hljs-string">'--window-position=0,0'</span>,
+        <span class="hljs-string">'--window-size=1920,1080'</span>,
+        <span class="hljs-string">'--user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36"'</span>
     ]
+})
+.then(<span class="hljs-function">(<span class="hljs-params">[b, c, p]</span>) =&gt;</span> {
+    browser = b;
+    context = c;
+    page = p;
 });
 
-<span class="hljs-comment">// You will probably want to declare the page variable in outer scope as you might need to access it for implementing your own interactions with playwright.</span>
-<span class="hljs-keyword">const</span> page = <span class="hljs-keyword">await</span> xrmTest.open(url, { <span class="hljs-attr">userName</span>: user, <span class="hljs-attr">password</span>: password });</code></pre>
+<span class="hljs-comment">// When saving the settings file with the credentials directly in this directory, be sure to exclude it using .gitignore (or store it one folder above your working folder)</span>
+<span class="hljs-keyword">const</span> config = fs.readFileSync(path.resolve(__dirname, <span class="hljs-string">"settings.txt"</span>), {<span class="hljs-attr">encoding</span>: <span class="hljs-string">"utf-8"</span>});
+
+<span class="hljs-comment">// Easiest way to store credentials is to just separate url, username and password by comma in the file</span>
+<span class="hljs-keyword">const</span> [url, user, password, mfaSecret] = config.split(<span class="hljs-string">","</span>);
+
+<span class="hljs-comment">// Log into D365</span>
+<span class="hljs-keyword">await</span> xrmTest.open(url, { <span class="hljs-attr">userName</span>: user, <span class="hljs-attr">password</span>: password, <span class="hljs-attr">mfaSecret</span>: mfaSecret ?? <span class="hljs-literal">undefined</span> });</code></pre>
 				<a href="#d365-online-organizations" id="d365-online-organizations" style="color: inherit; text-decoration: none;">
 					<h2>D365 Online Organizations</h2>
 				</a>

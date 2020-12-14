@@ -2,31 +2,34 @@ import * as playwright from "playwright";
 import { XrmUiTest } from "./XrmUITest";
 
 /**
- * @summary Scheme to define how to access a button
+ * Scheme to define how to access a button
  * Either by data-id (language independent) or by button label (language dependent, but easily visible in UI)
  */
 export interface ButtonIdentifier {
     /**
-     * @summary Find button by data-id. You can find this in the HTML DOM when inspecting your form. Good if your tests need to be language independent
+     * Find button by data-id. You can find this in the HTML DOM when inspecting your form. Good if your tests need to be language independent
+     *
      * @example account|NoRelationship|Form|mscrmaddons.am.form.createworkingitem.account
      */
     byDataId?: string;
 
     /**
-     * @summary Find button by label. This is the plain button label that you can see in the UI. Be aware of language dependent button labels
+     * Find button by label. This is the plain button label that you can see in the UI. Be aware of language dependent button labels
+     *
      * @example Delete
      */
     byLabel?: string;
 
     /**
-     * @summary Pass a completely custom CSS selector for finding the button to click
+     * Pass a completely custom CSS selector for finding the button to click
+     *
      * @example li[id*='DeletePrimaryRecord']
      */
     custom?: string;
 }
 
 /**
- * @summary Module for interacting with D365 Buttons
+ * Module for interacting with D365 Buttons
  */
 export class Button {
     private _page: playwright.Page;
@@ -37,7 +40,8 @@ export class Button {
     }
 
     /**
-     * @summary Expands the more commands ribbon menu
+     * Expands the more commands ribbon menu
+     *
      * @returns Promise which resolves once more commands was clicked
      */
     expandMoreCommands = async() => {
@@ -59,7 +63,8 @@ export class Button {
     };
 
     /**
-     * @summary Clicks a ribbon button
+     * Clicks a ribbon button
+     *
      * @param buttonIdentifier Identifier for finding button, either by label or by data-id
      * @param openMoreCommands [true] Whether more commands has to be clicked for finding the button. Will be used automatically if button is not found on first try
      * @returns Promise which resolves once button was clicked

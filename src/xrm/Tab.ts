@@ -3,7 +3,7 @@ import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
 
 /**
- * @summary Module for interacting with D365 Tabs
+ * Module for interacting with D365 Tabs
  */
 export class Tab {
     private _page: playwright.Page;
@@ -14,7 +14,8 @@ export class Tab {
     }
 
     /**
-     * @summary Opens the specified tab on the form
+     * Opens the specified tab on the form
+     *
      * @param tabName Name of the tab to open
      * @returns Promise which fulfills with the current control state
      */

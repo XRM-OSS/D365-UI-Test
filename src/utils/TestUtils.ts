@@ -4,7 +4,8 @@ import * as playwright from "playwright";
 
 export namespace TestUtils {
     /**
-     * @summary Clear all files in a folder (or matching a specified file ending)
+     * Clear all files in a folder (or matching a specified file ending)
+     *
      * @param pathName Folder where files need to be cleaned
      * @param fileEndings Endings which determine which files to delete. Leave empty to delete all. @default undefined
      * @param createIfNotFound Create folder if not found. @default false
@@ -20,7 +21,8 @@ export namespace TestUtils {
     };
 
     /**
-     * @summary Take screenshots on function failure. Useful for taking screenshots for failed tests. Will rethrow the error.
+     * Take screenshots on function failure. Useful for taking screenshots for failed tests. Will rethrow the error.
+     *
      * @param page Page object of current playwright session
      * @param filePath Path where the screenshot should be saved on failure. Has to include file ending such as .png.
      * @param func Your actual test
@@ -72,7 +74,8 @@ export namespace TestUtils {
     };
 
     /**
-     * @summary Checks for a file to exist. Useful for validating if playwright downloads succeeded.
+     * Checks for a file to exist. Useful for validating if playwright downloads succeeded.
+     *
      * @param page playwright page object for current session
      * @param pathName Folder path to search
      * @param fileEndings File ending to search for. Can be full name as well
@@ -110,7 +113,8 @@ export namespace TestUtils {
     }
 
     /**
-     * @summary If you come across network timeouts when using this library, you can use this function for finding out which requests were causing this.
+     * If you come across network timeouts when using this library, you can use this function for finding out which requests were causing this.
+     *
      * @param page The page object for the current session
      * @param func The function call that causes the navigation timeout
      * @example await trackTimedOutRequest(page, () => xrmTest.Navigation.openAppById("d365default"));

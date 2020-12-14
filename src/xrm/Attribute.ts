@@ -3,7 +3,7 @@ import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
 
 /**
- * @summary Module for interacting with D365 Attributes
+ * Module for interacting with D365 Attributes
  */
 export class Attribute {
     private _page: playwright.Page;
@@ -14,7 +14,8 @@ export class Attribute {
     }
 
     /**
-     * @summary Gets the required level of the specified attribute
+     * Gets the required level of the specified attribute
+     *
      * @param attributeName Name of the attribute
      * @returns Required level of the specified attribute
      */
@@ -28,7 +29,8 @@ export class Attribute {
     }
 
     /**
-     * @summary Gets the value of the specified attribute
+     * Gets the value of the specified attribute
+     *
      * @param attributeName Name of the attribute
      * @returns Value of the specified attribute
      */
@@ -55,7 +57,8 @@ export class Attribute {
     }
 
     /**
-     * @summary Sets the value of the specified attribute
+     * Sets the value of the specified attribute
+     *
      * @param attributeName Name of the attribute
      * @param value Value to set
      * @param settleTime [500] Time to wait (ms) after setting value for letting onChange events occur.
@@ -86,7 +89,8 @@ export class Attribute {
     }
 
     /**
-     * @summary Sets multiple attribute values at once
+     * Sets multiple attribute values at once
+     *
      * @param values JS object with keys matching the attribute names and values containing the values to set
      * @param settleTime [2000] Time to wait after setting the values for letting onChange events occur
      * @returns Returns promise that resolves once values are set and settleTime is over

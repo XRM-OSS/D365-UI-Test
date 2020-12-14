@@ -3,7 +3,7 @@ import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
 
 /**
- * @summary Module for navigating in D365
+ * Module for navigating in D365
  */
 export class Navigation {
     private _page: playwright.Page;
@@ -16,7 +16,8 @@ export class Navigation {
     }
 
     /**
-     * @summary Opens a create form for the specified entity
+     * Opens a create form for the specified entity
+     *
      * @param entityName The entity to open the form for
      * @returns Promise which resolves once form is fully loaded
      */
@@ -26,7 +27,8 @@ export class Navigation {
     }
 
     /**
-     * @summary Opens an update form for an existing record
+     * Opens an update form for an existing record
+     *
      * @param entityName The entity to open the form for
      * @param entityId The id of the record to open
      * @returns Promise which resolves once form is fully loaded
@@ -37,7 +39,8 @@ export class Navigation {
     }
 
     /**
-     * @summary Opens a quick create form for the specified entity
+     * Opens a quick create form for the specified entity
+     *
      * @param entityName The entity to open the form for
      * @returns Promise which resolves once form is fully loaded
      */
@@ -60,7 +63,8 @@ export class Navigation {
     }
 
     /**
-     * @summary Opens the specified UCI app
+     * Opens the specified UCI app
+     *
      * @param appId The id of the app to open
      * @returns Promise which resolves once the app is fully loaded
      */

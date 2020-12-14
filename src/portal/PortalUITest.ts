@@ -1,7 +1,7 @@
 import * as playwright from "playwright";
 
 /**
- * @summary Main class for testing in Portals
+ * Main class for testing in Portals
  */
 export class PortalUiTest {
     private _browser: playwright.Browser;
@@ -22,7 +22,8 @@ export class PortalUiTest {
     }
 
     /**
-     * @summary Function for launching a playwright instance
+     * Function for launching a playwright instance
+     *
      * @param {string} [browser] [chromium] Decide which browser to launch, options are chromium, firefox or webkit
      * @param {playwright.launchOptions} [launchOptions] Launch options for launching playwright. Will be used for calling playwright.launch.
      * @returns {Array<playwright.Browser, playwright.BrowserContext, playwright.Page} Started browser instance, browser context, page
@@ -41,7 +42,8 @@ export class PortalUiTest {
     }
 
     /**
-     * @summary Open the portals instance by url
+     * Open the portals instance by url
+     *
      * @param {string} [url] Url of the portal you wish to open
      */
     open = async (url: string) => {
@@ -54,7 +56,8 @@ export class PortalUiTest {
     }
 
     /**
-     * @summary Log in as portal user
+     * Log in as portal user
+     *
      * @param {string} user User name of the user to log in
      * @param {string} password Password of the user to log in
      */
@@ -74,7 +77,7 @@ export class PortalUiTest {
     }
 
     /**
-     * @summary Shut down
+     * Shut down
      */
     close = async () => {
         await this.browser.close();

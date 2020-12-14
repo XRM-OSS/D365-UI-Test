@@ -3,7 +3,7 @@ import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
 
 /**
- * @summary Module for interacting with D365 entity records
+ * Module for interacting with D365 entity records
  */
 export class Entity {
     private _page: playwright.Page;
@@ -14,7 +14,8 @@ export class Entity {
     }
 
     /**
-     * @summary Sets all attributes to submit mode none. This is useful if you don't want to save and just change the page. No prompt for unsaved data will open.
+     * Sets all attributes to submit mode none. This is useful if you don't want to save and just change the page. No prompt for unsaved data will open.
+     *
      * @returns Promise which resolves once all attribute submit modes are set
      * @deprecated Use Form.noSubmit instead
      */
@@ -31,7 +32,8 @@ export class Entity {
     }
 
     /**
-     * @summary Saves the record and returns the ID (both for quick create and "normal" create)
+     * Saves the record and returns the ID (both for quick create and "normal" create)
+     *
      * @param ignoreDuplicateCheck [false] Whether to automatically ignore duplicate check warnings
      * @returns The id of the record
      */
@@ -83,7 +85,8 @@ export class Entity {
     }
 
     /**
-     * @summary Get the id of the currently opened record
+     * Get the id of the currently opened record
+     *
      * @returns Promise which resolves with the id
      */
     getId = async () => {
@@ -97,7 +100,8 @@ export class Entity {
     }
 
     /**
-     * @summary Get the name of the currently opened record
+     * Get the name of the currently opened record
+     *
      * @returns Promise which resolves with the name
      */
     getEntityName = async () => {
@@ -111,7 +115,8 @@ export class Entity {
     }
 
     /**
-     * @summary Get the entity reference of the currently opened record
+     * Get the entity reference of the currently opened record
+     *
      * @returns Promise which resolves with the entity reference
      */
     getEntityReference = async () => {
@@ -125,7 +130,8 @@ export class Entity {
     }
 
     /**
-     * @summary Delete the current record
+     * Delete the current record
+     *
      * @returns Promise which resolves once deletion is done
      * @remarks Delete button on form will be used
      */
