@@ -3,7 +3,7 @@ import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
 
 /**
- * Module for interacting with D365 entity records
+ * @summary Module for interacting with D365 entity records
  */
 export class Entity {
     private _page: playwright.Page;
@@ -14,7 +14,7 @@ export class Entity {
     }
 
     /**
-     * Sets all attributes to submit mode none. This is useful if you don't want to save and just change the page. No prompt for unsaved data will open.
+     * @summary Sets all attributes to submit mode none. This is useful if you don't want to save and just change the page. No prompt for unsaved data will open.
      * @returns Promise which resolves once all attribute submit modes are set
      * @deprecated Use Form.noSubmit instead
      */
@@ -31,7 +31,7 @@ export class Entity {
     }
 
     /**
-     * Saves the record and returns the ID (both for quick create and "normal" create)
+     * @summary Saves the record and returns the ID (both for quick create and "normal" create)
      * @param ignoreDuplicateCheck [false] Whether to automatically ignore duplicate check warnings
      * @returns The id of the record
      */
@@ -83,7 +83,7 @@ export class Entity {
     }
 
     /**
-     * Get the id of the currently opened record
+     * @summary Get the id of the currently opened record
      * @returns Promise which resolves with the id
      */
     getId = async () => {
@@ -97,7 +97,7 @@ export class Entity {
     }
 
     /**
-     * Get the name of the currently opened record
+     * @summary Get the name of the currently opened record
      * @returns Promise which resolves with the name
      */
     getEntityName = async () => {
@@ -111,7 +111,7 @@ export class Entity {
     }
 
     /**
-     * Get the entity reference of the currently opened record
+     * @summary Get the entity reference of the currently opened record
      * @returns Promise which resolves with the entity reference
      */
     getEntityReference = async () => {
@@ -125,18 +125,12 @@ export class Entity {
     }
 
     /**
-     * Delete the current record
+     * @summary Delete the current record
      * @returns Promise which resolves once deletion is done
      * @remarks Delete button on form will be used
      */
     delete = async() => {
-        const deleteButton = await Promise.race([ this._page.waitForSelector("li[Command$='DeletePrimaryRecord']"), this._page.waitForSelector("li[id*='DeletePrimaryRecord']") ]);
-
-        if (!deleteButton) {
-            throw new Error("Failed to find delete button");
-        }
-
-        await deleteButton.click();
+        this.xrmUiTest.Button.click({ custom: "li[id*='DeletePrimaryRecord']" });
 
         const confirmButton = await Promise.race([ this._page.waitForSelector("#butBegin", { timeout: this.xrmUiTest.settings.timeout }), this._page.waitForSelector("#confirmButton", { timeout: this.xrmUiTest.settings.timeout })]);
 

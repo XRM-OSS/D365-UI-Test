@@ -3,7 +3,7 @@ import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
 
 /**
- * Module for interacting with D365 Subgrids
+ * @summary Module for interacting with D365 Subgrids
  */
 export class SubGrid {
     private _page: playwright.Page;
@@ -14,7 +14,7 @@ export class SubGrid {
     }
 
     /**
-     * Gets the record count of the specified subgrid
+     * @summary Gets the record count of the specified subgrid
      * @param {String} subgridName The control name of the subgrid to use
      * @returns {Promise<number>} Promise which fulfills with the total record count
      */
@@ -34,7 +34,7 @@ export class SubGrid {
     }
 
     /**
-     * Opens the record in the subgrid at the n-th index
+     * @summary Opens the record in the subgrid at the n-th index
      * @param {String} subgridName The control name of the subgrid to use
      * @param {Number} recordNumber Index of the record to open
      * @returns {Promise<void>} Promise which fulfills when record is opened
@@ -60,7 +60,7 @@ export class SubGrid {
     }
 
     /**
-     * Refreshes the specified subgrid
+     * @summary Refreshes the specified subgrid
      * @param {String} subgridName The control name of the subgrid to refresh
      * @returns {Promise<void>} Promise which fulfills once refreshing is done
      */

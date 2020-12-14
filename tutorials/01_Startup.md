@@ -5,7 +5,7 @@ This tutorial is going to show you how to startup D365-UI-Test.
 Below snippet can be used in an init function of your test framework (e.g. "beforeAll" in jest):
 
 ```javascript
-// When saving the settings file with the credentials directly in this directory, be sure to exclude it using .gitignore
+// When saving the settings file with the credentials directly in this directory, be sure to exclude it using .gitignore (or store it one folder above your working folder)
 const config = fs.readFileSync(path.resolve(__dirname, "settings.txt"), {encoding: "utf-8"});
 // Easiest way to store credentials is to just separate url, username and password by comma in the file
 const [url, user, password] = config.split(",");
