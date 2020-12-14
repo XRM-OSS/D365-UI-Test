@@ -3,18 +3,18 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>__global | D365-UI-Test</title>
+	<title>Buttons | D365-UI-Test</title>
 	<meta name="description" content="Documentation for D365-UI-Test">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="../assets/css/main.css">
-	<link rel="stylesheet" href="../assets/css/pages.css">
+	<link rel="stylesheet" href="../../assets/css/main.css">
+	<link rel="stylesheet" href="../../assets/css/pages.css">
 </head>
 <body>
 <header>
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+				<div class="table-cell" id="tsd-search" data-index="../../assets/js/search.json" data-base="../..">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -23,7 +23,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">D365-UI-Test</a>
+					<a href="../../index.html" class="title">D365-UI-Test</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -52,32 +52,43 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="../globals.html">Globals</a>
+					<a href="../../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="__global.html">__global</a>
+					<a href="01_Startup.html">Tutorials</a>
+				</li>
+				<li>
+					<a href="05_Buttons.html">Buttons</a>
 				</li>
 			</ul>
-			<h1>Namespace __global</h1>
+			<h1>Buttons</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel-group tsd-index-group">
-				<h2>Index</h2>
-				<section class="tsd-panel tsd-index-panel">
-					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
-							<h3>Interfaces</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-namespace"><a href="../interfaces/__global.window.html" class="tsd-kind-icon">Window</a></li>
-							</ul>
-						</section>
-					</div>
-				</section>
-			</section>
+			<div class="tsd-panel tsd-typography">
+				<a href="#buttons" id="buttons" style="color: inherit; text-decoration: none;">
+					<h1>Buttons</h1>
+				</a>
+				<a href="#click" id="click" style="color: inherit; text-decoration: none;">
+					<h2>Click</h2>
+				</a>
+				<p>Buttons can be clicked either by name or by data-id.
+					The data-ids can be found in the HTML DOM, the labels are just the ones you see in the D365 UI.
+				This should also work for clicking subgrid buttons.</p>
+				<a href="#by-label" id="by-label" style="color: inherit; text-decoration: none;">
+					<h2>By Label</h2>
+				</a>
+				<p>Clicks the first button with the specified label:</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">await</span> xrmTest.Button.click({ <span class="hljs-attr">byLabel</span>: <span class="hljs-string">&quot;Create Document&quot;</span> });</code></pre>
+				<a href="#by-data-id" id="by-data-id" style="color: inherit; text-decoration: none;">
+					<h2>By Data-Id</h2>
+				</a>
+				<p>Clicks the first button with the specified data-id:</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">await</span> xrmTest.Button.click({ <span class="hljs-attr">byDataId</span>: <span class="hljs-string">&quot;account|NoRelationship|Form|mscrmaddons.am.form.createworkingitem.account&quot;</span> });</code></pre>
+			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
@@ -86,63 +97,60 @@
 						<span>Tutorials</span>
 					</li>
 					<li class=" pp-nav pp-page">
-						<a href="../pages/Tutorials/01_Startup.html">Startup</a>
+						<a href="01_Startup.html">Startup</a>
 					</li>
 					<li class=" pp-nav pp-page">
-						<a href="../pages/Tutorials/02_Navigation.html">Navigation</a>
+						<a href="02_Navigation.html">Navigation</a>
 					</li>
 					<li class=" pp-nav pp-page">
-						<a href="../pages/Tutorials/03_Attributes.html">Attributes</a>
+						<a href="03_Attributes.html">Attributes</a>
 					</li>
 					<li class=" pp-nav pp-page">
-						<a href="../pages/Tutorials/04_Controls.html">Controls</a>
+						<a href="04_Controls.html">Controls</a>
+					</li>
+					<li class="current pp-nav pp-page">
+						<a href="05_Buttons.html">Buttons</a>
 					</li>
 					<li class=" pp-nav pp-page">
-						<a href="../pages/Tutorials/05_Buttons.html">Buttons</a>
+						<a href="06_Subgrids.html">Subgrids</a>
 					</li>
 					<li class=" pp-nav pp-page">
-						<a href="../pages/Tutorials/06_Subgrids.html">Subgrids</a>
+						<a href="07_Tabs.html">Tabs</a>
 					</li>
 					<li class=" pp-nav pp-page">
-						<a href="../pages/Tutorials/07_Tabs.html">Tabs</a>
+						<a href="08_Entity.html">Entity</a>
 					</li>
 					<li class=" pp-nav pp-page">
-						<a href="../pages/Tutorials/08_Entity.html">Entity</a>
+						<a href="09_Dialogs.html">Dialogs</a>
 					</li>
 					<li class=" pp-nav pp-page">
-						<a href="../pages/Tutorials/09_Dialogs.html">Dialogs</a>
+						<a href="10_DevOps.html">Dev<wbr>Ops</a>
 					</li>
 					<li class=" pp-nav pp-page">
-						<a href="../pages/Tutorials/10_DevOps.html">Dev<wbr>Ops</a>
+						<a href="11_FAQs.html">FAQs</a>
 					</li>
 					<li class=" pp-nav pp-page">
-						<a href="../pages/Tutorials/11_FAQs.html">FAQs</a>
+						<a href="12_TestUtils.html">Test<wbr>Utils</a>
 					</li>
 					<li class=" pp-nav pp-page">
-						<a href="../pages/Tutorials/12_TestUtils.html">Test<wbr>Utils</a>
-					</li>
-					<li class=" pp-nav pp-page">
-						<a href="../pages/Tutorials/13_Troubleshooting.html">Troubleshooting</a>
+						<a href="13_Troubleshooting.html">Troubleshooting</a>
 					</li>
 					<li class="label pp-nav pp-group">
 						<span>API</span>
 					</li>
 					<li class="globals  ">
-						<a href="../globals.html"><em>Globals</em></a>
+						<a href="../../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-namespace">
-						<a href="testutils.html">Test<wbr>Utils</a>
+						<a href="../../modules/testutils.html">Test<wbr>Utils</a>
 					</li>
-					<li class="current tsd-kind-namespace">
-						<a href="__global.html">__global</a>
+					<li class=" tsd-kind-namespace">
+						<a href="../../modules/__global.html">__global</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="../interfaces/__global.window.html" class="tsd-kind-icon">Window</a>
-					</li>
 				</ul>
 			</nav>
 		</div>
@@ -167,7 +175,7 @@
 	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
-<script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.json"><' + '/script>');</script>
+<script src="../../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../../assets/js/search.json"><' + '/script>');</script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 {
-    "src": [
+    "inputFiles": [
       "./src"
     ],
     "mode": "file",
@@ -9,13 +9,10 @@
     "excludePrivate": true,
     "excludeProtected": true,
     "excludeExternals": true,
-    "mdPagesSourcePath": "./tutorials",
-    "mdPagesLabel": "Tutorials",
-    "theme": "markdown-pages",
+    "theme": "pages-plugin",
     "readme": "README.md",
     "name": "D365-UI-Test",
     "ignoreCompilerErrors": true,
-    "plugin": "none",
     "listInvalidSymbolLinks": true,
     "categorizeByGroup": false
 }

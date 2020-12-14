@@ -1,0 +1,61 @@
+{
+    "groups": [
+        {
+            "title": "Tutorials",
+            "pages": [
+                {
+                    "title": "Startup",
+                    "source": "./tutorials/01_Startup.md"
+                },
+                {
+                    "title": "Navigation",
+                    "source": "./tutorials/02_Navigation.md"
+                },
+                {
+                    "title": "Attributes",
+                    "source": "./tutorials/03_Attributes.md"
+                },
+                {
+                    "title": "Controls",
+                    "source": "./tutorials/04_Controls.md"
+                },
+                {
+                    "title": "Buttons",
+                    "source": "./tutorials/05_Buttons.md"
+                },
+                {
+                    "title": "Subgrids",
+                    "source": "./tutorials/06_Subgrids.md"
+                },
+                {
+                    "title": "Tabs",
+                    "source": "./tutorials/07_Tabs.md"
+                },
+                {
+                    "title": "Entity",
+                    "source": "./tutorials/08_Entity.md"
+                },
+                {
+                    "title": "Dialogs",
+                    "source": "./tutorials/09_Dialogs.md"
+                },
+                {
+                    "title": "DevOps",
+                    "source": "./tutorials/10_DevOps.md"
+                },
+                {
+                    "title": "FAQs",
+                    "source": "./tutorials/11_FAQs.md"
+                },
+                {
+                    "title": "TestUtils",
+                    "source": "./tutorials/12_TestUtils.md"
+                },
+                {
+                    "title": "Troubleshooting",
+                    "source": "./tutorials/13_Troubleshooting.md"
+                }
+            ]
+        }
+    ]
+}
