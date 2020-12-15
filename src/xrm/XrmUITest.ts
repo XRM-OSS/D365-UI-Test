@@ -78,9 +78,22 @@ export class XrmUiTest {
     private _button: Button;
     private _tab: Tab;
 
+    /**
+     * Settings for D365-UI-Test behavior
+     */
     private _settings: TestSettings = {
-        // Default navigation timeout is 60 seconds
-        timeout: 60 * 1000
+        /**
+         * Default navigation timeout to use on operations
+         *
+         * @default 60000 (60 seconds)
+         */
+        timeout: 60 * 1000,
+
+        /**
+         * Default settle time to use for waiting until an idle page becomes settled
+         * @default 2000 (2 seconds)
+         */
+        settleTime: 2 * 1000
     };
 
     private rememberButtonId = "#idBtn_Back";
@@ -285,11 +298,32 @@ export class XrmUiTest {
      * Waits for all pending UCI operations to settle
      */
     waitForIdleness = async () => {
-        await this._page.waitForFunction(
-            () => (window as any).UCWorkBlockTracker && (window as any).UCWorkBlockTracker.isAppIdle(),
-            [],
-            { timeout: this.settings.timeout }
-        );
+        // Wait for the page to become idle
+        const firstIdlenessTime = await this.waitForIdlenessInternal();
+        let secondIdlenessTime = firstIdlenessTime;
+
+        this.logIfDebug(`Page became idle at: ${firstIdlenessTime}`);
+
+        do {
+            // Sleep some time
+            await new Promise((resolve, reject) => setTimeout(resolve, 200));
+
+            // Check the current idle state and remember the timestamp of this check
+            const [isIdle, idleTime] = await this.checkIdlenessInternal();
+
+            // If the page is still idle, we just set the latest time
+            if (isIdle) {
+                this.logIfDebug(`Page still idle at: ${secondIdlenessTime}`);
+                secondIdlenessTime = idleTime;
+            }
+            // Otherwise the page was busy and we want to wait for the settle time again
+            else {
+                this.logIfDebug("Page became busy again, resetting first settle time");
+                await this.waitForIdleness();
+            }
+        } while ((secondIdlenessTime - firstIdlenessTime) < this.settings.settleTime);
+
+        this.logIfDebug(`Page has been idle for ${secondIdlenessTime - firstIdlenessTime} ms, resolving`);
     }
 
     /**
@@ -339,14 +373,6 @@ export class XrmUiTest {
             await this.dontRememberLogin();
         }
 
-        await Promise.race([
-            this.page.waitForSelector("button[data-id='officewaffleplaceholder']", { timeout: this.settings.timeout }),
-            this.page.waitForSelector("#TabAppSwitcherNode", { timeout: this.settings.timeout }),
-            this.page.waitForSelector("#O365_MainLink_NavMenu", { timeout: this.settings.timeout }),
-            this.page.waitForSelector("button[data-id='officewaffle']", { timeout: this.settings.timeout }),
-            this.page.waitForSelector("#navTabAppSwitcherImage_TabAppSwitcherNode", { timeout: this.settings.timeout }),
-        ]);
-
         await this.waitForIdleness();
     }
 
@@ -355,6 +381,28 @@ export class XrmUiTest {
      */
     close = async () => {
         await this.browser.close();
+    }
+
+    private logIfDebug (message: string) {
+        this.settings.debugMode && console.log(message);
+    }
+
+    private async checkIdlenessInternal(): Promise<[boolean, number]> {
+        const isIdle = await this._page.evaluate(
+            () => (window as any).UCWorkBlockTracker && (window as any).UCWorkBlockTracker.isAppIdle(),
+            []
+        );
+
+        return [isIdle, Date.now()];
+    }
+
+    private async waitForIdlenessInternal() {
+        await this._page.waitForFunction(
+            () => (window as any).UCWorkBlockTracker && (window as any).UCWorkBlockTracker.isAppIdle(),
+            [],
+            { timeout: this.settings.timeout, polling: 200 }
+        );
+        return Date.now();
     }
 
     private async dontRememberLogin() {

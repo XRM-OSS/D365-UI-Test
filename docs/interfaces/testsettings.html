@@ -80,6 +80,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="testsettings.html#debugmode" class="tsd-kind-icon">debug<wbr>Mode</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="testsettings.html#settletime" class="tsd-kind-icon">settle<wbr>Time</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="testsettings.html#timeout" class="tsd-kind-icon">timeout</a></li>
 							</ul>
 						</section>
@@ -89,12 +91,52 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="debugmode" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> debug<wbr>Mode</h3>
+					<div class="tsd-signature tsd-kind-icon">debug<wbr>Mode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/06cb312/src/domain/TestSettings.ts#L21">src/domain/TestSettings.ts:21</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Debug mode prints more information on what is going on</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>default</dt>
+							<dd><p>false</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="settletime" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> settle<wbr>Time</h3>
+					<div class="tsd-signature tsd-kind-icon">settle<wbr>Time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/06cb312/src/domain/TestSettings.ts#L14">src/domain/TestSettings.ts:14</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Duration in milliseconds the page has to stay idle when checking for page idleness</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>default</dt>
+							<dd><p>2000</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="timeout" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> timeout</h3>
 					<div class="tsd-signature tsd-kind-icon">timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/5cfa96d/src/domain/TestSettings.ts#L7">src/domain/TestSettings.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/06cb312/src/domain/TestSettings.ts#L7">src/domain/TestSettings.ts:7</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -102,7 +144,7 @@
 							<p>Default timeout for navigation events in ms</p>
 						</div>
 						<dl class="tsd-comment-tags">
-							<dt>default:</dt>
+							<dt>default</dt>
 							<dd><p>60000</p>
 							</dd>
 						</dl>
@@ -212,6 +254,12 @@
 					<li class="current tsd-kind-interface">
 						<a href="testsettings.html" class="tsd-kind-icon">Test<wbr>Settings</a>
 						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="testsettings.html#debugmode" class="tsd-kind-icon">debug<wbr>Mode</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="testsettings.html#settletime" class="tsd-kind-icon">settle<wbr>Time</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="testsettings.html#timeout" class="tsd-kind-icon">timeout</a>
 							</li>
