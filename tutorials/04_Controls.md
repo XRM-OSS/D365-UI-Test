@@ -1,5 +1,5 @@
 # Controls
-Controls can currently checked for their disabled state, their hidden state and their option set values (to check if filtering works).
+Controls can currently be checked for their disabled state, their hidden state and their option set values (to check if filtering works).
 
 ## Hidden / Disabled State
 Hidden and disabled state can be retrieved as a combined object:

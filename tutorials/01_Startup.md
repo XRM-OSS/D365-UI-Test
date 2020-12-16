@@ -32,6 +32,8 @@ await xrmTest.launch("chromium", {
 });
 
 // When saving the settings file with the credentials directly in this directory, be sure to exclude it using .gitignore (or store it one folder above your working folder)
+// Settings.txt might look like this:
+// https://yourorg.crm4.dynamics.com,youruser@yourorg.onmicrosoft.com,yourpassword
 const config = fs.readFileSync(path.resolve(__dirname, "settings.txt"), {encoding: "utf-8"});
 
 // Easiest way to store credentials is to just separate url, username and password by comma in the file
@@ -68,6 +70,9 @@ Copy the secret.
 You now just need to pass the secret as follows:
 
 ```javascript
+// As in the non-mfa login example, settings.txt might look like
+// https://yourorg.crm4.dynamics.com,youruser@yourorg.onmicrosoft.com,yourpassword,mfaSecret
+const config = fs.readFileSync(path.resolve(__dirname, "settings.txt"), {encoding: "utf-8"});
 const [url, user, password, mfaSecret] = config.split(",");
 
 await xrmTest.open(url, { userName: user, password: password, mfaSecret: mfaSecret ?? undefined });

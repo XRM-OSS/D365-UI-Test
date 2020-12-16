@@ -1,5 +1,5 @@
 # Navigation
-Currently there is support for opening UCI apps, update forms and create forms.
+There is support for opening UCI apps, update forms and create forms.
 All of these calls use parametrized URLs and wait for the page to fully load and all network requests to be finished. This guarantees for a robust and fast usage experience.
 
 ## Open UCI apps

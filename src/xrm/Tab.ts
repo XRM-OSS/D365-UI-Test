@@ -22,10 +22,12 @@ export class Tab {
     open = async (tabName: string) => {
         await EnsureXrmGetter(this._page);
 
-        return this._page.evaluate((tabName: string) => {
+        await this._page.evaluate((tabName: string) => {
             const xrm = window.oss_FindXrm();
 
             xrm.Page.ui.tabs.get(tabName).setDisplayState("expanded");
         }, tabName);
+
+        await this.xrmUiTest.waitForIdleness();
     }
 }

@@ -32,6 +32,21 @@ export class Entity {
     }
 
     /**
+     * Refreshes the current form record
+     * 
+     * @param saveData Whether to save any unsubmitted data
+     */
+    refresh = async (saveData: boolean) => {
+        await EnsureXrmGetter(this._page);
+
+        return this._page.evaluate(([ save ]) => {
+            const xrm = window.oss_FindXrm();
+
+            return xrm.Page.data.refresh(save);
+        }, [ saveData ]);
+    }
+
+    /**
      * Saves the record and returns the ID (both for quick create and "normal" create)
      *
      * @param ignoreDuplicateCheck [false] Whether to automatically ignore duplicate check warnings
@@ -99,7 +114,7 @@ export class Entity {
     }
 
     /**
-     * Get the name of the currently opened record
+     * Get the logical name of the currently opened record
      *
      * @returns Promise which resolves with the name
      */
