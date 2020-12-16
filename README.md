@@ -6,6 +6,9 @@ D365-UI-Test is an UI testing framework for easy and robust UI testing in Dynami
 It is powered by TypeScript and playwright. You can write your tests in plain JS or in TypeScript.
 Various functions for interacting with CRM are implemented and can be used for executing your tests.
 
+## Quick Showcase
+![d365uitest](https://user-images.githubusercontent.com/4287938/102348653-7d0a2200-3fa2-11eb-8a6b-ee4f4208c3ba.gif)
+
 ## What does a test look like?
 D365-UI-Test is unopinionated, so we don't enforce a specific testing library.
 The demo tests use [jest](https://jestjs.io/), but you could just as well use Mocha or someting completely different.
