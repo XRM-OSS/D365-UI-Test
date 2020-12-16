@@ -7,7 +7,7 @@ It is powered by TypeScript and playwright. You can write your tests in plain JS
 Various functions for interacting with CRM are implemented and can be used for executing your tests.
 
 ## Quick Showcase
-![d365uitest](https://user-images.githubusercontent.com/4287938/102348653-7d0a2200-3fa2-11eb-8a6b-ee4f4208c3ba.gif)
+![d365uitest](https://user-images.githubusercontent.com/4287938/102352343-ff491500-3fa7-11eb-84d8-71dd78ae24e7.gif)
 
 ## What does a test look like?
 D365-UI-Test is unopinionated, so we don't enforce a specific testing library.
@@ -81,6 +81,7 @@ D365-UI-Test also does not limit itself to Dynamics 365 CE, but also for testing
 - Get subgrid record count, refresh subgrid, open n-th record of subgrid
 - Click ribbon Buttons
 - Download files
+- Runs on Windows, Linux, Mac (also on DevOps)
 
 ## License
 MIT licensed, have fun :)
