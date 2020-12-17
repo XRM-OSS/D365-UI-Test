@@ -273,27 +273,6 @@ export class XrmUiTest {
         return [this.browser, this._context, this._page];
     }
 
-    private registerIgnoreUrls = async (page: playwright.Page) => {
-        // These URLs take sometimes more than 2 minutes to load, just abort them
-        const ignoreUrlPaths = [
-            "https://browser.pipe.aria.microsoft.com/Collector/3.0/?qsp=true&content-type=application%2Fbond-compact-binary&client-id=NO_AUTH",
-            "https://dc.services.visualstudio.com/v2/track",
-            "https://graph.windows.net/me?api-version=",
-            "https://loki.delve.office.com/api/v1/configuration/Dynamics365UCI/"
-        ];
-
-        page.route("**", route => {
-            const url = route.request().url();
-
-            if (ignoreUrlPaths.some(ignoreUrl => ignoreUrl.startsWith(url))) {
-                route.abort();
-            }
-            else {
-                route.continue();
-            }
-        });
-    }
-
     /**
      * Waits for all pending UCI operations to settle
      */
@@ -336,9 +315,6 @@ export class XrmUiTest {
     open = async (url: string, extendedProperties: OpenProperties) => {
         this._crmUrl = url;
         this._appId = extendedProperties.appId;
-
-        // Register ignore URLs that sometimes cause trouble with timeouts
-        await this.registerIgnoreUrls(this.page);
 
         await Promise.all([
             this.page.goto(`${url}/main.aspx?forceUCI=1`, { waitUntil: "load", timeout: this.settings.timeout })
