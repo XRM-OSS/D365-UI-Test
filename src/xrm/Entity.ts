@@ -162,4 +162,44 @@ export class Entity {
             throw new Error("Failed to find delete confirmation button");
         }
     }
+
+    /**
+     * Deactivate the current record
+     *
+     * @returns Promise which resolves once deactivation is done
+     * @remarks Deactivate button on form will be used
+     */
+    deactivate = async() => {
+        this.xrmUiTest.Button.click({ custom: "li[id*='Mscrm.Form.Deactivate']" });
+
+        const confirmButton = await this._page.waitForSelector("button[data-id='ok_id']", { timeout: this.xrmUiTest.settings.timeout });
+
+        if (confirmButton) {
+            await confirmButton.click();
+            await this.xrmUiTest.waitForIdleness();
+        }
+        else {
+            throw new Error("Failed to find deactivate confirmation button");
+        }
+    }
+
+    /**
+     * Activate the current record
+     *
+     * @returns Promise which resolves once activation is done
+     * @remarks Activate button on form will be used
+     */
+    activate = async() => {
+        this.xrmUiTest.Button.click({ custom: "li[id*='Mscrm.Form.Activate']" });
+
+        const confirmButton = await this._page.waitForSelector("button[data-id='ok_id']", { timeout: this.xrmUiTest.settings.timeout });
+
+        if (confirmButton) {
+            await confirmButton.click();
+            await this.xrmUiTest.waitForIdleness();
+        }
+        else {
+            throw new Error("Failed to find activate confirmation button");
+        }
+    }
 }

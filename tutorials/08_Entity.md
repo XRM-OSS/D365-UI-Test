@@ -52,3 +52,21 @@ await xrmTest.Entity.delete();
 ``` 
 
 > This function uses the delete button of the form.
+
+## Activate
+Activates the current record
+
+```javascript
+await xrmTest.Entity.activate();
+```
+
+> This function uses the activate button of the form
+
+## Deactivate
+Deactivates the current record
+
+```javascript
+await xrmTest.Entity.deactivate();
+```
+
+> This function uses the deactivate button of the form
