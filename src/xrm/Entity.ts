@@ -33,7 +33,7 @@ export class Entity {
 
     /**
      * Refreshes the current form record
-     * 
+     *
      * @param saveData Whether to save any unsubmitted data
      */
     refresh = async (saveData: boolean) => {

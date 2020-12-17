@@ -104,6 +104,8 @@
 });
 
 <span class="hljs-comment">// When saving the settings file with the credentials directly in this directory, be sure to exclude it using .gitignore (or store it one folder above your working folder)</span>
+<span class="hljs-comment">// Settings.txt might look like this:</span>
+<span class="hljs-comment">// https://yourorg.crm4.dynamics.com,youruser@yourorg.onmicrosoft.com,yourpassword</span>
 <span class="hljs-keyword">const</span> config = fs.readFileSync(path.resolve(__dirname, <span class="hljs-string">&quot;settings.txt&quot;</span>), {<span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf-8&quot;</span>});
 
 <span class="hljs-comment">// Easiest way to store credentials is to just separate url, username and password by comma in the file</span>
@@ -132,7 +134,10 @@
 				<p>For doing this, register your Authenticator and when the QR code is displayed, click the button for the fallback option that states that you can&#39;t use a QR code.
 					Copy the secret.
 				You now just need to pass the secret as follows:</p>
-				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> [url, user, password, mfaSecret] = config.split(<span class="hljs-string">&quot;,&quot;</span>);
+				<pre><code class="language-javascript"><span class="hljs-comment">// As in the non-mfa login example, settings.txt might look like</span>
+<span class="hljs-comment">// https://yourorg.crm4.dynamics.com,youruser@yourorg.onmicrosoft.com,yourpassword,mfaSecret</span>
+<span class="hljs-keyword">const</span> config = fs.readFileSync(path.resolve(__dirname, <span class="hljs-string">&quot;settings.txt&quot;</span>), {<span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf-8&quot;</span>});
+<span class="hljs-keyword">const</span> [url, user, password, mfaSecret] = config.split(<span class="hljs-string">&quot;,&quot;</span>);
 
 <span class="hljs-keyword">await</span> xrmTest.open(url, { <span class="hljs-attr">userName</span>: user, <span class="hljs-attr">password</span>: password, <span class="hljs-attr">mfaSecret</span>: mfaSecret ?? <span class="hljs-literal">undefined</span> });</code></pre>
 				<blockquote>

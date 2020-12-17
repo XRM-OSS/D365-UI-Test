@@ -75,11 +75,10 @@
 				<a href="#navigationtimeouts-lead-to-test-failures" id="navigationtimeouts-lead-to-test-failures" style="color: inherit; text-decoration: none;">
 					<h2>NavigationTimeouts lead to test failures</h2>
 				</a>
-				<p>On most of the navigation functions we wait for a successful page load and for all network requests to finish before proceeding.
-					There are however some cases (interestingly especially at night) where waiting for our default of 60 seconds does not suffice.
-				Some of the URLs that cause trouble (and are not necessary for Dynamics to function) are already blacklisted.</p>
-				<p>If you come across those issues, you can use <code>TestUtils.</code>:</p>
-				<pre><code class="language-javascript">TestUtils.trackTimedOutRequest(page, <span class="hljs-function">() =&gt;</span> xrmTest.Navigation.openAppById(<span class="hljs-string">&quot;3a5ff736-45a5-4318-a05e-c8a98761e64a&quot;</span>));</code></pre>
+				<p>On most of the navigation functions we wait for the page to settle by checking that it stays idle for 2 seconds without interruption.</p>
+				<p>If it gets busy during those two seconds, we reset the 2 seconds wait time.</p>
+				<p>If you nonetheless get time out errors, you can track which requests timed out using the <code>TestUtils.trackTimedOutRequest</code> function:</p>
+				<pre><code class="language-javascript">TestUtils.trackTimedOutRequest(<span class="hljs-function">() =&gt;</span> page, <span class="hljs-function">() =&gt;</span> xrmTest.Navigation.openAppById(<span class="hljs-string">&quot;3a5ff736-45a5-4318-a05e-c8a98761e64a&quot;</span>));</code></pre>
 				<p>If timeouts occur, D365-UI-Test will log the timed out request URLs to console.</p>
 			</div>
 		</div>

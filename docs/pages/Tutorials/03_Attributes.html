@@ -78,14 +78,17 @@
 				<ul>
 					<li>We don&#39;t have breaking changes or issues with new controls. The values can be set as in all of your form scripts.</li>
 					<li>Localization of Option Set controls does not cause issues</li>
-					<li>Custom controls don&#39;t need special handling</li>
+					<li>PCF controls don&#39;t need special handling</li>
 				</ul>
-				<p>When setting an attribute value, we use the SDK for checking whether there is at least one visible and non-disabled control for this attribute, to ensure that a user would be able to set it as well.</p>
+				<blockquote>
+					<p>When setting an attribute value, we use the SDK for checking whether there is at least one visible and non-disabled control for this attribute, to ensure that a user would be able to set it as well.</p>
+				</blockquote>
 				<a href="#get-required-level" id="get-required-level" style="color: inherit; text-decoration: none;">
 					<h2>Get required level</h2>
 				</a>
 				<p>The requirement level can be retrieved like this:</p>
-				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> isRequired = <span class="hljs-keyword">await</span> xrmTest.Attribute.getRequiredLevel(<span class="hljs-string">&quot;name&quot;</span>);</code></pre>
+				<pre><code class="language-javascript"><span class="hljs-comment">// Either &quot;none&quot;, &quot;recommended&quot; or &quot;required&quot;</span>
+<span class="hljs-keyword">const</span> requiredLevel = <span class="hljs-keyword">await</span> xrmTest.Attribute.getRequiredLevel(<span class="hljs-string">&quot;name&quot;</span>);</code></pre>
 				<a href="#get-value" id="get-value" style="color: inherit; text-decoration: none;">
 					<h2>Get Value</h2>
 				</a>

@@ -98,6 +98,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="entity.html#getentityreference" class="tsd-kind-icon">get<wbr>Entity<wbr>Reference</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="entity.html#getid" class="tsd-kind-icon">get<wbr>Id</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="entity.html#nosubmit" class="tsd-kind-icon">no<wbr>Submit</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="entity.html#refresh" class="tsd-kind-icon">refresh</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="entity.html#save" class="tsd-kind-icon">save</a></li>
 							</ul>
 						</section>
@@ -116,7 +117,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/06cb312/src/xrm/Entity.ts#L9">src/xrm/Entity.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/8718002/src/xrm/Entity.ts#L9">src/xrm/Entity.ts:9</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -142,7 +143,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/06cb312/src/xrm/Entity.ts#L137">src/xrm/Entity.ts:137</a></li>
+									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/8718002/src/xrm/Entity.ts#L152">src/xrm/Entity.ts:152</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -170,12 +171,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/06cb312/src/xrm/Entity.ts#L106">src/xrm/Entity.ts:106</a></li>
+									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/8718002/src/xrm/Entity.ts#L121">src/xrm/Entity.ts:121</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get the name of the currently opened record</p>
+									<p>Get the logical name of the currently opened record</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -193,7 +194,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/06cb312/src/xrm/Entity.ts#L121">src/xrm/Entity.ts:121</a></li>
+									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/8718002/src/xrm/Entity.ts#L136">src/xrm/Entity.ts:136</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -216,7 +217,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/06cb312/src/xrm/Entity.ts#L91">src/xrm/Entity.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/8718002/src/xrm/Entity.ts#L106">src/xrm/Entity.ts:106</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -239,7 +240,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/06cb312/src/xrm/Entity.ts#L22">src/xrm/Entity.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/8718002/src/xrm/Entity.ts#L22">src/xrm/Entity.ts:22</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -258,6 +259,39 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="refresh" class="tsd-anchor"></a>
+					<h3>refresh</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">refresh<span class="tsd-signature-symbol">(</span>saveData<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/8718002/src/xrm/Entity.ts#L39">src/xrm/Entity.ts:39</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Refreshes the current form record</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>saveData: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Whether to save any unsubmitted data</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="save" class="tsd-anchor"></a>
 					<h3>save</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -267,7 +301,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/06cb312/src/xrm/Entity.ts#L40">src/xrm/Entity.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/8718002/src/xrm/Entity.ts#L55">src/xrm/Entity.ts:55</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -379,6 +413,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="entity.html#nosubmit" class="tsd-kind-icon">no<wbr>Submit</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="entity.html#refresh" class="tsd-kind-icon">refresh</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="entity.html#save" class="tsd-kind-icon">save</a>
