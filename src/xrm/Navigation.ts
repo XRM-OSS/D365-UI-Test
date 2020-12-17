@@ -22,7 +22,14 @@ export class Navigation {
      * @returns Promise which resolves once form is fully loaded
      */
     openCreateForm = async (entityName: string) => {
-        await this._page.goto(`${this._crmUrl}/main.aspx?etn=${entityName}&pagetype=entityrecord${this.xrmUiTest.AppId ? "&appid=" + this.xrmUiTest.AppId : "&forceUCI=1"}`, { waitUntil: "load", timeout: this.xrmUiTest.settings.timeout });
+        await EnsureXrmGetter(this._page);
+
+        await this._page.evaluate((entityName: string) => {
+            const xrm = window.oss_FindXrm();
+
+            xrm.Navigation.openForm({ entityName: entityName });
+        }, entityName);
+
         await this.xrmUiTest.waitForIdleness();
     }
 
@@ -34,7 +41,14 @@ export class Navigation {
      * @returns Promise which resolves once form is fully loaded
      */
     openUpdateForm = async (entityName: string, entityId: string) => {
-        await this._page.goto(`${this._crmUrl}/main.aspx?etn=${entityName}&id=${entityId}&pagetype=entityrecord${this.xrmUiTest.AppId ? "&appid=" + this.xrmUiTest.AppId : "&forceUCI=1"}`, { waitUntil: "load", timeout: this.xrmUiTest.settings.timeout });
+        await EnsureXrmGetter(this._page);
+
+        await this._page.evaluate(([ entityName, entityId ]) => {
+            const xrm = window.oss_FindXrm();
+
+            xrm.Navigation.openForm({ entityName: entityName, entityId: entityId });
+        }, [entityName, entityId]);
+
         await this.xrmUiTest.waitForIdleness();
     }
 
@@ -47,19 +61,13 @@ export class Navigation {
     openQuickCreate = async (entityName: string) => {
         await EnsureXrmGetter(this._page);
 
-        await Promise.all([
-            this._page.evaluate((entityName: string) => {
-                const xrm = window.oss_FindXrm();
-                xrm.Navigation.openForm({ entityName: entityName, useQuickCreateForm: true });
-            }, entityName),
-
-            Promise.race([ this._page.waitForSelector("#quickCreateSaveAndCloseBtn"), this._page.waitForSelector("#globalquickcreate_save_button_NavBarGloablQuickCreate") ])
-        ]);
-
-        return this._page.waitForFunction((entityName: string) => {
+        await this._page.evaluate((entityName: string) => {
             const xrm = window.oss_FindXrm();
-            return xrm && xrm.Page && xrm.Page.data && xrm.Page.data.entity && xrm.Page.data.entity.getEntityName() === entityName;
+
+            xrm.Navigation.openForm({ entityName: entityName, useQuickCreateForm: true });
         }, entityName);
+
+        await this.xrmUiTest.waitForIdleness();
     }
 
     /**
