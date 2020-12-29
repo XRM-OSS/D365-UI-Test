@@ -39,7 +39,7 @@ export class Section {
             const section = tab.sections.get(sectionName);
 
             return {
-                isVisible: section.getVisible()
+                isVisible: section.getVisible() && tab.getVisible()
             };
         }, [tabName, sectionName]);
     }
