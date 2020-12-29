@@ -93,6 +93,7 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tab.html#get" class="tsd-kind-icon">get</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tab.html#open" class="tsd-kind-icon">open</a></li>
 							</ul>
 						</section>
@@ -111,7 +112,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/252a561/src/xrm/Tab.ts#L9">src/xrm/Tab.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/efed069/src/xrm/Tab.ts#L19">src/xrm/Tab.ts:19</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -128,6 +129,40 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="get" class="tsd-anchor"></a>
+					<h3>get</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/tabstate.html" class="tsd-signature-type">TabState</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/efed069/src/xrm/Tab.ts#L50">src/xrm/Tab.ts:50</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the state of the specified tab</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Name of the tab to retrieve</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/tabstate.html" class="tsd-signature-type">TabState</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise which fulfills with the current tab state</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="open" class="tsd-anchor"></a>
 					<h3>open</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -137,7 +172,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/252a561/src/xrm/Tab.ts#L22">src/xrm/Tab.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/efed069/src/xrm/Tab.ts#L32">src/xrm/Tab.ts:32</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -191,6 +226,9 @@
 						<a href="../pages/Tutorials/07_Tabs.html">Tabs</a>
 					</li>
 					<li class=" pp-nav pp-page">
+						<a href="../pages/Tutorials/14_Sections.html">Sections</a>
+					</li>
+					<li class=" pp-nav pp-page">
 						<a href="../pages/Tutorials/08_Entity.html">Entity</a>
 					</li>
 					<li class=" pp-nav pp-page">
@@ -240,6 +278,9 @@
 						<a href="portaluitest.html" class="tsd-kind-icon">Portal<wbr>UiTest</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="section.html" class="tsd-kind-icon">Section</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="subgrid.html" class="tsd-kind-icon">Sub<wbr>Grid</a>
 					</li>
 				</ul>
@@ -249,6 +290,9 @@
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="tab.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="tab.html#get" class="tsd-kind-icon">get</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="tab.html#open" class="tsd-kind-icon">open</a>
@@ -271,6 +315,12 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/openproperties.html" class="tsd-kind-icon">Open<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/sectionstate.html" class="tsd-kind-icon">Section<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/tabstate.html" class="tsd-kind-icon">Tab<wbr>State</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/testsettings.html" class="tsd-kind-icon">Test<wbr>Settings</a>

@@ -32,6 +32,10 @@
                     "source": "./tutorials/07_Tabs.md"
                 },
                 {
+                    "title": "Sections",
+                    "source": "./tutorials/14_Sections.md"
+                },
+                {
                     "title": "Entity",
                     "source": "./tutorials/08_Entity.md"
                 },

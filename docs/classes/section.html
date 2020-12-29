@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Form | D365-UI-Test</title>
+	<title>Section | D365-UI-Test</title>
 	<meta name="description" content="Documentation for D365-UI-Test">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="form.html">Form</a>
+					<a href="section.html">Section</a>
 				</li>
 			</ul>
-			<h1>Class Form</h1>
+			<h1>Class Section</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Module for interacting with D365 Forms</p>
+						<p>Module for interacting with D365 sections</p>
 					</div>
 				</div>
 			</section>
@@ -76,7 +76,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Form</span>
+						<span class="target">Section</span>
 					</li>
 				</ul>
 			</section>
@@ -87,15 +87,13 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="form.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="section.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="form.html#nosubmit" class="tsd-kind-icon">no<wbr>Submit</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="form.html#reset" class="tsd-kind-icon">reset</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="form.html#switch" class="tsd-kind-icon">switch</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="section.html#get" class="tsd-kind-icon">get</a></li>
 							</ul>
 						</section>
 					</div>
@@ -107,13 +105,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Form<span class="tsd-signature-symbol">(</span>xrmUiTest<span class="tsd-signature-symbol">: </span><a href="xrmuitest.html" class="tsd-signature-type">XrmUiTest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="form.html" class="tsd-signature-type">Form</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Section<span class="tsd-signature-symbol">(</span>xrmUiTest<span class="tsd-signature-symbol">: </span><a href="xrmuitest.html" class="tsd-signature-type">XrmUiTest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="section.html" class="tsd-signature-type">Section</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/efed069/src/xrm/Form.ts#L25">src/xrm/Form.ts:25</a></li>
+									<li>Defined in src/xrm/Section.ts:19</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -122,7 +120,7 @@
 									<h5>xrmUiTest: <a href="xrmuitest.html" class="tsd-signature-type">XrmUiTest</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="form.html" class="tsd-signature-type">Form</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="section.html" class="tsd-signature-type">Section</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -130,87 +128,44 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="nosubmit" class="tsd-anchor"></a>
-					<h3>no<wbr>Submit</h3>
+					<a name="get" class="tsd-anchor"></a>
+					<h3>get</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">no<wbr>Submit<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>tabName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, sectionName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sectionstate.html" class="tsd-signature-type">SectionState</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/efed069/src/xrm/Form.ts#L47">src/xrm/Form.ts:47</a></li>
+									<li>Defined in src/xrm/Section.ts:33</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Sets all attributes to submit mode none. This is useful if you don&#39;t want to save and just change the page. No prompt for unsaved data will open.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Promise which resolves once all attribute submit modes are set.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="reset" class="tsd-anchor"></a>
-					<h3>reset</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">reset<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/efed069/src/xrm/Form.ts#L38">src/xrm/Form.ts:38</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Sets all attributes to submit mode none. This is useful if you don&#39;t want to save and just change the page. No prompt for unsaved data will open.</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>deprecated</dt>
-									<dd><p>Please use noSubmit</p>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Promise which resolves once all attribute submit modes are set</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="switch" class="tsd-anchor"></a>
-					<h3>switch</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">switch<span class="tsd-signature-symbol">(</span>identifier<span class="tsd-signature-symbol">: </span><a href="../interfaces/formidentifier.html" class="tsd-signature-type">FormIdentifier</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/efed069/src/xrm/Form.ts#L63">src/xrm/Form.ts:63</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Switches to the specified form</p>
+									<p>Gets the state of the specified section</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>identifier: <a href="../interfaces/formidentifier.html" class="tsd-signature-type">FormIdentifier</a></h5>
+									<h5>tabName: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
-											<p>Defines which form to switch to</p>
+											<p>Name of the parent tab of the section to retrieve</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>sectionName: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Name of the section to retrieve</p>
 										</div>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Promise which resolves once the selected form is loaded</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/sectionstate.html" class="tsd-signature-type">SectionState</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise which fulfills with the current section state</p>
 						</li>
 					</ul>
 				</section>
@@ -286,36 +241,30 @@
 					<li class=" tsd-kind-class">
 						<a href="entity.html" class="tsd-kind-icon">Entity</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class">
+					<li class=" tsd-kind-class">
 						<a href="form.html" class="tsd-kind-icon">Form</a>
-						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="form.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="form.html#nosubmit" class="tsd-kind-icon">no<wbr>Submit</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="form.html#reset" class="tsd-kind-icon">reset</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="form.html#switch" class="tsd-kind-icon">switch</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="navigation.html" class="tsd-kind-icon">Navigation</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="portaluitest.html" class="tsd-kind-icon">Portal<wbr>UiTest</a>
 					</li>
-					<li class=" tsd-kind-class">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
 						<a href="section.html" class="tsd-kind-icon">Section</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="section.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="section.html#get" class="tsd-kind-icon">get</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="subgrid.html" class="tsd-kind-icon">Sub<wbr>Grid</a>
 					</li>

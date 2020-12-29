@@ -42,7 +42,7 @@ export class Control {
             const control = xrm.Page.getControl(controlName);
 
             return {
-                isVisible: control.getVisible(),
+                isVisible: control.getVisible() && (!control.getParent() || control.getParent().getVisible()) && (!control.getParent() || !control.getParent().getParent() || control.getParent().getParent().getVisible()),
                 isDisabled: (control as any).getDisabled() as boolean
             };
         }, controlName);

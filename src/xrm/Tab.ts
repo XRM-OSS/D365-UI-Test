@@ -3,6 +3,16 @@ import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
 
 /**
+ * State of a tab
+ */
+export interface TabState {
+    /**
+     * Whether the tab is currently visible
+     */
+    isVisible: boolean;
+}
+
+/**
  * Module for interacting with D365 Tabs
  */
 export class Tab {
@@ -29,5 +39,24 @@ export class Tab {
         }, tabName);
 
         await this.xrmUiTest.waitForIdleness();
+    }
+
+    /**
+     * Gets the state of the specified tab
+     *
+     * @param name Name of the tab to retrieve
+     * @returns Promise which fulfills with the current tab state
+     */
+    get = async (name: string): Promise<TabState> => {
+        await EnsureXrmGetter(this._page);
+
+        return this._page.evaluate((tabName: string) => {
+            const xrm = window.oss_FindXrm();
+            const tab = xrm.Page.ui.tabs.get(tabName);
+
+            return {
+                isVisible: tab.getVisible()
+            };
+        }, name);
     }
 }

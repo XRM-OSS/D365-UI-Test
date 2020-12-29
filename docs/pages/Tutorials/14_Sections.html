@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>FAQs | D365-UI-Test</title>
+	<title>Sections | D365-UI-Test</title>
 	<meta name="description" content="Documentation for D365-UI-Test">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../../assets/css/main.css">
@@ -58,10 +58,10 @@
 					<a href="01_Startup.html">Tutorials</a>
 				</li>
 				<li>
-					<a href="11_FAQs.html">FAQs</a>
+					<a href="14_Sections.html">Sections</a>
 				</li>
 			</ul>
-			<h1>FAQs</h1>
+			<h1>Sections</h1>
 		</div>
 	</div>
 </header>
@@ -69,50 +69,15 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<a href="#faqs" id="faqs" style="color: inherit; text-decoration: none;">
-					<h1>FAQs</h1>
+				<a href="#sectopms" id="sectopms" style="color: inherit; text-decoration: none;">
+					<h1>Sectopms</h1>
 				</a>
-				<a href="#can-i-download-files-eg-reports-excel-exports-or-documents-core-pack-documents" id="can-i-download-files-eg-reports-excel-exports-or-documents-core-pack-documents" style="color: inherit; text-decoration: none;">
-					<h2>Can I download files, e.g. reports, Excel exports or Documents Core Pack documents?</h2>
+				<p>Sections are only used for being able to get their visibility state.</p>
+				<a href="#hidden-state" id="hidden-state" style="color: inherit; text-decoration: none;">
+					<h2>Hidden State</h2>
 				</a>
-				<p>Yes, you can. You just need to set the <code>acceptDownloads</code> property on the browserContext settings:</p>
-				<pre><code class="language-javascript"><span class="hljs-keyword">await</span> xrmTest.launch(<span class="hljs-string">&quot;chromium&quot;</span>,
-    {
-        <span class="hljs-attr">headless</span>: <span class="hljs-literal">false</span>,
-        <span class="hljs-attr">args</span>: [
-            <span class="hljs-string">&#x27;--disable-setuid-sandbox&#x27;</span>,
-            <span class="hljs-string">&#x27;--disable-infobars&#x27;</span>,
-            <span class="hljs-string">&#x27;--start-fullscreen&#x27;</span>,
-            <span class="hljs-string">&#x27;--window-position=0,0&#x27;</span>,
-            <span class="hljs-string">&#x27;--window-size=1920,1080&#x27;</span>,
-            <span class="hljs-string">&#x27;--user-agent=&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36&quot;&#x27;</span>
-        ]
-    },
-    {
-        <span class="hljs-attr">allowDownloads</span>: <span class="hljs-literal">true</span>
-    })</code></pre>
-				<p>This will accept all following downloads and save them with a generic file name.
-				If you wish to save it with the name that the browser intended to, you can do so as follows:</p>
-				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> [ download ] = <span class="hljs-keyword">await</span> <span class="hljs-built_in">Promise</span>.all([
-  page.waitForEvent(<span class="hljs-string">&#x27;download&#x27;</span>), <span class="hljs-comment">// wait for download to start</span>
-  page.click(<span class="hljs-string">&#x27;a&#x27;</span>) <span class="hljs-comment">// Or any other event that triggers your download</span>
-]);
-
-<span class="hljs-keyword">const</span> suggestedFileName = download.suggestedFilename();
-<span class="hljs-keyword">await</span> download.saveAs(<span class="hljs-string">`./yourDownloadFolder/suggestedFileName`</span>);</code></pre>
-				<p>You can check whether the file was successfully downloaded using the <code>checkForFile</code> function of <code>TestUtils</code>:</p>
-				<pre><code class="language-javascript"><span class="hljs-keyword">await</span> TestUtils.checkForFile(page, path.resolve(<span class="hljs-string">&quot;./reports&quot;</span>), [<span class="hljs-string">&quot;.pdf&quot;</span>, <span class="hljs-string">&quot;.pdf&#x27;&quot;</span>]);</code></pre>
-				<a href="#can-i-interact-with-xrm-functions-that-are-not-implemented-by-now" id="can-i-interact-with-xrm-functions-that-are-not-implemented-by-now" style="color: inherit; text-decoration: none;">
-					<h2>Can I interact with Xrm functions that are not implemented by now?</h2>
-				</a>
-				<p>Yes, you can. You can use <code>page.evaluate</code> for doing this. You should be careful, as page.evaluate can not access variables from its outer context.</p>
-				<p>You have to pass all variables that you want to use as second argument in <code>page.evaluate</code> like this:</p>
-				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> logicalName = <span class="hljs-string">&quot;account&quot;</span>;
-<span class="hljs-keyword">const</span> id = <span class="hljs-string">&quot;someid&quot;</span>;
-
-<span class="hljs-keyword">await</span> page.evaluate(<span class="hljs-function">(<span class="hljs-params">l, i</span>) =&gt;</span> {
-    <span class="hljs-built_in">window</span>.Xrm.WebApi.deleteRecord(l, i);
-}, [ logicalName, id ]);</code></pre>
+				<p>Hidden state can be retrieved like this:</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { isVisible } = <span class="hljs-keyword">await</span> xrmTest.Section.get(<span class="hljs-string">&quot;SUMMARY_TAB&quot;</span>, <span class="hljs-string">&quot;section1&quot;</span>);</code></pre>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -142,7 +107,7 @@
 					<li class=" pp-nav pp-page">
 						<a href="07_Tabs.html">Tabs</a>
 					</li>
-					<li class=" pp-nav pp-page">
+					<li class="current pp-nav pp-page">
 						<a href="14_Sections.html">Sections</a>
 					</li>
 					<li class=" pp-nav pp-page">
@@ -154,7 +119,7 @@
 					<li class=" pp-nav pp-page">
 						<a href="10_DevOps.html">Dev<wbr>Ops</a>
 					</li>
-					<li class="current pp-nav pp-page">
+					<li class=" pp-nav pp-page">
 						<a href="11_FAQs.html">FAQs</a>
 					</li>
 					<li class=" pp-nav pp-page">

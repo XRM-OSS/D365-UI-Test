@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Dialog | D365-UI-Test</title>
+	<title>SectionState | D365-UI-Test</title>
 	<meta name="description" content="Documentation for D365-UI-Test">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="dialog.html">Dialog</a>
+					<a href="sectionstate.html">SectionState</a>
 				</li>
 			</ul>
-			<h1>Class Dialog</h1>
+			<h1>Interface SectionState</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Module for interacting with D365 dialogs</p>
+						<p>State of a section</p>
 					</div>
 				</div>
 			</section>
@@ -76,7 +76,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Dialog</span>
+						<span class="target">SectionState</span>
 					</li>
 				</ul>
 			</section>
@@ -85,38 +85,30 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Constructors</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="dialog.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="sectionstate.html#isvisible" class="tsd-kind-icon">is<wbr>Visible</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
-					<a name="constructor" class="tsd-anchor"></a>
-					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Dialog<span class="tsd-signature-symbol">(</span>xrmUiTest<span class="tsd-signature-symbol">: </span><a href="xrmuitest.html" class="tsd-signature-type">XrmUiTest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="dialog.html" class="tsd-signature-type">Dialog</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/efed069/src/xrm/Dialog.ts#L8">src/xrm/Dialog.ts:8</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>xrmUiTest: <a href="xrmuitest.html" class="tsd-signature-type">XrmUiTest</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="dialog.html" class="tsd-signature-type">Dialog</a></h4>
-						</li>
-					</ul>
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="isvisible" class="tsd-anchor"></a>
+					<h3>is<wbr>Visible</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Visible<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/xrm/Section.ts:12</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Whether the section is currently visible</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -176,70 +168,70 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class">
-						<a href="attribute.html" class="tsd-kind-icon">Attribute</a>
+						<a href="../classes/attribute.html" class="tsd-kind-icon">Attribute</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="button.html" class="tsd-kind-icon">Button</a>
+						<a href="../classes/button.html" class="tsd-kind-icon">Button</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="control.html" class="tsd-kind-icon">Control</a>
+						<a href="../classes/control.html" class="tsd-kind-icon">Control</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/dialog.html" class="tsd-kind-icon">Dialog</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/entity.html" class="tsd-kind-icon">Entity</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/form.html" class="tsd-kind-icon">Form</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/navigation.html" class="tsd-kind-icon">Navigation</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/portaluitest.html" class="tsd-kind-icon">Portal<wbr>UiTest</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/section.html" class="tsd-kind-icon">Section</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/subgrid.html" class="tsd-kind-icon">Sub<wbr>Grid</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/tab.html" class="tsd-kind-icon">Tab</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/xrmuitest.html" class="tsd-kind-icon">Xrm<wbr>UiTest</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="buttonidentifier.html" class="tsd-kind-icon">Button<wbr>Identifier</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="controlstate.html" class="tsd-kind-icon">Control<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="formidentifier.html" class="tsd-kind-icon">Form<wbr>Identifier</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="openproperties.html" class="tsd-kind-icon">Open<wbr>Properties</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class">
-						<a href="dialog.html" class="tsd-kind-icon">Dialog</a>
+					<li class="current tsd-kind-interface">
+						<a href="sectionstate.html" class="tsd-kind-icon">Section<wbr>State</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="dialog.html#constructor" class="tsd-kind-icon">constructor</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="sectionstate.html#isvisible" class="tsd-kind-icon">is<wbr>Visible</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class">
-						<a href="entity.html" class="tsd-kind-icon">Entity</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="form.html" class="tsd-kind-icon">Form</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="navigation.html" class="tsd-kind-icon">Navigation</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="portaluitest.html" class="tsd-kind-icon">Portal<wbr>UiTest</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="section.html" class="tsd-kind-icon">Section</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="subgrid.html" class="tsd-kind-icon">Sub<wbr>Grid</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="tab.html" class="tsd-kind-icon">Tab</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="xrmuitest.html" class="tsd-kind-icon">Xrm<wbr>UiTest</a>
+					<li class=" tsd-kind-interface">
+						<a href="tabstate.html" class="tsd-kind-icon">Tab<wbr>State</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="../interfaces/buttonidentifier.html" class="tsd-kind-icon">Button<wbr>Identifier</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/controlstate.html" class="tsd-kind-icon">Control<wbr>State</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/formidentifier.html" class="tsd-kind-icon">Form<wbr>Identifier</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/openproperties.html" class="tsd-kind-icon">Open<wbr>Properties</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/sectionstate.html" class="tsd-kind-icon">Section<wbr>State</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/tabstate.html" class="tsd-kind-icon">Tab<wbr>State</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/testsettings.html" class="tsd-kind-icon">Test<wbr>Settings</a>
+						<a href="testsettings.html" class="tsd-kind-icon">Test<wbr>Settings</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="../globals.html#ensurexrmgetter" class="tsd-kind-icon">Ensure<wbr>Xrm<wbr>Getter</a>

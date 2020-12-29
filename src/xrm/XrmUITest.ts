@@ -11,6 +11,7 @@ import { Tab } from "./Tab";
 import { TestSettings } from "../domain/TestSettings";
 import * as speakeasy from "speakeasy";
 import { D365Selectors } from "../domain/D365Selectors";
+import { Section } from "./Section";
 
 /**
  * Parameters for opening Dynamics
@@ -77,6 +78,7 @@ export class XrmUiTest {
     private _subGrid: SubGrid;
     private _button: Button;
     private _tab: Tab;
+    private _section: Section;
 
     /**
      * Settings for D365-UI-Test behavior
@@ -237,6 +239,17 @@ export class XrmUiTest {
         }
 
         return this._tab;
+    }
+
+    /**
+     * Gets the subfunctions for interacting with sections in D365, for example getting its visibility state
+     */
+    get Section() {
+        if (!this._section) {
+            this._section = new Section(this);
+        }
+
+        return this._section;
     }
 
     /**
