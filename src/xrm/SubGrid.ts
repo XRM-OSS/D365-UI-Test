@@ -44,7 +44,7 @@ export class SubGrid {
     openNthRecord = async( subgridName: string, recordNumber: number ) => {
         await EnsureXrmGetter(this._page);
 
-        const recordReference = await this._page.evaluate((name) => {
+        const recordReference = await this._page.evaluate(([name, position]: [string, number]) => {
             const xrm = window.oss_FindXrm();
             const control = xrm.Page.getControl<Xrm.Controls.GridControl>(name);
 
@@ -53,10 +53,10 @@ export class SubGrid {
             }
 
             const grid = control.getGrid();
-            const record = grid.getRows().get(recordNumber).getData();
+            const record = grid.getRows().get(position).getData();
 
             return record.getEntity().getEntityReference();
-        }, subgridName);
+        }, [subgridName, recordNumber]);
 
         return this.xrmUiTest.Navigation.openUpdateForm(recordReference.entityType, recordReference.id);
     }
