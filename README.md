@@ -86,6 +86,3 @@ For getting started as fast as possible, there is a fully functioning predefined
 - Click ribbon Buttons
 - Download files
 - Runs on Windows, Linux, Mac (also on DevOps)
-
-## License
-MIT licensed, have fun :)
