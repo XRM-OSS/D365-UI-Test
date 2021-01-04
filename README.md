@@ -71,6 +71,10 @@ D365-UI-Test tries to use these JS objects (such as Xrm.Navigation) as much as p
 
 D365-UI-Test also does not limit itself to Dynamics 365 CE, but also for testing connected Portals.
 
+## Continuous Integration
+D365-UI-Test is cross platform. You can run it on Windows, Linux, Mac and of course also on Azure or any other CI platform.
+For getting started as fast as possible, there is a fully functioning predefined yaml pipeline definition for Azure DevOps available in the documentation: https://xrm-oss.github.io/D365-UI-Test/pages/Tutorials/10_DevOps.html
+
 ## Current Feature Set
 - Open and log in to D365 (MS OTP tokens / two factor auth is also supported)
 - Open an App
@@ -82,6 +86,3 @@ D365-UI-Test also does not limit itself to Dynamics 365 CE, but also for testing
 - Click ribbon Buttons
 - Download files
 - Runs on Windows, Linux, Mac (also on DevOps)
-
-## License
-MIT licensed, have fun :)
