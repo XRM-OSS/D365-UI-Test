@@ -37,9 +37,11 @@ steps:
     npm run test
   displayName: 'npm install and build'
   env:
-    CRM_URL: $(crmUrl)
-    USER_NAME: $(userName)
-    USER_PASSWORD: $(userPassword)
+    D365_UI_TEST_URL: $(crmUrl)
+    D365_UI_TEST_USERNAME: $(userName)
+    D365_UI_TEST_PASSWORD: $(userPassword)
+    D365_UI_TEST_MFA_SECRET: $(mfaSecret)
+    D365_UI_TEST_HEADLESS: true
 
 - task: PublishBuildArtifacts@1
   inputs:
