@@ -7,7 +7,7 @@ It is powered by TypeScript and playwright. You can write your tests in plain JS
 Various functions for interacting with CRM are implemented and can be used for executing your tests.
 
 ## Quick Showcase
-![](https://user-images.githubusercontent.com/4287938/103551344-818f6f80-4eaa-11eb-8e77-db6e6ceb71be.mp4)
+https://user-images.githubusercontent.com/4287938/103551344-818f6f80-4eaa-11eb-8e77-db6e6ceb71be.mp4
 
 ## What does a test look like?
 D365-UI-Test is unopinionated, so we don't enforce a specific testing library.
