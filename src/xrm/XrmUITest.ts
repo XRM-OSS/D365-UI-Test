@@ -401,7 +401,7 @@ export class XrmUiTest {
 
     private async enterPassword(extendedProperties: OpenProperties) {
         await Promise.race([
-            this.page.waitForSelector(D365Selectors.Login.password),
+            this.page.waitForSelector(D365Selectors.Login.password, { timeout: this.settings.timeout }),
             this.page.waitForNavigation({ waitUntil: "load", timeout: this.settings.timeout })
         ]);
 
