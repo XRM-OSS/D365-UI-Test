@@ -400,11 +400,15 @@ export class XrmUiTest {
     }
 
     private async enterPassword(extendedProperties: OpenProperties) {
+        await Promise.race([
+            this.page.waitForSelector(D365Selectors.Login.password),
+            this.page.waitForNavigation({ waitUntil: "load", timeout: this.settings.timeout })
+        ]);
+
         const password = await this.page.$(D365Selectors.Login.password);
+
         // For non online authentification, wait for custom login page to settle
         if (!password) {
-            await this.page.waitForNavigation({ waitUntil: "load" });
-
             console.log(`No online auth, handling custom auth. If nothing happens, please specify passwordFieldSelector and optionally userNameFieldSelector.`);
 
             if (extendedProperties.userNameFieldSelector) {
