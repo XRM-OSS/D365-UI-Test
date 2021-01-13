@@ -399,16 +399,18 @@ export class XrmUiTest {
         return remember.click();
     }
 
+    private isPageElement(value: any): value is playwright.ElementHandle<SVGElement | HTMLElement> {
+        return !!value && (value as playwright.ElementHandle<SVGElement | HTMLElement>).click !== undefined;
+    }
+
     private async enterPassword(extendedProperties: OpenProperties) {
-        await Promise.race([
+        const result = await Promise.race([
             this.page.waitForSelector(D365Selectors.Login.password, { timeout: this.settings.timeout }),
             this.page.waitForNavigation({ waitUntil: "load", timeout: this.settings.timeout })
         ]);
 
-        const password = await this.page.$(D365Selectors.Login.password);
-
         // For non online authentification, wait for custom login page to settle
-        if (!password) {
+        if (!this.isPageElement(result)) {
             console.log(`No online auth, handling custom auth. If nothing happens, please specify passwordFieldSelector and optionally userNameFieldSelector.`);
 
             if (extendedProperties.userNameFieldSelector) {
@@ -426,7 +428,7 @@ export class XrmUiTest {
         }
         else {
             // For some reason we need the else in here, without it errors will occur
-            await password.fill(extendedProperties.password);
+            await result.fill(extendedProperties.password);
             await this.page.keyboard.press("Enter");
             return true;
         }
