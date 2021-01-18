@@ -51,6 +51,10 @@ There is already a demo project for writing tests with jest available here: http
 
 Just follow the instructions in there for getting started.
 
+### Designing test using D365-UI-Test-Designer
+There is an official browser extension for Google Chrome and MS Edge available here: https://github.com/XRM-OSS/D365-UI-Test-Designer
+It can help you to record form actions as UI tests and to assist you in defining tests.
+
 ### Without template project
 Install this project using npm to get started: `npm install d365-ui-test`.
 
