@@ -78,7 +78,8 @@
 				</a>
 				<p>Easiest way possible is to just create a new build pipeline with the nodejs template.
 					Afterwards you can just insert below yaml for a build which runs your tests all 2 hours, publishes reports and publishes test results.
-				You then need to create the three pipeline variables crmUrl, userName and userPassword (at least userPassword should be stored as secret value).</p>
+					You then need to create the 4 pipeline variables crmUrl, userName, userPassword and mfaSecret (at least userPassword and if used mfaSecret should be stored as secret value).
+				You have to set mfaSecret to an empty value even if you don&#39;t have a mfaSecret.</p>
 				<pre><code class="language-yaml"><span class="hljs-comment"># Node.js</span>
 <span class="hljs-comment"># Build a general Node.js project with npm.</span>
 <span class="hljs-comment"># Add steps that analyze code, save build artifacts, deploy, and more:</span>

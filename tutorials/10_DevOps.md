@@ -4,7 +4,8 @@ Once you have a working set of UI tests, you should run them automatically using
 ## Getting Started
 Easiest way possible is to just create a new build pipeline with the nodejs template.
 Afterwards you can just insert below yaml for a build which runs your tests all 2 hours, publishes reports and publishes test results.
-You then need to create the three pipeline variables crmUrl, userName and userPassword (at least userPassword should be stored as secret value).
+You then need to create the 4 pipeline variables crmUrl, userName, userPassword and mfaSecret (at least userPassword and if used mfaSecret should be stored as secret value).
+You have to set mfaSecret to an empty value even if you don't have a mfaSecret.
 
 ```yaml
 # Node.js
