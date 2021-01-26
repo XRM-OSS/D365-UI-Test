@@ -150,7 +150,7 @@ export class Entity {
      * @remarks Delete button on form will be used
      */
     delete = async() => {
-        this.xrmUiTest.Button.click({ custom: "li[id*='DeletePrimaryRecord']" });
+        await this.xrmUiTest.Button.click({ custom: "li[id*='DeletePrimaryRecord']" });
 
         const confirmButton = await Promise.race([ this._page.waitForSelector("#butBegin", { timeout: this.xrmUiTest.settings.timeout }), this._page.waitForSelector("#confirmButton", { timeout: this.xrmUiTest.settings.timeout })]);
 
@@ -170,7 +170,7 @@ export class Entity {
      * @remarks Deactivate button on form will be used
      */
     deactivate = async() => {
-        this.xrmUiTest.Button.click({ custom: "li[id*='Mscrm.Form.Deactivate']" });
+        await this.xrmUiTest.Button.click({ custom: "li[id*='Mscrm.Form.Deactivate']" });
 
         const confirmButton = await this._page.waitForSelector("button[data-id='ok_id']", { timeout: this.xrmUiTest.settings.timeout });
 
@@ -190,7 +190,7 @@ export class Entity {
      * @remarks Activate button on form will be used
      */
     activate = async() => {
-        this.xrmUiTest.Button.click({ custom: "li[id*='Mscrm.Form.Activate']" });
+        await this.xrmUiTest.Button.click({ custom: "li[id*='Mscrm.Form.Activate']" });
 
         const confirmButton = await this._page.waitForSelector("button[data-id='ok_id']", { timeout: this.xrmUiTest.settings.timeout });
 
