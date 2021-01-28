@@ -47,7 +47,9 @@ describe("Basic operations UCI", () => {
 
 ## Getting started
 ### Writing tests
-There is already a demo project for writing tests with jest available here: https://github.com/DigitalFlow/D365-UI-Test-Jest-Demo
+Thera are demo projects for getting started with various test frameworks:
+- Jest: https://github.com/DigitalFlow/D365-UI-Test-Jest-Demo
+- Mocha: https://github.com/paulbreuler/D365-UI-Mocha-Test
 
 Just follow the instructions in there for getting started.
 
