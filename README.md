@@ -49,7 +49,7 @@ describe("Basic operations UCI", () => {
 ### Writing tests
 Thera are demo projects for getting started with various test frameworks:
 - Jest: https://github.com/DigitalFlow/D365-UI-Test-Jest-Demo
-- Mocha: https://github.com/paulbreuler/D365-UI-Mocha-Test
+- Mocha / Chai: https://github.com/paulbreuler/D365-UI-Mocha-Test (Thanks Paul!)
 
 Just follow the instructions in there for getting started.
 
