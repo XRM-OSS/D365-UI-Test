@@ -98,8 +98,6 @@ export class XrmUiTest {
         settleTime: 2 * 1000
     };
 
-    private rememberButtonId = "#idBtn_Back";
-
     /**
      * Default settings for various actions such as navigation
      */
@@ -338,11 +336,7 @@ export class XrmUiTest {
         }
 
         if (extendedProperties.password) {
-            const handleRememberLogin = await this.enterPassword(extendedProperties);
-
-            if (handleRememberLogin && !extendedProperties.mfaSecret) {
-                await this.dontRememberLogin();
-            }
+            await this.enterPassword(extendedProperties);
         }
 
         if (extendedProperties.mfaSecret) {
@@ -358,11 +352,17 @@ export class XrmUiTest {
             await mfaInput.type(token);
             await this.page.waitForTimeout(500);
             await mfaInput.press("Enter");
-
-            await this.dontRememberLogin();
         }
 
-        await this.waitForIdleness();
+        const result = await Promise.race([
+            this.page.waitForSelector(D365Selectors.Login.dontRememberLogin, { timeout: this.settings.timeout }),
+            this.waitForIdleness()
+        ]);
+        
+        if (this.isPageElement(result)) {
+            await result.click();
+            await this.waitForIdleness();
+        }
     }
 
     /**
@@ -394,16 +394,11 @@ export class XrmUiTest {
         return Date.now();
     }
 
-    private async dontRememberLogin() {
-        const remember = await this.page.waitForSelector(this.rememberButtonId, { timeout: this.settings.timeout });
-        return remember.click();
-    }
-
     private isPageElement(value: any): value is playwright.ElementHandle<SVGElement | HTMLElement> {
         return !!value && (value as playwright.ElementHandle<SVGElement | HTMLElement>).click !== undefined;
     }
 
-    private async enterPassword(extendedProperties: OpenProperties) {
+    private async enterPassword(extendedProperties: OpenProperties): Promise<void> {
         const result = await Promise.race([
             this.page.waitForSelector(D365Selectors.Login.password, { timeout: this.settings.timeout }),
             this.page.waitForNavigation({ waitUntil: "load", timeout: this.settings.timeout })
@@ -420,20 +415,13 @@ export class XrmUiTest {
             if (extendedProperties.passwordFieldSelector) {
                 console.log("Waiting for password field: " + extendedProperties.passwordFieldSelector);
                 await this.page.fill(extendedProperties.passwordFieldSelector, extendedProperties.password);
-
                 await this.page.press(extendedProperties.passwordFieldSelector, "Enter");
-
-                return true;
             }
         }
         else {
-            // For some reason we need the else in here, without it errors will occur
             await result.fill(extendedProperties.password);
             await this.page.keyboard.press("Enter");
-            return true;
         }
-
-        return false;
     }
 
     private async enterUserName(extendedProperties: OpenProperties) {
