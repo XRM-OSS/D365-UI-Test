@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Window | D365-UI-Test</title>
+	<title>NavigationSettings | D365-UI-Test</title>
 	<meta name="description" content="Documentation for D365-UI-Test">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,24 +55,28 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/__global.html">__global</a>
-				</li>
-				<li>
-					<a href="__global.window.html">Window</a>
+					<a href="navigationsettings.html">NavigationSettings</a>
 				</li>
 			</ul>
-			<h1>Interface Window</h1>
+			<h1>Interface NavigationSettings</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Define behavior on navigation, for example handling of blocking popups (e.g. &quot;Do you really want to leave this page?&quot;&quot;)</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Window</span>
+						<span class="target">NavigationSettings</span>
 					</li>
 				</ul>
 			</section>
@@ -83,7 +87,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="__global.window.html#oss_findxrm" class="tsd-kind-icon">oss_<wbr><wbr>Find<wbr>Xrm</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="navigationsettings.html#popupaction" class="tsd-kind-icon">pop<wbr>UpAction</a></li>
 							</ul>
 						</section>
 					</div>
@@ -92,28 +96,18 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="oss_findxrm" class="tsd-anchor"></a>
-					<h3>oss_<wbr><wbr>Find<wbr>Xrm</h3>
-					<div class="tsd-signature tsd-kind-icon">oss_<wbr><wbr>Find<wbr>Xrm<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">XrmStatic</span></div>
+					<a name="popupaction" class="tsd-anchor"></a>
+					<h3>pop<wbr>UpAction</h3>
+					<div class="tsd-signature tsd-kind-icon">pop<wbr>UpAction<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"confirm"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"cancel"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/c347198/src/xrm/Global.ts#L26">src/xrm/Global.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/c347198/src/xrm/Navigation.ts#L13">src/xrm/Navigation.ts:13</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-signature">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">XrmStatic</span></li>
-								</ul>
-								<ul class="tsd-descriptions">
-									<li class="tsd-description">
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">XrmStatic</span></h4>
-									</li>
-								</ul>
-							</li>
-						</ul>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Define whether to confirm or to cancel dialogs that occur on navigation</p>
+						</div>
 					</div>
 				</section>
 			</section>
@@ -166,34 +160,91 @@
 					<li class=" pp-nav pp-page">
 						<a href="../pages/Tutorials/13_Troubleshooting.html">Troubleshooting</a>
 					</li>
-					<li class="label pp-nav pp-group">
-						<span>API</span>
-					</li>
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
-					</li>
-					<li class=" tsd-kind-namespace">
-						<a href="../modules/testutils.html">Test<wbr>Utils</a>
-					</li>
-					<li class="current tsd-kind-namespace">
-						<a href="../modules/__global.html">__global</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="../classes/attribute.html" class="tsd-kind-icon">Attribute</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/button.html" class="tsd-kind-icon">Button</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/control.html" class="tsd-kind-icon">Control</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/dialog.html" class="tsd-kind-icon">Dialog</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/entity.html" class="tsd-kind-icon">Entity</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/form.html" class="tsd-kind-icon">Form</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/navigation.html" class="tsd-kind-icon">Navigation</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/portaluitest.html" class="tsd-kind-icon">Portal<wbr>UiTest</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/section.html" class="tsd-kind-icon">Section</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/subgrid.html" class="tsd-kind-icon">Sub<wbr>Grid</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/tab.html" class="tsd-kind-icon">Tab</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/xrmuitest.html" class="tsd-kind-icon">Xrm<wbr>UiTest</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="buttonidentifier.html" class="tsd-kind-icon">Button<wbr>Identifier</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="controlstate.html" class="tsd-kind-icon">Control<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="formidentifier.html" class="tsd-kind-icon">Form<wbr>Identifier</a>
+					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="__global.window.html" class="tsd-kind-icon">Window</a>
+					<li class="current tsd-kind-interface">
+						<a href="navigationsettings.html" class="tsd-kind-icon">Navigation<wbr>Settings</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="__global.window.html#oss_findxrm" class="tsd-kind-icon">oss_<wbr><wbr>Find<wbr>Xrm</a>
+								<a href="navigationsettings.html#popupaction" class="tsd-kind-icon">pop<wbr>UpAction</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface">
+						<a href="openproperties.html" class="tsd-kind-icon">Open<wbr>Properties</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="sectionstate.html" class="tsd-kind-icon">Section<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="setvaluesettings.html" class="tsd-kind-icon">Set<wbr>Value<wbr>Settings</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="tabstate.html" class="tsd-kind-icon">Tab<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="testsettings.html" class="tsd-kind-icon">Test<wbr>Settings</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#ensurexrmgetter" class="tsd-kind-icon">Ensure<wbr>Xrm<wbr>Getter</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="../globals.html#d365selectors" class="tsd-kind-icon">D365<wbr>Selectors</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

@@ -95,6 +95,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="button.html#click" class="tsd-kind-icon">click</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="button.html#expandmorecommands" class="tsd-kind-icon">expand<wbr>More<wbr>Commands</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="button.html#isvisible" class="tsd-kind-icon">is<wbr>Visible</a></li>
 							</ul>
 						</section>
 					</div>
@@ -112,7 +113,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/8ce0d3c/src/xrm/Button.ts#L35">src/xrm/Button.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/c347198/src/xrm/Button.ts#L35">src/xrm/Button.ts:35</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -138,7 +139,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/8ce0d3c/src/xrm/Button.ts#L72">src/xrm/Button.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/c347198/src/xrm/Button.ts#L79">src/xrm/Button.ts:79</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -174,13 +175,13 @@
 					<a name="expandmorecommands" class="tsd-anchor"></a>
 					<h3>expand<wbr>More<wbr>Commands</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">expand<wbr>More<wbr>Commands<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">expand<wbr>More<wbr>Commands<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/8ce0d3c/src/xrm/Button.ts#L47">src/xrm/Button.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/c347198/src/xrm/Button.ts#L47">src/xrm/Button.ts:47</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -188,8 +189,50 @@
 									<p>Expands the more commands ribbon menu</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>Promise which resolves once more commands was clicked</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isvisible" class="tsd-anchor"></a>
+					<h3>is<wbr>Visible</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Visible<span class="tsd-signature-symbol">(</span>buttonIdentifier<span class="tsd-signature-symbol">: </span><a href="../interfaces/buttonidentifier.html" class="tsd-signature-type">ButtonIdentifier</a>, openMoreCommands<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/c347198/src/xrm/Button.ts#L102">src/xrm/Button.ts:102</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks if a button is visible</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>buttonIdentifier: <a href="../interfaces/buttonidentifier.html" class="tsd-signature-type">ButtonIdentifier</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Identifier for finding button, either by label or by data-id</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> openMoreCommands: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Whether more commands has to be clicked for finding the button. Will be used automatically if button is not found on first try</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise which resolves with a boolean value indicating if the button was visible</p>
 						</li>
 					</ul>
 				</section>
@@ -267,6 +310,9 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="button.html#expandmorecommands" class="tsd-kind-icon">expand<wbr>More<wbr>Commands</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="button.html#isvisible" class="tsd-kind-icon">is<wbr>Visible</a>
+							</li>
 						</ul>
 					</li>
 				</ul>
@@ -311,10 +357,16 @@
 						<a href="../interfaces/formidentifier.html" class="tsd-kind-icon">Form<wbr>Identifier</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="../interfaces/navigationsettings.html" class="tsd-kind-icon">Navigation<wbr>Settings</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="../interfaces/openproperties.html" class="tsd-kind-icon">Open<wbr>Properties</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/sectionstate.html" class="tsd-kind-icon">Section<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/setvaluesettings.html" class="tsd-kind-icon">Set<wbr>Value<wbr>Settings</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/tabstate.html" class="tsd-kind-icon">Tab<wbr>State</a>

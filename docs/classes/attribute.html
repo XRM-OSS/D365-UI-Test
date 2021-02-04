@@ -114,7 +114,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/8ce0d3c/src/xrm/Attribute.ts#L9">src/xrm/Attribute.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/c347198/src/xrm/Attribute.ts#L23">src/xrm/Attribute.ts:23</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -140,7 +140,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/8ce0d3c/src/xrm/Attribute.ts#L22">src/xrm/Attribute.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/c347198/src/xrm/Attribute.ts#L36">src/xrm/Attribute.ts:36</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -174,7 +174,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/8ce0d3c/src/xrm/Attribute.ts#L37">src/xrm/Attribute.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/c347198/src/xrm/Attribute.ts#L51">src/xrm/Attribute.ts:51</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -202,13 +202,13 @@
 					<a name="setvalue" class="tsd-anchor"></a>
 					<h3>set<wbr>Value</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Value<span class="tsd-signature-symbol">(</span>attributeName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, settleTime<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Value<span class="tsd-signature-symbol">(</span>attributeName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, settings<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/setvaluesettings.html" class="tsd-signature-type">SetValueSettings</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/8ce0d3c/src/xrm/Attribute.ts#L67">src/xrm/Attribute.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/c347198/src/xrm/Attribute.ts#L81">src/xrm/Attribute.ts:81</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -235,10 +235,10 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> settleTime: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 500</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> settings: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/setvaluesettings.html" class="tsd-signature-type">SetValueSettings</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
-											<p>Time to wait (ms) after setting value for letting onChange events occur.</p>
+											<p>Settings defining time to wait (ms) after setting value for letting onChange events occur and whether to also write into hidden and readonly fields.</p>
 										</div>
 									</div>
 								</li>
@@ -252,13 +252,13 @@
 					<a name="setvalues" class="tsd-anchor"></a>
 					<h3>set<wbr>Values</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Values<span class="tsd-signature-symbol">(</span>values<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{}</span>, settleTime<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Values<span class="tsd-signature-symbol">(</span>values<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{}</span>, settings<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/setvaluesettings.html" class="tsd-signature-type">SetValueSettings</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/8ce0d3c/src/xrm/Attribute.ts#L99">src/xrm/Attribute.ts:99</a></li>
+									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/c347198/src/xrm/Attribute.ts#L123">src/xrm/Attribute.ts:123</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -287,10 +287,10 @@
 									</ul>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> settleTime: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 2000</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> settings: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/setvaluesettings.html" class="tsd-signature-type">SetValueSettings</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
-											<p>Time to wait after setting the values for letting onChange events occur</p>
+											<p>Settings defining time to wait (ms) after setting value for letting onChange events occur and whether to also write into hidden and readonly fields.</p>
 										</div>
 									</div>
 								</li>
@@ -424,10 +424,16 @@
 						<a href="../interfaces/formidentifier.html" class="tsd-kind-icon">Form<wbr>Identifier</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="../interfaces/navigationsettings.html" class="tsd-kind-icon">Navigation<wbr>Settings</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="../interfaces/openproperties.html" class="tsd-kind-icon">Open<wbr>Properties</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/sectionstate.html" class="tsd-kind-icon">Section<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/setvaluesettings.html" class="tsd-kind-icon">Set<wbr>Value<wbr>Settings</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/tabstate.html" class="tsd-kind-icon">Tab<wbr>State</a>
