@@ -4,5 +4,9 @@ export const D365Selectors = {
         password: "#i0118",
         otp: "#idTxtBx_SAOTCC_OTC",
         dontRememberLogin: "#idBtn_Back"
+    },
+    PopUp: {
+        cancel: "#cancelButton",
+        confirm: "#confirmButton"
     }
 };

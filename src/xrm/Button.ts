@@ -44,8 +44,15 @@ export class Button {
      *
      * @returns Promise which resolves once more commands was clicked
      */
-    expandMoreCommands = async() => {
-        await this.click({ byDataId: "OverflowButton" }, false);
+    expandMoreCommands = async(): Promise<boolean> => {
+        try {
+            await this.click({ byDataId: "OverflowButton" }, false);
+            await this.xrmUiTest.waitForIdleness();
+            return true;
+        }
+        catch {
+            return false;
+        }
     }
 
     private buildSelector = (identifier: ButtonIdentifier) => {
@@ -73,8 +80,7 @@ export class Button {
         const selector = this.buildSelector(buttonIdentifier);
         const button = await this._page.$(selector);
 
-        if (!button && openMoreCommands) {
-            await this.expandMoreCommands();
+        if (!button && openMoreCommands && await this.expandMoreCommands()) {
             await this.click(buttonIdentifier, false);
             return;
         }
@@ -84,5 +90,23 @@ export class Button {
         }
 
         return button.click();
+    }
+
+    /**
+     * Checks if a button is visible
+     *
+     * @param buttonIdentifier Identifier for finding button, either by label or by data-id
+     * @param openMoreCommands [true] Whether more commands has to be clicked for finding the button. Will be used automatically if button is not found on first try
+     * @returns Promise which resolves with a boolean value indicating if the button was visible
+     */
+    isVisible = async(buttonIdentifier: ButtonIdentifier, openMoreCommands = true): Promise<boolean> => {
+        const selector = this.buildSelector(buttonIdentifier);
+        const button = await this._page.$(selector);
+
+        if (!button && openMoreCommands && await this.expandMoreCommands()) {
+            return this.isVisible(buttonIdentifier, false);
+        }
+
+        return button?.isVisible() ?? false;
     }
 }

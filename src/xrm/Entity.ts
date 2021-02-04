@@ -63,7 +63,9 @@ export class Entity {
         const saveResult = this._page.evaluate(() => {
             const xrm = window.oss_FindXrm();
 
-            return xrm.Page.data.save();
+            return new Promise((resolve, reject) => {
+                xrm.Page.data.save().then(resolve, reject);
+            });
         });
 
         await Promise.race([
@@ -81,6 +83,9 @@ export class Entity {
                 await Promise.all([duplicateCheckButton.click(), saveResult, Promise.race([...waitSelectors, this.xrmUiTest.waitForIdleness()])]);
             }
             else {
+                // page.evaluate of saveResult could crash on page navigation without this catch
+                saveResult.catch(() => {});
+                
                 await this._page.click('button[data-id="close_dialog"]');
                 throw new Error("Duplicate records found. Pass true for save parameter 'ignoreDuplicateCheck' for ignore and saving");
             }

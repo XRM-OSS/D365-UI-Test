@@ -47,17 +47,20 @@ describe("Basic operations UCI", () => {
 
         await xrmTest.Attribute.setValue("name", "Test name");
 
+        expect(await xrmTest.Button.isVisible({ byLabel: "New" })).toBeTruthy();
+
         const value = await xrmTest.Attribute.getValue("name");
         expect(value).toBe("Test name");
     });
 
     test("It should set option field", async () => {
         jest.setTimeout(60000);
-
         await xrmTest.Navigation.openCreateForm("account");
         await xrmTest.Form.noSubmit();
 
-        await xrmTest.Attribute.setValue("address1_shippingmethodcode", 1);
+        await xrmTest.Attribute.setValues({
+            "address1_shippingmethodcode": 1
+        });
 
         const value = await xrmTest.Attribute.getValue("address1_shippingmethodcode");
         expect(value).toBe(1);
