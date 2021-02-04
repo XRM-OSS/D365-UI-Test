@@ -175,15 +175,8 @@ export class Entity {
     deactivate = async() => {
         await this.xrmUiTest.Button.click({ custom: "li[id*='Mscrm.Form.Deactivate']" });
 
-        const confirmButton = await this._page.waitForSelector("button[data-id='ok_id']", { timeout: this.xrmUiTest.settings.timeout });
-
-        if (confirmButton) {
-            await confirmButton.click();
-            await this.xrmUiTest.waitForIdleness();
-        }
-        else {
-            throw new Error("Failed to find deactivate confirmation button");
-        }
+        await this._page.click("button[data-id='ok_id']", { timeout: this.xrmUiTest.settings.timeout });
+        await this.xrmUiTest.waitForIdleness();
     }
 
     /**
@@ -195,14 +188,7 @@ export class Entity {
     activate = async() => {
         await this.xrmUiTest.Button.click({ custom: "li[id*='Mscrm.Form.Activate']" });
 
-        const confirmButton = await this._page.waitForSelector("button[data-id='ok_id']", { timeout: this.xrmUiTest.settings.timeout });
-
-        if (confirmButton) {
-            await confirmButton.click();
-            await this.xrmUiTest.waitForIdleness();
-        }
-        else {
-            throw new Error("Failed to find activate confirmation button");
-        }
+        await this._page.click("button[data-id='ok_id']", { timeout: this.xrmUiTest.settings.timeout });
+        await this.xrmUiTest.waitForIdleness();
     }
 }

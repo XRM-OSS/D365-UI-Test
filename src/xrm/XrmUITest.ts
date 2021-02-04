@@ -341,28 +341,23 @@ export class XrmUiTest {
 
         if (extendedProperties.mfaSecret) {
             if (extendedProperties.mfaToggleFieldSelector) {
-                const mfaToggle = await this.page.waitForSelector(extendedProperties.mfaToggleFieldSelector, { timeout: this.settings.timeout });
-                await mfaToggle.click();
+                await this.page.click(extendedProperties.mfaToggleFieldSelector, { timeout: this.settings.timeout });
                 await this.page.waitForTimeout(500);
             }
 
-            const mfaInput = await this.page.waitForSelector(extendedProperties.mfaFieldSelector ?? D365Selectors.Login.otp);
             const token = speakeasy.totp({ secret: extendedProperties.mfaSecret, encoding: "base32" });
+            await this.page.type(extendedProperties.mfaFieldSelector ?? D365Selectors.Login.otp, token);
 
-            await mfaInput.type(token);
             await this.page.waitForTimeout(500);
-            await mfaInput.press("Enter");
+            await this.page.keyboard.press("Enter");
         }
 
-        const result = await Promise.race([
-            this.page.waitForSelector(D365Selectors.Login.dontRememberLogin, { timeout: this.settings.timeout }),
+        await Promise.race([
+            // Either wait for clicking the "dont remember login" button and the UCI becoming idle...
+            this.page.click(D365Selectors.Login.dontRememberLogin, { timeout: this.settings.timeout }).then(this.waitForIdleness),
+            // ...or for getting signed in directly without having to click "dont remember login"
             this.waitForIdleness()
         ]);
-
-        if (this.isPageElement(result)) {
-            await result.click();
-            await this.waitForIdleness();
-        }
     }
 
     /**
@@ -400,12 +395,12 @@ export class XrmUiTest {
 
     private async enterPassword(extendedProperties: OpenProperties): Promise<void> {
         const result = await Promise.race([
-            this.page.waitForSelector(D365Selectors.Login.password, { timeout: this.settings.timeout }),
+            this.page.fill(D365Selectors.Login.password, extendedProperties.password, { timeout: this.settings.timeout }),
             this.page.waitForNavigation({ waitUntil: "load", timeout: this.settings.timeout })
         ]);
 
         // For non online authentification, wait for custom login page to settle
-        if (!this.isPageElement(result)) {
+        if (!!result) {
             console.log(`No online auth, handling custom auth. If nothing happens, please specify passwordFieldSelector and optionally userNameFieldSelector.`);
 
             if (extendedProperties.userNameFieldSelector) {
@@ -419,7 +414,6 @@ export class XrmUiTest {
             }
         }
         else {
-            await result.fill(extendedProperties.password);
             await this.page.keyboard.press("Enter");
         }
     }
