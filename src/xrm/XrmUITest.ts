@@ -358,7 +358,7 @@ export class XrmUiTest {
             this.page.waitForSelector(D365Selectors.Login.dontRememberLogin, { timeout: this.settings.timeout }),
             this.waitForIdleness()
         ]);
-        
+
         if (this.isPageElement(result)) {
             await result.click();
             await this.waitForIdleness();

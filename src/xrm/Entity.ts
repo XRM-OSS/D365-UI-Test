@@ -1,4 +1,5 @@
 import * as playwright from "playwright";
+import { D365Selectors } from "../domain/D365Selectors";
 import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
 
@@ -85,7 +86,7 @@ export class Entity {
             else {
                 // page.evaluate of saveResult could crash on page navigation without this catch
                 saveResult.catch(() => {});
-                
+
                 await this._page.click('button[data-id="close_dialog"]');
                 throw new Error("Duplicate records found. Pass true for save parameter 'ignoreDuplicateCheck' for ignore and saving");
             }
@@ -157,10 +158,13 @@ export class Entity {
     delete = async() => {
         await this.xrmUiTest.Button.click({ custom: "li[id*='DeletePrimaryRecord']" });
 
-        const confirmButton = await Promise.race([ this._page.waitForSelector("#butBegin", { timeout: this.xrmUiTest.settings.timeout }), this._page.waitForSelector("#confirmButton", { timeout: this.xrmUiTest.settings.timeout })]);
+        const confirmButton = await Promise.race([ this._page.waitForSelector("#butBegin", { timeout: this.xrmUiTest.settings.timeout }), this._page.waitForSelector(D365Selectors.PopUp.confirm, { timeout: this.xrmUiTest.settings.timeout })]);
 
         if (confirmButton) {
-            await confirmButton.click();
+            await Promise.all([
+                confirmButton.click(),
+                this._page.waitForNavigation({ waitUntil: "load", timeout: this.xrmUiTest.settings.timeout })
+            ]);
             await this.xrmUiTest.waitForIdleness();
         }
         else {
