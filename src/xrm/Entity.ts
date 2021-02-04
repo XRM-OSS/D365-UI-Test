@@ -158,18 +158,12 @@ export class Entity {
     delete = async() => {
         await this.xrmUiTest.Button.click({ custom: "li[id*='DeletePrimaryRecord']" });
 
-        const confirmButton = await Promise.race([ this._page.waitForSelector("#butBegin", { timeout: this.xrmUiTest.settings.timeout }), this._page.waitForSelector(D365Selectors.PopUp.confirm, { timeout: this.xrmUiTest.settings.timeout })]);
+        await Promise.all([
+            this._page.waitForNavigation({ waitUntil: "load", timeout: this.xrmUiTest.settings.timeout }),
+            this._page.click(D365Selectors.PopUp.confirm, { timeout: this.xrmUiTest.settings.timeout })
+        ]);
 
-        if (confirmButton) {
-            await Promise.all([
-                confirmButton.click(),
-                this._page.waitForNavigation({ waitUntil: "load", timeout: this.xrmUiTest.settings.timeout })
-            ]);
-            await this.xrmUiTest.waitForIdleness();
-        }
-        else {
-            throw new Error("Failed to find delete confirmation button");
-        }
+        await this.xrmUiTest.waitForIdleness();
     }
 
     /**

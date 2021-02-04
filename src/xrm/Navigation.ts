@@ -117,7 +117,7 @@ export class Navigation {
         this.xrmUiTest.AppId = appId;
 
         const navigationPromise = this._page.goto(`${this._crmUrl}/main.aspx?appid=${appId}`, { waitUntil: "load", timeout: this.xrmUiTest.settings.timeout });
-        
+
         await this.HandlePopUpOnNavigation(navigationPromise, settings);
         await this.xrmUiTest.waitForIdleness();
     }
