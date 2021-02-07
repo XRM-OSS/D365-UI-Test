@@ -1,4 +1,5 @@
 import * as playwright from "playwright";
+import { isPageElement } from "../domain/SharedLogic";
 import { D365Selectors } from "../domain/D365Selectors";
 import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
@@ -26,9 +27,9 @@ export class Navigation {
         this.xrmUiTest = xrmUiTest;
     }
 
-    private HandlePopUpOnNavigation (navigationPromise: Promise<any>, settings: NavigationSettings) {
+    private async HandlePopUpOnNavigation (navigationPromise: Promise<playwright.Response | Xrm.Async.PromiseLike<Xrm.Navigation.OpenFormResult>>, settings: NavigationSettings) {
         const defaultSettings: NavigationSettings = {
-            popUpAction: "confirm"
+            popUpAction: "cancel"
         };
 
         const safeSettings = {
@@ -36,24 +37,29 @@ export class Navigation {
             ...settings
         };
 
-        const popUpButton = safeSettings.popUpAction === "confirm"
-            ? D365Selectors.PopUp.confirm
-            : D365Selectors.PopUp.cancel;
+        const popUpButton = safeSettings.popUpAction === "cancel"
+            ? D365Selectors.PopUp.cancel
+            : D365Selectors.PopUp.confirm;
 
-        return Promise.all([
+        const result = await Promise.race([
             navigationPromise,
-            Promise.race([
-                navigationPromise,
-                // If any dialog blocks navigation, confirm it
-                this._page.click(popUpButton, { timeout: this.xrmUiTest.settings.timeout })
-            ])
+            // Catch dialogs that block navigation
+            this._page.waitForSelector(popUpButton, { timeout: this.xrmUiTest.settings.timeout })
         ]);
+
+        if (isPageElement(result)) {
+            await Promise.all([
+                navigationPromise,
+                result.click()
+            ]);
+        }
     }
 
     /**
      * Opens a create form for the specified entity
      *
      * @param entityName The entity to open the form for
+     * @param settings How to handle dialogs that prevent navigation. Cancel discards the dialog, confirm accepts it. Default is discarding it.
      * @returns Promise which resolves once form is fully loaded
      */
     openCreateForm = async (entityName: string, settings?: NavigationSettings) => {
@@ -62,7 +68,7 @@ export class Navigation {
         const navigationPromise = this._page.evaluate((entityName: string) => {
             const xrm = window.oss_FindXrm();
 
-            xrm.Navigation.openForm({ entityName: entityName });
+            return xrm.Navigation.openForm({ entityName: entityName });
         }, entityName);
 
         await this.HandlePopUpOnNavigation(navigationPromise, settings);
@@ -74,6 +80,7 @@ export class Navigation {
      *
      * @param entityName The entity to open the form for
      * @param entityId The id of the record to open
+     * @param settings How to handle dialogs that prevent navigation. Cancel discards the dialog, confirm accepts it. Default is discarding it.
      * @returns Promise which resolves once form is fully loaded
      */
     openUpdateForm = async (entityName: string, entityId: string, settings?: NavigationSettings) => {
@@ -82,7 +89,7 @@ export class Navigation {
         const navigationPromise = this._page.evaluate(([ entityName, entityId ]) => {
             const xrm = window.oss_FindXrm();
 
-            xrm.Navigation.openForm({ entityName: entityName, entityId: entityId });
+            return xrm.Navigation.openForm({ entityName: entityName, entityId: entityId });
         }, [entityName, entityId]);
 
         await this.HandlePopUpOnNavigation(navigationPromise, settings);
@@ -101,7 +108,7 @@ export class Navigation {
         await this._page.evaluate((entityName: string) => {
             const xrm = window.oss_FindXrm();
 
-            xrm.Navigation.openForm({ entityName: entityName, useQuickCreateForm: true });
+            return xrm.Navigation.openForm({ entityName: entityName, useQuickCreateForm: true });
         }, entityName);
 
         await this.xrmUiTest.waitForIdleness();
@@ -111,6 +118,7 @@ export class Navigation {
      * Opens the specified UCI app
      *
      * @param appId The id of the app to open
+     * @param settings How to handle dialogs that prevent navigation. Cancel discards the dialog, confirm accepts it. Default is discarding it.
      * @returns Promise which resolves once the app is fully loaded
      */
     openAppById = async(appId: string, settings?: NavigationSettings) => {

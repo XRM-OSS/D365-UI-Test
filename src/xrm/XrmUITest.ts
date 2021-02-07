@@ -12,6 +12,7 @@ import { TestSettings } from "../domain/TestSettings";
 import * as speakeasy from "speakeasy";
 import { D365Selectors } from "../domain/D365Selectors";
 import { Section } from "./Section";
+import { isPageElement } from "../domain/SharedLogic";
 
 /**
  * Parameters for opening Dynamics
@@ -352,12 +353,17 @@ export class XrmUiTest {
             await this.page.keyboard.press("Enter");
         }
 
-        await Promise.race([
+        const result = await Promise.race([
             // Either wait for clicking the "dont remember login" button and the UCI becoming idle...
-            this.page.click(D365Selectors.Login.dontRememberLogin, { timeout: this.settings.timeout }).then(this.waitForIdleness),
+            this.page.waitForSelector(D365Selectors.Login.dontRememberLogin, { timeout: this.settings.timeout }),
             // ...or for getting signed in directly without having to click "dont remember login"
             this.waitForIdleness()
         ]);
+
+        if (isPageElement(result)) {
+            await result.click();
+            await this.waitForIdleness();
+        }
     }
 
     /**
@@ -389,18 +395,18 @@ export class XrmUiTest {
         return Date.now();
     }
 
-    private isPageElement(value: any): value is playwright.ElementHandle<SVGElement | HTMLElement> {
-        return !!value && (value as playwright.ElementHandle<SVGElement | HTMLElement>).click !== undefined;
-    }
-
     private async enterPassword(extendedProperties: OpenProperties): Promise<void> {
         const result = await Promise.race([
-            this.page.fill(D365Selectors.Login.password, extendedProperties.password, { timeout: this.settings.timeout }),
+            this.page.waitForSelector(D365Selectors.Login.password, { timeout: this.settings.timeout }),
             this.page.waitForNavigation({ waitUntil: "load", timeout: this.settings.timeout })
         ]);
 
         // For non online authentification, wait for custom login page to settle
-        if (!!result) {
+        if (isPageElement(result)) {
+            await result.fill(extendedProperties.password, { timeout: this.settings.timeout }),
+            await this.page.keyboard.press("Enter");
+        }
+        else {
             console.log(`No online auth, handling custom auth. If nothing happens, please specify passwordFieldSelector and optionally userNameFieldSelector.`);
 
             if (extendedProperties.userNameFieldSelector) {
@@ -412,9 +418,6 @@ export class XrmUiTest {
                 await this.page.fill(extendedProperties.passwordFieldSelector, extendedProperties.password);
                 await this.page.press(extendedProperties.passwordFieldSelector, "Enter");
             }
-        }
-        else {
-            await this.page.keyboard.press("Enter");
         }
     }
 

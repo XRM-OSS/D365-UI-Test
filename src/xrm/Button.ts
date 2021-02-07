@@ -76,13 +76,12 @@ export class Button {
      * @param openMoreCommands [true] Whether more commands has to be clicked for finding the button. Will be used automatically if button is not found on first try
      * @returns Promise which resolves once button was clicked
      */
-    click = async(buttonIdentifier: ButtonIdentifier, openMoreCommands = true) => {
+    click = async(buttonIdentifier: ButtonIdentifier, openMoreCommands = true): Promise<void> => {
         const selector = this.buildSelector(buttonIdentifier);
         const button = await this._page.$(selector);
 
         if (!button && openMoreCommands && await this.expandMoreCommands()) {
-            await this.click(buttonIdentifier, false);
-            return;
+            return this.click(buttonIdentifier, false);
         }
 
         if (!button) {
