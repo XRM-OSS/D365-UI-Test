@@ -282,7 +282,7 @@ export class XrmUiTest {
         this._context = await this._browser.newContext({ viewport: null, ...contextOptions });
         this._page = await this._context.newPage();
 
-        return [this.browser, this._context, this._page];
+        return [this._browser, this._context, this._page];
     }
 
     /**

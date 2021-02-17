@@ -79,7 +79,7 @@ export class Attribute {
      * @returns Returns promise that resolves once value is set and settleTime is over
      */
     setValue = async (attributeName: string, value: any, settings?: number | SetValueSettings) => {
-        const defaults : SetValueSettings = {
+        const defaults: SetValueSettings = {
             settleTime: 500,
             forceValue: false
         };
@@ -123,6 +123,6 @@ export class Attribute {
     setValues = async (values: {[key: string]: any}, settings?: number | SetValueSettings) => {
         for (const attributeName in values) {
             await this.setValue(attributeName, values[attributeName], settings);
-        };
+        }
     }
 }

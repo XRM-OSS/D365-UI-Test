@@ -32,13 +32,13 @@ export class PortalUiTest {
     launch = async (browser: "chromium" | "firefox" | "webkit" = "chromium",
         launchOptions?: playwright.LaunchOptions,
         contextOptions?: playwright.BrowserContextOptions,
-    ): Promise<[playwright.Browser, playwright.Page]> => {
+    ): Promise<[playwright.Browser, playwright.BrowserContext, playwright.Page]> => {
         this._browser = await playwright[browser].launch(launchOptions);
         // tslint:disable-next-line:no-null-keyword
         this._context = await this._browser.newContext({ viewport: null, ...contextOptions });
         this._page = await this._context.newPage();
 
-        return [this.browser, this._context, this._page];
+        return [this._browser, this._context, this._page];
     }
 
     /**

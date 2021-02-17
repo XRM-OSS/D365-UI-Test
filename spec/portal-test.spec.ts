@@ -1,9 +1,9 @@
-import { XrmUiTest } from "../src";
+import { PortalUiTest } from "../src";
 import { TestUtils } from "../src/utils/TestUtils";
 import * as playwright from "playwright";
 import * as fs from "fs";
 
-const xrmTest = new XrmUiTest();
+const portalTest = new PortalUiTest();
 let browser: playwright.Browser;
 let context: playwright.BrowserContext;
 let page: playwright.Page;
@@ -12,7 +12,7 @@ describe("Basic operations UCI", () => {
     beforeAll(async () => {
         jest.setTimeout(60000);
 
-        await xrmTest.launch("chromium", {
+        await portalTest.launch("chromium", {
             headless: false,
             args: [
                 '--disable-setuid-sandbox',
@@ -67,6 +67,6 @@ describe("Basic operations UCI", () => {
     }));
 
     afterAll(() => {
-        return xrmTest.close();
+        return portalTest.close();
     });
 });
