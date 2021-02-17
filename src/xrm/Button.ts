@@ -88,7 +88,8 @@ export class Button {
             throw new Error("Failed to find button");
         }
 
-        return button.click();
+        await button.click();
+        return this.xrmUiTest.waitForIdleness();
     }
 
     /**
