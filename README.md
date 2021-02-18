@@ -1,5 +1,5 @@
 # D365-UI-Test
-[![npm downloads](https://img.shields.io/npm/dt/d365-ui-test.svg)](http://npm-stats.com/~packages/d365-ui-test)
+[![npm downloads](https://img.shields.io/npm/dt/d365-ui-test.svg)](http://npm-stats.org/#/d365-ui-test)
 
 ## What's this?
 D365-UI-Test is an UI testing framework for easy and robust UI testing in Dynamics 365 CE and Dynamics 365 Portals.
