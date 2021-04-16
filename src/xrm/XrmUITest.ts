@@ -325,45 +325,63 @@ export class XrmUiTest {
      * @returns {void} Resolves as soon as D365 is logged in and open
      */
     open = async (url: string, extendedProperties: OpenProperties) => {
-        this._crmUrl = url;
-        this._appId = extendedProperties.appId;
+        const openInternal = async (retryCount = 0): Promise<any> => {
+            try {
+                this._crmUrl = url;
+                this._appId = extendedProperties.appId;
 
-        await Promise.all([
-            this.page.goto(`${url}/main.aspx?forceUCI=1`, { waitUntil: "load", timeout: this.settings.timeout })
-        ]);
+                await Promise.all([
+                    this.page.goto(`${url}/main.aspx?forceUCI=1`, { waitUntil: "load", timeout: this.settings.timeout })
+                ]);
 
-        if (extendedProperties.userName) {
-            await this.enterUserName(extendedProperties);
-        }
+                if (extendedProperties.userName) {
+                    await this.enterUserName(extendedProperties);
+                }
 
-        if (extendedProperties.password) {
-            await this.enterPassword(extendedProperties);
-        }
+                if (extendedProperties.password) {
+                    await this.enterPassword(extendedProperties);
+                }
 
-        if (extendedProperties.mfaSecret) {
-            if (extendedProperties.mfaToggleFieldSelector) {
-                await this.page.click(extendedProperties.mfaToggleFieldSelector, { timeout: this.settings.timeout });
-                await this.page.waitForTimeout(500);
+                if (extendedProperties.mfaSecret) {
+                    if (extendedProperties.mfaToggleFieldSelector) {
+                        await this.page.click(extendedProperties.mfaToggleFieldSelector, { timeout: this.settings.timeout });
+                        await this.page.waitForTimeout(500);
+                    }
+
+                    const token = speakeasy.totp({ secret: extendedProperties.mfaSecret, encoding: "base32" });
+                    await this.page.type(extendedProperties.mfaFieldSelector ?? D365Selectors.Login.otp, token);
+
+                    await this.page.waitForTimeout(500);
+                    await this.page.keyboard.press("Enter");
+                }
+
+                const result = await Promise.race([
+                    // Either wait for clicking the "dont remember login" button and the UCI becoming idle...
+                    this.page.waitForSelector(D365Selectors.Login.dontRememberLogin, { timeout: this.settings.timeout }),
+                    // ...or for getting signed in directly without having to click "dont remember login"
+                    this.waitForIdleness()
+                ]);
+
+                if (isPageElement(result)) {
+                    await result.click();
+                    await this.waitForIdleness();
+                }
             }
+            catch (e) {
+                if (retryCount < 3) {
+                    const waitTime = 5000 * (retryCount + 1);
 
-            const token = speakeasy.totp({ secret: extendedProperties.mfaSecret, encoding: "base32" });
-            await this.page.type(extendedProperties.mfaFieldSelector ?? D365Selectors.Login.otp, token);
+                    console.log(`Failed to log in, waiting ${waitTime}ms and retrying. Retry number ${(retryCount + 1)}`);
 
-            await this.page.waitForTimeout(500);
-            await this.page.keyboard.press("Enter");
-        }
+                    await this.page.waitForTimeout(waitTime);
+                    return openInternal(retryCount + 1);
+                }
 
-        const result = await Promise.race([
-            // Either wait for clicking the "dont remember login" button and the UCI becoming idle...
-            this.page.waitForSelector(D365Selectors.Login.dontRememberLogin, { timeout: this.settings.timeout }),
-            // ...or for getting signed in directly without having to click "dont remember login"
-            this.waitForIdleness()
-        ]);
+                throw e;
+            }
+        };
 
-        if (isPageElement(result)) {
-            await result.click();
-            await this.waitForIdleness();
-        }
+        await openInternal();
     }
 
     /**

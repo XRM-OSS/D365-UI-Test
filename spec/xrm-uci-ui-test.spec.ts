@@ -32,6 +32,8 @@ describe("Basic operations UCI", () => {
     });
 
     test("It should log in", async () => {
+        jest.setTimeout(120000);
+
         const settingsPath = path.join(__dirname, "../../settings.txt");
         const settingsFound = fs.existsSync(settingsPath);
         const config = settingsFound ? fs.readFileSync(settingsPath, {encoding: "utf-8"}) : `${process.env.CRM_URL ?? ""},${process.env.USER_NAME ?? ""},${process.env.USER_PASSWORD ?? ""},${process.env.MFA_SECRET ?? ""}`;
