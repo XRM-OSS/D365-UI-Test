@@ -1,4 +1,5 @@
 import * as playwright from "playwright";
+import { RethrownError } from "../utils/RethrownError";
 import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
 
@@ -31,16 +32,21 @@ export class Section {
      * @returns Promise which fulfills with the current section state
      */
     get = async (tabName: string, sectionName: string): Promise<SectionState> => {
-        await EnsureXrmGetter(this._page);
+        try {
+            await EnsureXrmGetter(this._page);
 
-        return this._page.evaluate(([tabName, sectionName]: [string, string]) => {
-            const xrm = window.oss_FindXrm();
-            const tab = xrm.Page.ui.tabs.get(tabName);
-            const section = tab.sections.get(sectionName);
+            return this._page.evaluate(([tabName, sectionName]: [string, string]) => {
+                const xrm = window.oss_FindXrm();
+                const tab = xrm.Page.ui.tabs.get(tabName);
+                const section = tab.sections.get(sectionName);
 
-            return {
-                isVisible: section.getVisible() && tab.getVisible()
-            };
-        }, [tabName, sectionName]);
+                return {
+                    isVisible: section.getVisible() && tab.getVisible()
+                };
+            }, [tabName, sectionName]);
+        }
+        catch (e) {
+            throw new RethrownError(`Error when getting section '${sectionName}'`, e);
+        }
     }
 }

@@ -1,4 +1,5 @@
 import * as playwright from "playwright";
+import { RethrownError } from "../utils/RethrownError";
 import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
 
@@ -30,15 +31,20 @@ export class Tab {
      * @returns Promise which fulfills with the current control state
      */
     open = async (tabName: string) => {
-        await EnsureXrmGetter(this._page);
+        try {
+            await EnsureXrmGetter(this._page);
 
-        await this._page.evaluate((tabName: string) => {
-            const xrm = window.oss_FindXrm();
+            await this._page.evaluate((tabName: string) => {
+                const xrm = window.oss_FindXrm();
 
-            xrm.Page.ui.tabs.get(tabName).setDisplayState("expanded");
-        }, tabName);
+                xrm.Page.ui.tabs.get(tabName).setDisplayState("expanded");
+            }, tabName);
 
-        await this.xrmUiTest.waitForIdleness();
+            await this.xrmUiTest.waitForIdleness();
+        }
+        catch (e) {
+            throw new RethrownError(`Error when opening tab '${tabName}'`, e);
+        }
     }
 
     /**
@@ -48,15 +54,20 @@ export class Tab {
      * @returns Promise which fulfills with the current tab state
      */
     get = async (name: string): Promise<TabState> => {
-        await EnsureXrmGetter(this._page);
+        try {
+            await EnsureXrmGetter(this._page);
 
-        return this._page.evaluate((tabName: string) => {
-            const xrm = window.oss_FindXrm();
-            const tab = xrm.Page.ui.tabs.get(tabName);
+            return this._page.evaluate((tabName: string) => {
+                const xrm = window.oss_FindXrm();
+                const tab = xrm.Page.ui.tabs.get(tabName);
 
-            return {
-                isVisible: tab.getVisible()
-            };
-        }, name);
+                return {
+                    isVisible: tab.getVisible()
+                };
+            }, name);
+        }
+        catch (e) {
+            throw new RethrownError(`Error when getting tab '${name}'`, e);
+        }
     }
 }

@@ -1,4 +1,5 @@
 import * as playwright from "playwright";
+import { RethrownError } from "../utils/RethrownError";
 import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
 
@@ -35,17 +36,22 @@ export class Control {
      * @returns Promise which fulfills with the current control state
      */
     get = async (controlName: string): Promise<ControlState> => {
-        await EnsureXrmGetter(this._page);
+        try {
+            await EnsureXrmGetter(this._page);
 
-        return this._page.evaluate((controlName: string) => {
-            const xrm = window.oss_FindXrm();
-            const control = xrm.Page.getControl(controlName);
+            return this._page.evaluate((controlName: string) => {
+                const xrm = window.oss_FindXrm();
+                const control = xrm.Page.getControl(controlName);
 
-            return {
-                isVisible: control.getVisible() && (!control.getParent() || control.getParent().getVisible()) && (!control.getParent() || !control.getParent().getParent() || control.getParent().getParent().getVisible()),
-                isDisabled: (control as any).getDisabled() as boolean
-            };
-        }, controlName);
+                return {
+                    isVisible: control.getVisible() && (!control.getParent() || control.getParent().getVisible()) && (!control.getParent() || !control.getParent().getParent() || control.getParent().getParent().getVisible()),
+                    isDisabled: (control as any).getDisabled() as boolean
+                };
+            }, controlName);
+        }
+        catch (e) {
+            throw new RethrownError(`Error when setting value of control '${controlName}'`, e);
+        }
     }
 
     /**
@@ -55,13 +61,18 @@ export class Control {
      * @returns Promise which fulfills with the control's options
      */
     getOptions = async (controlName: string): Promise<Array<Xrm.OptionSetValue>> => {
-        await EnsureXrmGetter(this._page);
+        try {
+            await EnsureXrmGetter(this._page);
 
-        return this._page.evaluate((controlName: string) => {
-            const xrm = window.oss_FindXrm();
-            const control = xrm.Page.getControl<Xrm.Controls.OptionSetControl>(controlName);
+            return this._page.evaluate((controlName: string) => {
+                const xrm = window.oss_FindXrm();
+                const control = xrm.Page.getControl<Xrm.Controls.OptionSetControl>(controlName);
 
-            return (control as any).getOptions();
-        }, controlName);
+                return (control as any).getOptions();
+            }, controlName);
+        }
+        catch (e) {
+            throw new RethrownError(`Error when getting options of control '${controlName}'`, e);
+        }
     }
 }

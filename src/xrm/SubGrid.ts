@@ -1,4 +1,5 @@
 import * as playwright from "playwright";
+import { RethrownError } from "../utils/RethrownError";
 import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
 
@@ -19,19 +20,24 @@ export class SubGrid {
      * @param {String} subgridName The control name of the subgrid to use
      * @returns {Promise<number>} Promise which fulfills with the total record count
      */
-    getRecordCount = async( subgridName: string ) => {
-        await EnsureXrmGetter(this._page);
+    getRecordCount = async(subgridName: string ) => {
+        try {
+            await EnsureXrmGetter(this._page);
 
-        return this._page.evaluate((name) => {
-            const xrm = window.oss_FindXrm();
-            const control = xrm.Page.getControl<Xrm.Controls.GridControl>(name);
+            return this._page.evaluate((name) => {
+                const xrm = window.oss_FindXrm();
+                const control = xrm.Page.getControl<Xrm.Controls.GridControl>(name);
 
-            if (!control) {
-                return undefined;
-            }
+                if (!control) {
+                    return undefined;
+                }
 
-            return control.getGrid().getTotalRecordCount();
-        }, subgridName);
+                return control.getGrid().getTotalRecordCount();
+            }, subgridName);
+        }
+        catch (e) {
+            throw new RethrownError(`Error when getting record count of subgrid '${subgridName}'`, e);
+        }
     }
 
     /**
@@ -41,24 +47,29 @@ export class SubGrid {
      * @param {Number} recordNumber Index of the record to open
      * @returns {Promise<void>} Promise which fulfills when record is opened
      */
-    openNthRecord = async( subgridName: string, recordNumber: number ) => {
-        await EnsureXrmGetter(this._page);
+    openNthRecord = async(subgridName: string, recordNumber: number ) => {
+        try {
+            await EnsureXrmGetter(this._page);
 
-        const recordReference = await this._page.evaluate(([name, position]: [string, number]) => {
-            const xrm = window.oss_FindXrm();
-            const control = xrm.Page.getControl<Xrm.Controls.GridControl>(name);
+            const recordReference = await this._page.evaluate(([name, position]: [string, number]) => {
+                const xrm = window.oss_FindXrm();
+                const control = xrm.Page.getControl<Xrm.Controls.GridControl>(name);
 
-            if (!control) {
-                return undefined;
-            }
+                if (!control) {
+                    return undefined;
+                }
 
-            const grid = control.getGrid();
-            const record = grid.getRows().get(position).getData();
+                const grid = control.getGrid();
+                const record = grid.getRows().get(position).getData();
 
-            return record.getEntity().getEntityReference();
-        }, [subgridName, recordNumber]);
+                return record.getEntity().getEntityReference();
+            }, [subgridName, recordNumber]);
 
-        return this.xrmUiTest.Navigation.openUpdateForm(recordReference.entityType, recordReference.id);
+            return this.xrmUiTest.Navigation.openUpdateForm(recordReference.entityType, recordReference.id);
+        }
+        catch (e) {
+            throw new RethrownError(`Error when setting opening record ${recordNumber} of subgrid '${subgridName}'`, e);
+        }
     }
 
     /**
@@ -67,18 +78,23 @@ export class SubGrid {
      * @param {String} subgridName The control name of the subgrid to refresh
      * @returns {Promise<void>} Promise which fulfills once refreshing is done
      */
-    refresh = async( subgridName: string) => {
-        await EnsureXrmGetter(this._page);
+    refresh = async(subgridName: string) => {
+        try {
+            await EnsureXrmGetter(this._page);
 
-        return this._page.evaluate((name) => {
-            const xrm = window.oss_FindXrm();
-            const control = xrm.Page.getControl<Xrm.Controls.GridControl>(name);
+            return this._page.evaluate((name) => {
+                const xrm = window.oss_FindXrm();
+                const control = xrm.Page.getControl<Xrm.Controls.GridControl>(name);
 
-            if (!control) {
-                return;
-            }
+                if (!control) {
+                    return;
+                }
 
-            return control.refresh();
-        }, subgridName);
+                return control.refresh();
+            }, subgridName);
+        }
+        catch (e) {
+            throw new RethrownError(`Error when refreshing subgrid '${subgridName}'`, e);
+        }
     }
 }

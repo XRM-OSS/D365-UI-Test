@@ -1,4 +1,5 @@
 import * as playwright from "playwright";
+import { RethrownError } from "../utils/RethrownError";
 import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
 
@@ -34,12 +35,17 @@ export class Attribute {
      * @returns Required level of the specified attribute
      */
     getRequiredLevel = async (attributeName: string) => {
-        await EnsureXrmGetter(this._page);
+        try {
+            await EnsureXrmGetter(this._page);
 
-        return this._page.evaluate((attributeName: string) => {
-            const xrm = window.oss_FindXrm();
-            return xrm.Page.getAttribute(attributeName).getRequiredLevel();
-        }, attributeName);
+            return this._page.evaluate((attributeName: string) => {
+                const xrm = window.oss_FindXrm();
+                return xrm.Page.getAttribute(attributeName).getRequiredLevel();
+            }, attributeName);
+        }
+        catch (e) {
+            throw new RethrownError(`Error when getting required level of attribute '${attributeName}'`, e);
+        }
     }
 
     /**
@@ -49,24 +55,29 @@ export class Attribute {
      * @returns Value of the specified attribute
      */
     getValue = async (attributeName: string) => {
-        await EnsureXrmGetter(this._page);
+        try {
+            await EnsureXrmGetter(this._page);
 
-        const [attributeType, value] = await this._page.evaluate((attributeName: string) => {
-            const xrm = window.oss_FindXrm();
-            const attribute = xrm.Page.getAttribute(attributeName);
-            const attributeType = attribute.getAttributeType();
+            const [attributeType, value] = await this._page.evaluate((attributeName: string) => {
+                const xrm = window.oss_FindXrm();
+                const attribute = xrm.Page.getAttribute(attributeName);
+                const attributeType = attribute.getAttributeType();
 
-            const isDate = attributeType === "datetime";
-            const value = attribute.getValue();
+                const isDate = attributeType === "datetime";
+                const value = attribute.getValue();
 
-            return [ attributeType, (isDate && value != undefined) ? value.toISOString() : value ];
-        }, attributeName);
+                return [ attributeType, (isDate && value != undefined) ? value.toISOString() : value ];
+            }, attributeName);
 
-        if (attributeType === "datetime" && typeof (value) === "string") {
-            return new Date(Date.parse(value));
+            if (attributeType === "datetime" && typeof (value) === "string") {
+                return new Date(Date.parse(value));
+            }
+            else {
+                return value;
+            }
         }
-        else {
-            return value;
+        catch (e) {
+            throw new RethrownError(`Error when getting value of attribute '${attributeName}'`, e);
         }
     }
 
@@ -79,37 +90,42 @@ export class Attribute {
      * @returns Returns promise that resolves once value is set and settleTime is over
      */
     setValue = async (attributeName: string, value: any, settings?: number | SetValueSettings) => {
-        const defaults: SetValueSettings = {
-            settleTime: 500,
-            forceValue: false
-        };
+        try {
+            const defaults: SetValueSettings = {
+                settleTime: 500,
+                forceValue: false
+            };
 
-        const safeSettings = {
-            ...defaults,
-            ...(typeof(settings) === "number" ? { settleTime: settings } as SetValueSettings : settings)
-        };
+            const safeSettings = {
+                ...defaults,
+                ...(typeof(settings) === "number" ? { settleTime: settings } as SetValueSettings : settings)
+            };
 
-        const isDate = Object.prototype.toString.call(value) === "[object Date]";
-        await EnsureXrmGetter(this._page);
+            const isDate = Object.prototype.toString.call(value) === "[object Date]";
+            await EnsureXrmGetter(this._page);
 
-        await this._page.evaluate(([a, v, s]) => {
-            const xrm = window.oss_FindXrm();
-            const attribute = xrm.Page.getAttribute(a);
+            await this._page.evaluate(([a, v, s]) => {
+                const xrm = window.oss_FindXrm();
+                const attribute = xrm.Page.getAttribute(a);
 
-            const editable = s.forceValue || attribute.controls.get().some((control: any) => {
-                return !control.getDisabled() && control.getVisible() && (!control.getParent() || control.getParent().getVisible()) && (!control.getParent() || !control.getParent().getParent() || control.getParent().getParent().getVisible());
-            });
+                const editable = s.forceValue || attribute.controls.get().some((control: any) => {
+                    return !control.getDisabled() && control.getVisible() && (!control.getParent() || control.getParent().getVisible()) && (!control.getParent() || !control.getParent().getParent() || control.getParent().getParent().getVisible());
+                });
 
-            if (!editable) {
-                throw new Error("Attribute has no unlocked and visible control, users can't set a value like that.");
-            }
+                if (!editable) {
+                    throw new Error("Attribute has no unlocked and visible control, users can't set a value like that.");
+                }
 
-            attribute.setValue(attribute.getAttributeType() === "datetime" ? new Date(v) : v);
-            attribute.fireOnChange();
-        }, [ attributeName, isDate ? value.toISOString() : value, safeSettings ]);
+                attribute.setValue(attribute.getAttributeType() === "datetime" ? new Date(v) : v);
+                attribute.fireOnChange();
+            }, [ attributeName, isDate ? value.toISOString() : value, safeSettings ]);
 
-        await this._page.waitForTimeout(safeSettings.settleTime);
-        await this.xrmUiTest.waitForIdleness();
+            await this._page.waitForTimeout(safeSettings.settleTime);
+            await this.xrmUiTest.waitForIdleness();
+        }
+        catch (e) {
+            throw new RethrownError(`Error when setting value of attribute '${attributeName}'`, e);
+        }
     }
 
     /**
