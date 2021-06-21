@@ -15,6 +15,16 @@ export interface NavigationSettings {
 }
 
 /**
+ * Define behaviour for opening forms
+ */
+export interface FormNavigationSettings extends NavigationSettings {
+    /**
+     * Define the ID of the form to open
+     */
+    formId: string;
+}
+
+/**
  * Module for navigating in D365
  */
 export class Navigation {
@@ -62,14 +72,14 @@ export class Navigation {
      * @param settings How to handle dialogs that prevent navigation. Cancel discards the dialog, confirm accepts it. Default is discarding it.
      * @returns Promise which resolves once form is fully loaded
      */
-    openCreateForm = async (entityName: string, settings?: NavigationSettings) => {
+    openCreateForm = async (entityName: string, settings?: FormNavigationSettings) => {
         await EnsureXrmGetter(this._page);
 
-        const navigationPromise = this._page.evaluate((entityName: string) => {
+        const navigationPromise = this._page.evaluate(([entityName, formId]) => {
             const xrm = window.oss_FindXrm();
 
-            return xrm.Navigation.openForm({ entityName: entityName });
-        }, entityName);
+            return xrm.Navigation.openForm({ entityName: entityName, formId: formId ? formId : undefined });
+        }, [entityName, settings?.formId]);
 
         await this.HandlePopUpOnNavigation(navigationPromise, settings);
         await this.xrmUiTest.waitForIdleness();
@@ -83,14 +93,34 @@ export class Navigation {
      * @param settings How to handle dialogs that prevent navigation. Cancel discards the dialog, confirm accepts it. Default is discarding it.
      * @returns Promise which resolves once form is fully loaded
      */
-    openUpdateForm = async (entityName: string, entityId: string, settings?: NavigationSettings) => {
+    openUpdateForm = async (entityName: string, entityId: string, settings?: FormNavigationSettings) => {
         await EnsureXrmGetter(this._page);
 
-        const navigationPromise = this._page.evaluate(([ entityName, entityId ]) => {
+        const navigationPromise = this._page.evaluate(([ entityName, entityId, formId ]) => {
             const xrm = window.oss_FindXrm();
 
-            return xrm.Navigation.openForm({ entityName: entityName, entityId: entityId });
-        }, [entityName, entityId]);
+            return xrm.Navigation.openForm({ entityName: entityName, entityId: entityId, formId: formId ? formId : undefined });
+        }, [entityName, entityId, settings?.formId]);
+
+        await this.HandlePopUpOnNavigation(navigationPromise, settings);
+        await this.xrmUiTest.waitForIdleness();
+    }
+
+    /**
+     * Navigate to the specified page
+     *
+     * @param entityName The entity to open the entitylist for
+     * @param settings How to handle dialogs that prevent navigation. Cancel discards the dialog, confirm accepts it. Default is discarding it.
+     * @returns Promise which resolves once the page is fully loaded
+     */
+    navigateTo = async (pageInput: Xrm.Navigation.PageInputEntityRecord | Xrm.Navigation.PageInputEntityList | Xrm.Navigation.PageInputHtmlWebResource, navigationOptions?: Xrm.Navigation.NavigationOptions, settings?: NavigationSettings) => {
+        await EnsureXrmGetter(this._page);
+
+        const navigationPromise = this._page.evaluate(([ pageInput, navigationOptions ]) => {
+            const xrm = window.oss_FindXrm();
+
+            return xrm.Navigation.navigateTo(pageInput, navigationOptions);
+        }, [ pageInput, navigationOptions ] as [Xrm.Navigation.PageInputEntityRecord | Xrm.Navigation.PageInputEntityList | Xrm.Navigation.PageInputHtmlWebResource, Xrm.Navigation.NavigationOptions]);
 
         await this.HandlePopUpOnNavigation(navigationPromise, settings);
         await this.xrmUiTest.waitForIdleness();

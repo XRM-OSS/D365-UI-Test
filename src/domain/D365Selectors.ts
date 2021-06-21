@@ -8,5 +8,9 @@ export const D365Selectors = {
     PopUp: {
         cancel: "#cancelButton",
         confirm: "#confirmButton"
+    },
+    DuplicateDetection: {
+        ignore: 'button[data-id="ignore_save"]',
+        abort: 'button[data-id="close_dialog"]'
     }
 };

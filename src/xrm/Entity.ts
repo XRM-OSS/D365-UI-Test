@@ -37,15 +37,42 @@ export class Entity {
      *
      * @param saveData Whether to save any unsubmitted data
      */
-    refresh = async (saveData: boolean) => {
+    refresh = async (saveData: boolean, ignoreDuplicateCheck = false) => {
         await EnsureXrmGetter(this._page);
 
-        return this._page.evaluate(([ save ]) => {
+        const refreshPromise = this._page.evaluate(([ save ]) => {
             const xrm = window.oss_FindXrm();
 
             return xrm.Page.data.refresh(save);
         }, [ saveData ]);
+
+        const promises = [
+            refreshPromise,
+            this.xrmUiTest.waitForIdleness()
+        ];
+
+        return this.handleDuplicateCheck(promises, ignoreDuplicateCheck);
     }
+
+    handleDuplicateCheck = async (promises: Array<Promise<any>>, ignoreDuplicateCheck = false) => {
+        await Promise.race([
+            ...promises,
+            // Wait for duplicate dialog
+            this._page.waitForSelector(D365Selectors.DuplicateDetection.ignore, { timeout: this.xrmUiTest.settings.timeout })
+        ]);
+
+        const duplicateCheckButton = await this._page.$(D365Selectors.DuplicateDetection.ignore);
+
+        if (duplicateCheckButton) {
+            if (ignoreDuplicateCheck) {
+                await Promise.all([duplicateCheckButton.click(), Promise.race(promises)]);
+            }
+            else {
+                await this._page.click(D365Selectors.DuplicateDetection.abort);
+                throw new Error("Duplicate records found. Pass true for save parameter 'ignoreDuplicateCheck' for ignore and saving");
+            }
+        }
+    };
 
     /**
      * Saves the record and returns the ID (both for quick create and "normal" create)
@@ -69,28 +96,14 @@ export class Entity {
             });
         });
 
-        await Promise.race([
+        const promises = [
             ...waitSelectors,
+            saveResult,
             // Normal page should switch to idle again
-            this.xrmUiTest.waitForIdleness(),
-            // Wait for duplicate dialog
-            this._page.waitForSelector('button[data-id="ignore_save"]', { timeout: this.xrmUiTest.settings.timeout })
-        ]);
+            this.xrmUiTest.waitForIdleness()
+        ];
 
-        const duplicateCheckButton = await this._page.$('button[data-id="ignore_save"]');
-
-        if (duplicateCheckButton) {
-            if (ignoreDuplicateCheck) {
-                await Promise.all([duplicateCheckButton.click(), saveResult, Promise.race([...waitSelectors, this.xrmUiTest.waitForIdleness()])]);
-            }
-            else {
-                // page.evaluate of saveResult could crash on page navigation without this catch
-                saveResult.catch(() => {});
-
-                await this._page.click('button[data-id="close_dialog"]');
-                throw new Error("Duplicate records found. Pass true for save parameter 'ignoreDuplicateCheck' for ignore and saving");
-            }
-        }
+        await this.handleDuplicateCheck(promises, ignoreDuplicateCheck);
 
         const quickCreate = await this._page.$("div[id^=quickcreate_]");
 
