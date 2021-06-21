@@ -11,7 +11,7 @@ export interface NavigationSettings {
     /**
      * Define whether to confirm or to cancel dialogs that occur on navigation
      */
-    popUpAction: "confirm" | "cancel";
+    popUpAction?: "confirm" | "cancel";
 }
 
 /**
@@ -21,7 +21,7 @@ export interface FormNavigationSettings extends NavigationSettings {
     /**
      * Define the ID of the form to open
      */
-    formId: string;
+    formId?: string;
 }
 
 /**
