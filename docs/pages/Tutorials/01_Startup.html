@@ -112,7 +112,8 @@
 <span class="hljs-keyword">const</span> [url, user, password, mfaSecret] = config.split(<span class="hljs-string">&quot;,&quot;</span>);
 
 <span class="hljs-comment">// Log into D365</span>
-<span class="hljs-keyword">await</span> xrmTest.open(url, { <span class="hljs-attr">userName</span>: user, <span class="hljs-attr">password</span>: password, <span class="hljs-attr">mfaSecret</span>: mfaSecret ?? <span class="hljs-literal">undefined</span> });</code></pre>
+<span class="hljs-keyword">await</span> xrmTest.open(url, { <span class="hljs-attr">userName</span>: user, <span class="hljs-attr">password</span>: password, <span class="hljs-attr">mfaSecret</span>: mfaSecret ?? <span class="hljs-literal">undefined</span> });
+</code></pre>
 				<a href="#d365-online-organizations" id="d365-online-organizations" style="color: inherit; text-decoration: none;">
 					<h2>D365 Online Organizations</h2>
 				</a>
@@ -123,7 +124,8 @@
 				<p>When having a custom authentication page that you get redirected to on login, you have to provide D365-UI-Test with some additional information.</p>
 				<p>In some cases these authentication pages need the user name and the password, in some cases only the password is needed. The password is of course always needed.</p>
 				<p>The <code>xrmTest.open</code> function is able to use this information:</p>
-				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> page = <span class="hljs-keyword">await</span> xrmTest.open(url, { <span class="hljs-attr">userName</span>: user, <span class="hljs-attr">password</span>: password, <span class="hljs-attr">passwordFieldSelector</span>: <span class="hljs-string">&quot;#password_input&quot;</span>, <span class="hljs-attr">userNameFieldSelector</span>: <span class="hljs-string">&quot;#userName_input&quot;</span> });</code></pre>
+				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> page = <span class="hljs-keyword">await</span> xrmTest.open(url, { <span class="hljs-attr">userName</span>: user, <span class="hljs-attr">password</span>: password, <span class="hljs-attr">passwordFieldSelector</span>: <span class="hljs-string">&quot;#password_input&quot;</span>, <span class="hljs-attr">userNameFieldSelector</span>: <span class="hljs-string">&quot;#userName_input&quot;</span> });
+</code></pre>
 				<p>The values for passwordFieldSelector and userNameFieldSelector need to be valid CSS selectors that help D365-UI-Test finding the correct inputs for logging you in.
 				You can find them out using your browser&#39;s DOM developer tools. Usually they will have an ID set as above.</p>
 				<p>For sending this information the enter button will be pressed, no need to specify a login button selector.</p>
@@ -139,7 +141,8 @@
 <span class="hljs-keyword">const</span> config = fs.readFileSync(path.resolve(__dirname, <span class="hljs-string">&quot;settings.txt&quot;</span>), {<span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf-8&quot;</span>});
 <span class="hljs-keyword">const</span> [url, user, password, mfaSecret] = config.split(<span class="hljs-string">&quot;,&quot;</span>);
 
-<span class="hljs-keyword">await</span> xrmTest.open(url, { <span class="hljs-attr">userName</span>: user, <span class="hljs-attr">password</span>: password, <span class="hljs-attr">mfaSecret</span>: mfaSecret ?? <span class="hljs-literal">undefined</span> });</code></pre>
+<span class="hljs-keyword">await</span> xrmTest.open(url, { <span class="hljs-attr">userName</span>: user, <span class="hljs-attr">password</span>: password, <span class="hljs-attr">mfaSecret</span>: mfaSecret ?? <span class="hljs-literal">undefined</span> });
+</code></pre>
 				<blockquote>
 					<p>Important: If the OTP codes are not accepted, check that the system clock on your machine is completely synchronized. Even a slight offset to the global NTP servers might result in incorrect tokens. </p>
 				</blockquote>
@@ -225,6 +228,12 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
 			</ul>
 		</div>
 	</div>

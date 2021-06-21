@@ -38,3 +38,14 @@ await xrmTest.Attribute.setValue("name", "Test name");
 // This will return the id of the record that was created
 const id = await xrmTest.Entity.save();
 ```
+
+## Other navigation options (EntityList, WebResource, EntityRecord)
+There is a `navigateTo` function which allows for flexible navigation inside the system. Client SDK is used for issuing navigation calls.
+
+### Open Entity List
+```javascript
+await xrmTest.Navigation.navigateTo({
+    pageType: "entitylist",
+    entityName: "account"
+});
+```

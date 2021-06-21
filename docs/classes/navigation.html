@@ -93,6 +93,7 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="navigation.html#navigateto" class="tsd-kind-icon">navigate<wbr>To</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="navigation.html#openappbyid" class="tsd-kind-icon">open<wbr>App<wbr>ById</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="navigation.html#opencreateform" class="tsd-kind-icon">open<wbr>Create<wbr>Form</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="navigation.html#openquickcreate" class="tsd-kind-icon">open<wbr>Quick<wbr>Create</a></li>
@@ -114,7 +115,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/c347198/src/xrm/Navigation.ts#L21">src/xrm/Navigation.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/a089dac/src/xrm/Navigation.ts#L32">src/xrm/Navigation.ts:32</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -131,6 +132,46 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="navigateto" class="tsd-anchor"></a>
+					<h3>navigate<wbr>To</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">navigate<wbr>To<span class="tsd-signature-symbol">(</span>pageInput<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PageInputEntityRecord</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">PageInputEntityList</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">PageInputHtmlWebResource</span>, navigationOptions<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">NavigationOptions</span>, settings<span class="tsd-signature-symbol">?: </span><a href="../interfaces/navigationsettings.html" class="tsd-signature-type">NavigationSettings</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/a089dac/src/xrm/Navigation.ts#L116">src/xrm/Navigation.ts:116</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Navigate to the specified page</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>pageInput: <span class="tsd-signature-type">PageInputEntityRecord</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">PageInputEntityList</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">PageInputHtmlWebResource</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> navigationOptions: <span class="tsd-signature-type">NavigationOptions</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> settings: <a href="../interfaces/navigationsettings.html" class="tsd-signature-type">NavigationSettings</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>How to handle dialogs that prevent navigation. Cancel discards the dialog, confirm accepts it. Default is discarding it.</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise which resolves once the page is fully loaded</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="openappbyid" class="tsd-anchor"></a>
 					<h3>open<wbr>App<wbr>ById</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -140,7 +181,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/c347198/src/xrm/Navigation.ts#L116">src/xrm/Navigation.ts:116</a></li>
+									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/a089dac/src/xrm/Navigation.ts#L154">src/xrm/Navigation.ts:154</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -160,6 +201,11 @@
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> settings: <a href="../interfaces/navigationsettings.html" class="tsd-signature-type">NavigationSettings</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>How to handle dialogs that prevent navigation. Cancel discards the dialog, confirm accepts it. Default is discarding it.</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -171,13 +217,13 @@
 					<a name="opencreateform" class="tsd-anchor"></a>
 					<h3>open<wbr>Create<wbr>Form</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">open<wbr>Create<wbr>Form<span class="tsd-signature-symbol">(</span>entityName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, settings<span class="tsd-signature-symbol">?: </span><a href="../interfaces/navigationsettings.html" class="tsd-signature-type">NavigationSettings</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">open<wbr>Create<wbr>Form<span class="tsd-signature-symbol">(</span>entityName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, settings<span class="tsd-signature-symbol">?: </span><a href="../interfaces/formnavigationsettings.html" class="tsd-signature-type">FormNavigationSettings</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/c347198/src/xrm/Navigation.ts#L59">src/xrm/Navigation.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/a089dac/src/xrm/Navigation.ts#L75">src/xrm/Navigation.ts:75</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -196,7 +242,12 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> settings: <a href="../interfaces/navigationsettings.html" class="tsd-signature-type">NavigationSettings</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> settings: <a href="../interfaces/formnavigationsettings.html" class="tsd-signature-type">FormNavigationSettings</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>How to handle dialogs that prevent navigation. Cancel discards the dialog, confirm accepts it. Default is discarding it.</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -214,7 +265,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/c347198/src/xrm/Navigation.ts#L98">src/xrm/Navigation.ts:98</a></li>
+									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/a089dac/src/xrm/Navigation.ts#L135">src/xrm/Navigation.ts:135</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -242,13 +293,13 @@
 					<a name="openupdateform" class="tsd-anchor"></a>
 					<h3>open<wbr>Update<wbr>Form</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">open<wbr>Update<wbr>Form<span class="tsd-signature-symbol">(</span>entityName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, entityId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, settings<span class="tsd-signature-symbol">?: </span><a href="../interfaces/navigationsettings.html" class="tsd-signature-type">NavigationSettings</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">open<wbr>Update<wbr>Form<span class="tsd-signature-symbol">(</span>entityName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, entityId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, settings<span class="tsd-signature-symbol">?: </span><a href="../interfaces/formnavigationsettings.html" class="tsd-signature-type">FormNavigationSettings</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/XRM-OSS/D365-UI-Test/blob/c347198/src/xrm/Navigation.ts#L79">src/xrm/Navigation.ts:79</a></li>
+									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/a089dac/src/xrm/Navigation.ts#L96">src/xrm/Navigation.ts:96</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -275,7 +326,12 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> settings: <a href="../interfaces/navigationsettings.html" class="tsd-signature-type">NavigationSettings</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> settings: <a href="../interfaces/formnavigationsettings.html" class="tsd-signature-type">FormNavigationSettings</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>How to handle dialogs that prevent navigation. Cancel discards the dialog, confirm accepts it. Default is discarding it.</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -356,6 +412,9 @@
 						<a href="entity.html" class="tsd-kind-icon">Entity</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="extendederror.html" class="tsd-kind-icon">Extended<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="form.html" class="tsd-kind-icon">Form</a>
 					</li>
 				</ul>
@@ -365,6 +424,9 @@
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="navigation.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="navigation.html#navigateto" class="tsd-kind-icon">navigate<wbr>To</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="navigation.html#openappbyid" class="tsd-kind-icon">open<wbr>App<wbr>ById</a>
@@ -384,6 +446,9 @@
 				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="portaluitest.html" class="tsd-kind-icon">Portal<wbr>UiTest</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="rethrownerror.html" class="tsd-kind-icon">Rethrown<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="section.html" class="tsd-kind-icon">Section</a>
@@ -407,6 +472,9 @@
 						<a href="../interfaces/formidentifier.html" class="tsd-kind-icon">Form<wbr>Identifier</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="../interfaces/formnavigationsettings.html" class="tsd-kind-icon">Form<wbr>Navigation<wbr>Settings</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="../interfaces/navigationsettings.html" class="tsd-kind-icon">Navigation<wbr>Settings</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -427,6 +495,9 @@
 					<li class=" tsd-kind-function">
 						<a href="../globals.html#ensurexrmgetter" class="tsd-kind-icon">Ensure<wbr>Xrm<wbr>Getter</a>
 					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#ispageelement" class="tsd-kind-icon">is<wbr>Page<wbr>Element</a>
+					</li>
 					<li class=" tsd-kind-object-literal">
 						<a href="../globals.html#d365selectors" class="tsd-kind-icon">D365<wbr>Selectors</a>
 					</li>
@@ -446,6 +517,12 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
 			</ul>
 		</div>
 	</div>

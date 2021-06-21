@@ -78,7 +78,8 @@
 				<p>On most of the navigation functions we wait for the page to settle by checking that it stays idle for 2 seconds without interruption.</p>
 				<p>If it gets busy during those two seconds, we reset the 2 seconds wait time.</p>
 				<p>If you nonetheless get time out errors, you can track which requests timed out using the <code>TestUtils.trackTimedOutRequest</code> function:</p>
-				<pre><code class="language-javascript">TestUtils.trackTimedOutRequest(<span class="hljs-function">() =&gt;</span> page, <span class="hljs-function">() =&gt;</span> xrmTest.Navigation.openAppById(<span class="hljs-string">&quot;3a5ff736-45a5-4318-a05e-c8a98761e64a&quot;</span>));</code></pre>
+				<pre><code class="language-javascript">TestUtils.trackTimedOutRequest(<span class="hljs-function">() =&gt;</span> page, <span class="hljs-function">() =&gt;</span> xrmTest.Navigation.openAppById(<span class="hljs-string">&quot;3a5ff736-45a5-4318-a05e-c8a98761e64a&quot;</span>));
+</code></pre>
 				<p>If timeouts occur, D365-UI-Test will log the timed out request URLs to console.</p>
 			</div>
 		</div>
@@ -162,6 +163,12 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
 			</ul>
 		</div>
 	</div>

@@ -78,13 +78,15 @@
 				</a>
 				<p>When just opening a create form and entering data, you might not even want to save your data.
 				If you just try to navigate away without saving, then a confirm message will appear, reminding you that you have unsaved data.</p>
-				<pre><code class="language-javascript"><span class="hljs-keyword">await</span> xrmTest.Entity.noSubmit();</code></pre>
+				<pre><code class="language-javascript"><span class="hljs-keyword">await</span> xrmTest.Entity.noSubmit();
+</code></pre>
 				<p>If you really want to navigate to a different page without saving, call the <code>xrmTest.Entity.noSubmit</code> function for setting all attributes to submitMode <code>never</code>, so that none would be saved and thus CRM does not show the prompt.</p>
 				<a href="#save" id="save" style="color: inherit; text-decoration: none;">
 					<h2>Save</h2>
 				</a>
 				<p>Saves the data on your current form.</p>
-				<pre><code class="language-javascript"><span class="hljs-keyword">await</span> xrmTest.Entity.save();</code></pre>
+				<pre><code class="language-javascript"><span class="hljs-keyword">await</span> xrmTest.Entity.save();
+</code></pre>
 				<blockquote>
 					<p>This does not use the save button, but the SDK function for saving</p>
 				</blockquote>
@@ -92,17 +94,20 @@
 					<h2>Get Id</h2>
 				</a>
 				<p>Gets the ID of the current record.</p>
-				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> id = <span class="hljs-keyword">await</span> xrmTest.Entity.getId();</code></pre>
+				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> id = <span class="hljs-keyword">await</span> xrmTest.Entity.getId();
+</code></pre>
 				<a href="#get-entity-name" id="get-entity-name" style="color: inherit; text-decoration: none;">
 					<h2>Get Entity Name</h2>
 				</a>
 				<p>Gets the logical name of the current record (entity)</p>
-				<pre><code class="language-javascript"><span class="hljs-keyword">await</span> xrmTest.Entity.getEntityName();</code></pre>
+				<pre><code class="language-javascript"><span class="hljs-keyword">await</span> xrmTest.Entity.getEntityName();
+</code></pre>
 				<a href="#get-entity-reference" id="get-entity-reference" style="color: inherit; text-decoration: none;">
 					<h2>Get Entity Reference</h2>
 				</a>
 				<p>Gets an entity reference pointing to the current record.</p>
-				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { id, entityName, name } = <span class="hljs-keyword">await</span> xrmTest.Entity.getEntityReference();</code></pre>
+				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { id, entityName, name } = <span class="hljs-keyword">await</span> xrmTest.Entity.getEntityReference();
+</code></pre>
 				<blockquote>
 					<p>The return object has the schema { id: string, entityName: string, name: string }</p>
 				</blockquote>
@@ -110,7 +115,8 @@
 					<h2>Delete</h2>
 				</a>
 				<p>Deletes the current record.</p>
-				<pre><code class="language-javascript"><span class="hljs-keyword">await</span> xrmTest.Entity.delete();</code></pre>
+				<pre><code class="language-javascript"><span class="hljs-keyword">await</span> xrmTest.Entity.delete();
+</code></pre>
 				<blockquote>
 					<p>This function uses the delete button of the form.</p>
 				</blockquote>
@@ -118,7 +124,8 @@
 					<h2>Activate</h2>
 				</a>
 				<p>Activates the current record</p>
-				<pre><code class="language-javascript"><span class="hljs-keyword">await</span> xrmTest.Entity.activate();</code></pre>
+				<pre><code class="language-javascript"><span class="hljs-keyword">await</span> xrmTest.Entity.activate();
+</code></pre>
 				<blockquote>
 					<p>This function uses the activate button of the form</p>
 				</blockquote>
@@ -126,7 +133,8 @@
 					<h2>Deactivate</h2>
 				</a>
 				<p>Deactivates the current record</p>
-				<pre><code class="language-javascript"><span class="hljs-keyword">await</span> xrmTest.Entity.deactivate();</code></pre>
+				<pre><code class="language-javascript"><span class="hljs-keyword">await</span> xrmTest.Entity.deactivate();
+</code></pre>
 				<blockquote>
 					<p>This function uses the deactivate button of the form</p>
 				</blockquote>
@@ -212,6 +220,12 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
 			</ul>
 		</div>
 	</div>
