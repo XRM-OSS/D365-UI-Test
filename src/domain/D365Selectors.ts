@@ -12,5 +12,8 @@ export const D365Selectors = {
     DuplicateDetection: {
         ignore: 'button[data-id="ignore_save"]',
         abort: 'button[data-id="close_dialog"]'
+    },
+    Grid: {
+        DataRowWithIndexCheckBox: "div[wj-part='root'] > div[wj-part='cells'] > div.wj-row[aria-rowindex='{0}'] > div.wj-cell.data-selectable"
     }
 };

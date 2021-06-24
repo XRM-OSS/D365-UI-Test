@@ -4,6 +4,7 @@ import { Entity } from "./Entity";
 import { Dialog } from "./Dialog";
 import { Control } from "./Control";
 import { Attribute } from "./Attribute";
+import { Grid } from "./Grid";
 import { SubGrid } from "./SubGrid";
 import { Form } from "./Form";
 import { Button } from "./Button";
@@ -76,6 +77,7 @@ export class XrmUiTest {
     private _control: Control;
     private _attribute: Attribute;
     private _form: Form;
+    private _grid: Grid;
     private _subGrid: SubGrid;
     private _button: Button;
     private _tab: Tab;
@@ -216,6 +218,17 @@ export class XrmUiTest {
         }
 
         return this._form;
+    }
+
+    /**
+     * Gets the subfunctions for interacting with grids / entity lists in D365, for example opening specific records
+     */
+    get Grid() {
+        if (!this._grid) {
+            this._grid = new Grid(this);
+        }
+
+        return this._grid;
     }
 
     /**

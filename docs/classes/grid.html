@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SubGrid | D365-UI-Test</title>
+	<title>Grid | D365-UI-Test</title>
 	<meta name="description" content="Documentation for D365-UI-Test">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="subgrid.html">SubGrid</a>
+					<a href="grid.html">Grid</a>
 				</li>
 			</ul>
-			<h1>Class SubGrid</h1>
+			<h1>Class Grid</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Module for interacting with D365 Subgrids</p>
+						<p>Module for interacting with D365 Grids / Entity Lists</p>
 					</div>
 				</div>
 			</section>
@@ -76,7 +76,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">SubGrid</span>
+						<span class="target">Grid</span>
 					</li>
 				</ul>
 			</section>
@@ -87,15 +87,14 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="subgrid.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="grid.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="subgrid.html#getrecordcount" class="tsd-kind-icon">get<wbr>Record<wbr>Count</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="subgrid.html#opennthrecord" class="tsd-kind-icon">open<wbr>Nth<wbr>Record</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="subgrid.html#refresh" class="tsd-kind-icon">refresh</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="grid.html#opennthrecord" class="tsd-kind-icon">open<wbr>Nth<wbr>Record</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="grid.html#selectnthrecord" class="tsd-kind-icon">select<wbr>Nth<wbr>Record</a></li>
 							</ul>
 						</section>
 					</div>
@@ -107,13 +106,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Sub<wbr>Grid<span class="tsd-signature-symbol">(</span>xrmUiTest<span class="tsd-signature-symbol">: </span><a href="xrmuitest.html" class="tsd-signature-type">XrmUiTest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="subgrid.html" class="tsd-signature-type">SubGrid</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Grid<span class="tsd-signature-symbol">(</span>xrmUiTest<span class="tsd-signature-symbol">: </span><a href="xrmuitest.html" class="tsd-signature-type">XrmUiTest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="grid.html" class="tsd-signature-type">Grid</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/4281bc0/src/xrm/SubGrid.ts#L10">src/xrm/SubGrid.ts:10</a></li>
+									<li>Defined in src/xrm/Grid.ts:11</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -122,7 +121,7 @@
 									<h5>xrmUiTest: <a href="xrmuitest.html" class="tsd-signature-type">XrmUiTest</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="subgrid.html" class="tsd-signature-type">SubGrid</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="grid.html" class="tsd-signature-type">Grid</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -130,67 +129,25 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getrecordcount" class="tsd-anchor"></a>
-					<h3>get<wbr>Record<wbr>Count</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Record<wbr>Count<span class="tsd-signature-symbol">(</span>subgridName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/4281bc0/src/xrm/SubGrid.ts#L23">src/xrm/SubGrid.ts:23</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Gets the record count of the specified subgrid</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>subgridName: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>The control name of the subgrid to use</p>
-										</div>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Promise which fulfills with the total record count</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="opennthrecord" class="tsd-anchor"></a>
 					<h3>open<wbr>Nth<wbr>Record</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">open<wbr>Nth<wbr>Record<span class="tsd-signature-symbol">(</span>subgridName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recordNumber<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">open<wbr>Nth<wbr>Record<span class="tsd-signature-symbol">(</span>recordNumber<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/4281bc0/src/xrm/SubGrid.ts#L50">src/xrm/SubGrid.ts:50</a></li>
+									<li>Defined in src/xrm/Grid.ts:24</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Opens the record in the subgrid at the n-th index</p>
+									<p>Opens the record in the grid at the n-th index</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
-								<li>
-									<h5>subgridName: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>The control name of the subgrid to use</p>
-										</div>
-									</div>
-								</li>
 								<li>
 									<h5>recordNumber: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
@@ -206,36 +163,36 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="refresh" class="tsd-anchor"></a>
-					<h3>refresh</h3>
+					<a name="selectnthrecord" class="tsd-anchor"></a>
+					<h3>select<wbr>Nth<wbr>Record</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">refresh<span class="tsd-signature-symbol">(</span>subgridName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">select<wbr>Nth<wbr>Record<span class="tsd-signature-symbol">(</span>recordNumber<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/4281bc0/src/xrm/SubGrid.ts#L81">src/xrm/SubGrid.ts:81</a></li>
+									<li>Defined in src/xrm/Grid.ts:43</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Refreshes the specified subgrid</p>
+									<p>Selects the record in the grid at the n-th index</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>subgridName: <span class="tsd-signature-type">string</span></h5>
+									<h5>recordNumber: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
-											<p>The control name of the subgrid to refresh</p>
+											<p>Index of the record to select, zero based</p>
 										</div>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Promise which fulfills once refreshing is done</p>
+							<p>Promise which fulfills when record is selected</p>
 						</li>
 					</ul>
 				</section>
@@ -317,9 +274,24 @@
 					<li class=" tsd-kind-class">
 						<a href="form.html" class="tsd-kind-icon">Form</a>
 					</li>
-					<li class=" tsd-kind-class">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
 						<a href="grid.html" class="tsd-kind-icon">Grid</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="grid.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="grid.html#opennthrecord" class="tsd-kind-icon">open<wbr>Nth<wbr>Record</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="grid.html#selectnthrecord" class="tsd-kind-icon">select<wbr>Nth<wbr>Record</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="navigation.html" class="tsd-kind-icon">Navigation</a>
 					</li>
@@ -332,27 +304,9 @@
 					<li class=" tsd-kind-class">
 						<a href="section.html" class="tsd-kind-icon">Section</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class">
+					<li class=" tsd-kind-class">
 						<a href="subgrid.html" class="tsd-kind-icon">Sub<wbr>Grid</a>
-						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="subgrid.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="subgrid.html#getrecordcount" class="tsd-kind-icon">get<wbr>Record<wbr>Count</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="subgrid.html#opennthrecord" class="tsd-kind-icon">open<wbr>Nth<wbr>Record</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="subgrid.html#refresh" class="tsd-kind-icon">refresh</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="tab.html" class="tsd-kind-icon">Tab</a>
 					</li>

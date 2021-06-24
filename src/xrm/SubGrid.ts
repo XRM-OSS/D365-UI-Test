@@ -44,7 +44,7 @@ export class SubGrid {
      * Opens the record in the subgrid at the n-th index
      *
      * @param {String} subgridName The control name of the subgrid to use
-     * @param {Number} recordNumber Index of the record to open
+     * @param {Number} recordNumber Index of the record to open, zero based
      * @returns {Promise<void>} Promise which fulfills when record is opened
      */
     openNthRecord = async(subgridName: string, recordNumber: number ) => {

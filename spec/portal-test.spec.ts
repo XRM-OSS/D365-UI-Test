@@ -15,11 +15,11 @@ describe("Basic operations UCI", () => {
         await portalTest.launch("chromium", {
             headless: false,
             args: [
-                '--disable-setuid-sandbox',
-                '--disable-infobars',
-                '--start-fullscreen',
-                '--window-position=0,0',
-                '--window-size=1920,1080',
+                "--disable-setuid-sandbox",
+                "--disable-infobars",
+                "--start-fullscreen",
+                "--window-position=0,0",
+                "--window-size=1920,1080",
                 '--user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36"'
             ]
         })
