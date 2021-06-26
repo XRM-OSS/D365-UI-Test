@@ -14,6 +14,7 @@ import * as speakeasy from "speakeasy";
 import { D365Selectors } from "../domain/D365Selectors";
 import { Section } from "./Section";
 import { isPageElement } from "../domain/SharedLogic";
+import { WebApi } from "./WebApi";
 
 /**
  * Parameters for opening Dynamics
@@ -82,6 +83,7 @@ export class XrmUiTest {
     private _button: Button;
     private _tab: Tab;
     private _section: Section;
+    private _webApi: WebApi;
 
     /**
      * Settings for D365-UI-Test behavior
@@ -276,6 +278,17 @@ export class XrmUiTest {
      */
     set AppId(value) {
         this._appId = value;
+    }
+
+    /**
+     * Gets the subfunctions for interacting with the D365 WebApi using Xrm.WebApi
+     */
+    get WebApi() {
+        if (!this._webApi) {
+            this._webApi = new WebApi(this);
+        }
+
+        return this._webApi;
     }
 
     /**
