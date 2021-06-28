@@ -109,7 +109,8 @@ export class Navigation {
     /**
      * Navigate to the specified page
      *
-     * @param entityName The entity to open the entitylist for
+     * @param pageInput Define where to navigate to (entity record, entity list or html web resource)
+     * @param navigationOptions Define whether to navigate inline or in a dialog
      * @param settings How to handle dialogs that prevent navigation. Cancel discards the dialog, confirm accepts it. Default is discarding it.
      * @returns Promise which resolves once the page is fully loaded
      */
