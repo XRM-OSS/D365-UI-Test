@@ -86,6 +86,14 @@ export class XrmUiTest {
     private _webApi: WebApi;
 
     /**
+     * Construct a new instance of XrmUiTest
+     * @param settings Define certain behaviour settings optionally. If not passed, defaults will be used
+     */
+    constructor(settings?: TestSettings) {
+        this.settings = settings;
+    }
+
+    /**
      * Settings for D365-UI-Test behavior
      */
     private _settings: TestSettings = {
@@ -114,6 +122,10 @@ export class XrmUiTest {
      * Update settings
      */
     set settings(value: TestSettings) {
+        if (!value) {
+            return;
+        }
+
         this._settings = { ...this._settings, ...value };
     }
 
@@ -343,6 +355,10 @@ export class XrmUiTest {
         this.logIfDebug(`Page has been idle for ${secondIdlenessTime - firstIdlenessTime} ms, resolving`);
     }
 
+    buildUrl = (url: string, appId?: string) => {
+        return `${url}/main.aspx?forceUCI=1${(appId ? `&appid=${appId}` : "")}${(this.settings.performanceMode ? `&perf=true` : "")}`;
+    };
+
     /**
      * Opens your D365 organization and logs you in
      *
@@ -356,8 +372,10 @@ export class XrmUiTest {
                 this._crmUrl = url;
                 this._appId = extendedProperties.appId;
 
+                const navigationUrl = this.buildUrl(url);
+
                 await Promise.all([
-                    this.page.goto(`${url}/main.aspx?forceUCI=1`, { waitUntil: "load", timeout: this.settings.timeout })
+                    this.page.goto(navigationUrl, { waitUntil: "load", timeout: this.settings.timeout })
                 ]);
 
                 if (extendedProperties.userName) {

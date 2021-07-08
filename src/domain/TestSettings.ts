@@ -19,4 +19,9 @@ export interface TestSettings {
      * @default false
      */
     debugMode?: boolean;
+
+    /**
+     * If performance mode is enabled, &perf=true is added into the Dynamics URL, for showing the MS performance overlay on all pages
+     */
+    performanceMode?: boolean;
 }

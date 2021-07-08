@@ -29,11 +29,9 @@ export interface FormNavigationSettings extends NavigationSettings {
  */
 export class Navigation {
     private _page: playwright.Page;
-    private _crmUrl: string;
 
     constructor(private xrmUiTest: XrmUiTest) {
         this._page = xrmUiTest.page;
-        this._crmUrl = xrmUiTest.crmUrl;
         this.xrmUiTest = xrmUiTest;
     }
 
@@ -155,7 +153,8 @@ export class Navigation {
     openAppById = async(appId: string, settings?: NavigationSettings) => {
         this.xrmUiTest.AppId = appId;
 
-        const navigationPromise = this._page.goto(`${this._crmUrl}/main.aspx?appid=${appId}`, { waitUntil: "load", timeout: this.xrmUiTest.settings.timeout });
+        const navigationUrl = this.xrmUiTest.buildUrl(this.xrmUiTest.crmUrl, appId);
+        const navigationPromise = this._page.goto(navigationUrl, { waitUntil: "load", timeout: this.xrmUiTest.settings.timeout });
 
         await this.HandlePopUpOnNavigation(navigationPromise, settings);
         await this.xrmUiTest.waitForIdleness();
