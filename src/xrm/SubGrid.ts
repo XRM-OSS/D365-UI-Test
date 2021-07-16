@@ -73,6 +73,66 @@ export class SubGrid {
     }
 
     /**
+     * Opens the create record form by using this subgrid "Add New" button
+     * @param {String} subgridName The control name of the subgrid to use
+     */
+    createNewRecord = async(subgridName: string) => {
+        try {
+            await EnsureXrmGetter(this._page);
+
+            const parentTab = await this._page.evaluate(([name]: [string]) => {
+                const xrm = window.oss_FindXrm();
+                const control = xrm.Page.getControl<Xrm.Controls.GridControl>(name);
+
+                if (!control) {
+                    return undefined;
+                }
+
+                return control.getParent().getParent().getName();
+            }, [subgridName]);
+
+            await this.xrmUiTest.Tab.open(parentTab);
+
+            const subgridEntity = await this._page.evaluate(([name]: [string]) => {
+                const xrm = window.oss_FindXrm();
+                const control = xrm.Page.getControl<Xrm.Controls.GridControl>(name);
+
+                if (!control) {
+                    return undefined;
+                }
+
+                return control.getEntityName();
+            }, [subgridName]);
+
+            await this.xrmUiTest.waitForIdleness();
+
+            // Normal selector for button inside this subgrid's command bar
+            const addNewButton = await this._page.$(`div[data-control-name='${subgridName}'] button[data-id*='Mscrm.SubGrid.${subgridEntity}.AddNewStandard']`);
+
+            if (addNewButton) {
+                await addNewButton.click();
+            }
+            else {
+                // Find this subgrid's overflow button for expanding additional commands
+                const overflowButton = await this._page.$(`div[data-control-name='${subgridName}'] button[data-id*='OverflowButton']`);
+
+                if (!overflowButton) {
+                    throw new Error("Failed to find the add new button on your subgrid as well as the overflow button. Please check user permissions, button hide rules and whether you use custom create buttons, as we search for the default create button");
+                }
+
+                await overflowButton.click();
+                // Ribbon button inside the overflow flyout is not child of the subgrid anymore, but of the overflowflyout. Adapted selector
+                await this._page.click(`ul[data-id='OverflowFlyout'] button[data-id*='Mscrm.SubGrid.${subgridEntity}.AddNewStandard']`);
+            }
+
+            return this.xrmUiTest.waitForIdleness();
+        }
+        catch (e) {
+            throw new RethrownError(`Error when trying to create new record in subgrid '${subgridName}'`, e);
+        }
+    }
+
+    /**
      * Refreshes the specified subgrid
      *
      * @param {String} subgridName The control name of the subgrid to refresh
