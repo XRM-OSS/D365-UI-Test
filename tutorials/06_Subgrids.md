@@ -12,14 +12,14 @@ const count = await xrmUiTest.Subgrid.getRecordCount("subgrid1");
 Opens the update form for the record at position n.
 
 ```javascript
-const count = await xrmUiTest.Subgrid.openNthRecord("subgrid1", 1);
+await xrmUiTest.Subgrid.openNthRecord("subgrid1", 1);
 ```
 
 # Refresh
 Refreshes the subgrid
 
 ```javascript
-const count = await xrmUiTest.Subgrid.refresh("subgrid1");
+await xrmUiTest.Subgrid.refresh("subgrid1");
 ```
 
 # Create new record
@@ -30,5 +30,5 @@ Note:
 > If the button fails to get clicked, check user permissions, button hide rules and whether you use custom create buttons, as we search for the default create button
 
 ```javascript
-const count = await xrmUiTest.Subgrid.createNewRecord("subgrid1");
+await xrmUiTest.Subgrid.createNewRecord("subgrid1");
 ```
