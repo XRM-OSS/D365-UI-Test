@@ -19,6 +19,21 @@ export interface FormIdentifier {
 }
 
 /**
+ * Scheme to describe items of form selector
+ */
+export interface FormSelectorItem {
+    /**
+     * Id of the form
+     */
+    id?: string;
+
+    /**
+     * Label of the form
+     */
+    label?: string;
+}
+
+/**
  * Module for interacting with D365 Forms
  */
 export class Form {
@@ -59,13 +74,17 @@ export class Form {
      *
      * @returns Object containing id and label of current form
      */
-    getCurrentFormId = async () => {
+    getCurrentFormId = async (): Promise<FormSelectorItem> => {
         await EnsureXrmGetter(this._page);
 
         return this._page.evaluate(() => {
             const xrm = window.oss_FindXrm();
+            const form = xrm.Page.ui.formSelector.getCurrentItem();
 
-            return xrm.Page.ui.formSelector.getCurrentItem();
+            return {
+                id: form.getId(),
+                label: form.getLabel()
+            };
         });
     }
 
@@ -74,13 +93,13 @@ export class Form {
      *
      * @returns Array of objects with id and label
      */
-    getAvailableForms = async () => {
+    getAvailableForms = async (): Promise<Array<FormSelectorItem>> => {
         await EnsureXrmGetter(this._page);
 
         return this._page.evaluate(() => {
             const xrm = window.oss_FindXrm();
 
-            return xrm.Page.ui.formSelector.items.get();
+            return xrm.Page.ui.formSelector.items.get().map(i => ({ id: i.getId(), label: i.getLabel()}));
         });
     }
 
