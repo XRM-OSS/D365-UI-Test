@@ -62,7 +62,7 @@ export class Form {
     getCurrentFormId = async () => {
         await EnsureXrmGetter(this._page);
 
-        return this._page.evaluate((i) => {
+        return this._page.evaluate(() => {
             const xrm = window.oss_FindXrm();
 
             return xrm.Page.ui.formSelector.getCurrentItem();
@@ -77,7 +77,7 @@ export class Form {
     getAvailableForms = async () => {
         await EnsureXrmGetter(this._page);
 
-        return this._page.evaluate((i) => {
+        return this._page.evaluate(() => {
             const xrm = window.oss_FindXrm();
 
             return xrm.Page.ui.formSelector.items.get();
