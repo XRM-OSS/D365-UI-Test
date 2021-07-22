@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ControlState | D365-UI-Test</title>
+	<title>FormSelectorItem | D365-UI-Test</title>
 	<meta name="description" content="Documentation for D365-UI-Test">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="controlstate.html">ControlState</a>
+					<a href="formselectoritem.html">FormSelectorItem</a>
 				</li>
 			</ul>
-			<h1>Interface ControlState</h1>
+			<h1>Interface FormSelectorItem</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>State of a control</p>
+						<p>Scheme to describe items of form selector</p>
 					</div>
 				</div>
 			</section>
@@ -76,7 +76,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ControlState</span>
+						<span class="target">FormSelectorItem</span>
 					</li>
 				</ul>
 			</section>
@@ -87,8 +87,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="controlstate.html#isdisabled" class="tsd-kind-icon">is<wbr>Disabled</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="controlstate.html#isvisible" class="tsd-kind-icon">is<wbr>Visible</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="formselectoritem.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="formselectoritem.html#label" class="tsd-kind-icon">label</a></li>
 							</ul>
 						</section>
 					</div>
@@ -97,32 +97,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="isdisabled" class="tsd-anchor"></a>
-					<h3>is<wbr>Disabled</h3>
-					<div class="tsd-signature tsd-kind-icon">is<wbr>Disabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="id" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/9fd2025/src/xrm/Control.ts#L18">src/xrm/Control.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/9fd2025/src/xrm/Form.ts#L28">src/xrm/Form.ts:28</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Whether the control is currently disabled</p>
+							<p>Id of the form</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="isvisible" class="tsd-anchor"></a>
-					<h3>is<wbr>Visible</h3>
-					<div class="tsd-signature tsd-kind-icon">is<wbr>Visible<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="label" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> label</h3>
+					<div class="tsd-signature tsd-kind-icon">label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/9fd2025/src/xrm/Control.ts#L13">src/xrm/Control.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/DigitalFlow/D365-UI-Test/blob/9fd2025/src/xrm/Form.ts#L33">src/xrm/Form.ts:33</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Whether the control is currently visible</p>
+							<p>Label of the form</p>
 						</div>
 					</div>
 				</section>
@@ -234,30 +234,30 @@
 					<li class=" tsd-kind-interface">
 						<a href="buttonidentifier.html" class="tsd-kind-icon">Button<wbr>Identifier</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface">
+					<li class=" tsd-kind-interface">
 						<a href="controlstate.html" class="tsd-kind-icon">Control<wbr>State</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="controlstate.html#isdisabled" class="tsd-kind-icon">is<wbr>Disabled</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="controlstate.html#isvisible" class="tsd-kind-icon">is<wbr>Visible</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="formidentifier.html" class="tsd-kind-icon">Form<wbr>Identifier</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="formnavigationsettings.html" class="tsd-kind-icon">Form<wbr>Navigation<wbr>Settings</a>
 					</li>
-					<li class=" tsd-kind-interface">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface">
 						<a href="formselectoritem.html" class="tsd-kind-icon">Form<wbr>Selector<wbr>Item</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="formselectoritem.html#id" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="formselectoritem.html#label" class="tsd-kind-icon">label</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="navigationsettings.html" class="tsd-kind-icon">Navigation<wbr>Settings</a>
 					</li>

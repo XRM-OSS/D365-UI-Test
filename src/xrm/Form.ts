@@ -74,7 +74,7 @@ export class Form {
      *
      * @returns Object containing id and label of current form
      */
-    getCurrentFormId = async (): Promise<FormSelectorItem> => {
+    getCurrentFormSelectorItem = async (): Promise<FormSelectorItem> => {
         await EnsureXrmGetter(this._page);
 
         return this._page.evaluate(() => {
@@ -93,7 +93,7 @@ export class Form {
      *
      * @returns Array of objects with id and label
      */
-    getAvailableForms = async (): Promise<Array<FormSelectorItem>> => {
+    getAvailableFormSelectorItems = async (): Promise<Array<FormSelectorItem>> => {
         await EnsureXrmGetter(this._page);
 
         return this._page.evaluate(() => {
