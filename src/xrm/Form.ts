@@ -55,6 +55,36 @@ export class Form {
     }
 
     /**
+     * Gets data about the currently selected form
+     *
+     * @returns Object containing id and label of current form
+     */
+    getCurrentFormId = async () => {
+        await EnsureXrmGetter(this._page);
+
+        return this._page.evaluate((i) => {
+            const xrm = window.oss_FindXrm();
+
+            return xrm.Page.ui.formSelector.getCurrentItem();
+        });
+    }
+
+    /**
+     * Gets a list of all forms that are currently available in the form selector
+     *
+     * @returns Array of objects with id and label
+     */
+    getAvailableForms = async () => {
+        await EnsureXrmGetter(this._page);
+
+        return this._page.evaluate((i) => {
+            const xrm = window.oss_FindXrm();
+
+            return xrm.Page.ui.formSelector.items.get();
+        });
+    }
+
+    /**
      * Switches to the specified form
      *
      * @param identifier Defines which form to switch to
