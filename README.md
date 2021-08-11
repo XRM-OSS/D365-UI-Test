@@ -1,4 +1,4 @@
-# D365-UI-Test [![Known Vulnerabilities](https://snyk.io/test/github/digitalflow/d365-ui-test/badge.svg)](https://snyk.io/test/github/digitalflow/d365-ui-test) [![npm downloads](https://img.shields.io/npm/dt/d365-ui-test.svg)](http://npm-stats.org/#/d365-ui-test)
+# D365-UI-Test [![CI](https://github.com/XRM-OSS/D365-UI-Test/actions/workflows/main.yml/badge.svg)](https://github.com/XRM-OSS/D365-UI-Test/actions/workflows/main.yml) [![Known Vulnerabilities](https://snyk.io/test/github/digitalflow/d365-ui-test/badge.svg)](https://snyk.io/test/github/digitalflow/d365-ui-test) [![npm downloads](https://img.shields.io/npm/dt/d365-ui-test.svg)](http://npm-stats.org/#/d365-ui-test)
 
 ## What's this?
 D365-UI-Test is an UI testing framework for easy and robust UI testing in Dynamics 365 CE and Dynamics 365 Portals.
