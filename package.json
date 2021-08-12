@@ -27,7 +27,7 @@
     "typedoc-plugin-pages": "^1.1.0"
   },
   "dependencies": {
-    "@types/speakeasy": "^2.0.5",
+    "@types/speakeasy": "^2.0.6",
     "@types/xrm": "^9.0.14",
     "playwright": "^1.13.0",
     "speakeasy": "^2.0.0",
