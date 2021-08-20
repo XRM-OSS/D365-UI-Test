@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@types/speakeasy": "^2.0.5",
-    "@types/xrm": "^9.0.40",
+    "@types/xrm": "^9.0.41",
     "playwright": "^1.13.0",
     "speakeasy": "^2.0.0",
     "typescript": "4.0.x"
