@@ -81,40 +81,45 @@ export class Entity {
      * @returns The id of the record
      */
     save = async (ignoreDuplicateCheck = false) => {
-        await EnsureXrmGetter(this._page);
+        try {
+            await EnsureXrmGetter(this._page);
 
-        const waitSelectors = [
-            // This is the id of the notification that gets shown once a quick create record is saved
-            this._page.waitForSelector("div[id^=quickcreate_]", { timeout: this.xrmUiTest.settings.timeout })
-        ];
+            const waitSelectors = [
+                // This is the id of the notification that gets shown once a quick create record is saved
+                this._page.waitForSelector("div[id^=quickcreate_]", { timeout: this.xrmUiTest.settings.timeout })
+            ];
 
-        const saveResult = this._page.evaluate(() => {
-            const xrm = window.oss_FindXrm();
+            const saveResult = this._page.evaluate(() => {
+                const xrm = window.oss_FindXrm();
 
-            return new Promise((resolve, reject) => {
-                xrm.Page.data.save().then(resolve, reject);
+                return new Promise((resolve, reject) => {
+                    xrm.Page.data.save().then(resolve, reject);
+                });
             });
-        });
 
-        const promises = [
-            ...waitSelectors,
-            saveResult,
-            // Normal page should switch to idle again
-            this.xrmUiTest.waitForIdleness()
-        ];
+            const promises = [
+                ...waitSelectors,
+                saveResult,
+                // Normal page should switch to idle again
+                this.xrmUiTest.waitForIdleness()
+            ];
 
-        await this.handleDuplicateCheck(promises, ignoreDuplicateCheck);
+            await this.handleDuplicateCheck(promises, ignoreDuplicateCheck);
 
-        const quickCreate = await this._page.$("div[id^=quickcreate_]");
+            const quickCreate = await this._page.$("div[id^=quickcreate_]");
 
-        if (quickCreate) {
-            const handle = await quickCreate.getProperty("id");
-            const id: string = await handle.jsonValue();
+            if (quickCreate) {
+                const handle = await quickCreate.getProperty("id");
+                const id: string = await handle.jsonValue();
 
-            return id.substr(12);
+                return id.substr(12);
+            }
+
+            return this.getId();
         }
-
-        return this.getId();
+        catch (e) {
+            throw new RethrownError(`Error while saving, message: ${(e as any).title} - ${(e as any).message}`, e);
+        }
     }
 
     /**
