@@ -2,6 +2,7 @@ import * as playwright from "playwright";
 import { D365Selectors } from "../domain/D365Selectors";
 import { EnsureXrmGetter } from "./Global";
 import { XrmUiTest } from "./XrmUITest";
+import { RethrownError } from "../utils/RethrownError";
 
 /**
  * Module for interacting with D365 entity records
