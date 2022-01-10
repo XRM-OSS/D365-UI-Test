@@ -372,7 +372,7 @@ export class XrmUiTest {
                 this._crmUrl = url;
                 this._appId = extendedProperties.appId;
 
-                const navigationUrl = this.buildUrl(url);
+                const navigationUrl = this.buildUrl(url, this._appId);
 
                 await Promise.all([
                     this.page.goto(navigationUrl, { waitUntil: "load", timeout: this.settings.timeout })
