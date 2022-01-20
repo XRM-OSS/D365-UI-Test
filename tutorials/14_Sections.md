@@ -1,4 +1,4 @@
-# Sectopms
+# Sections
 Sections are only used for being able to get their visibility state.
 
 ## Hidden State
