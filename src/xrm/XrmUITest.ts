@@ -425,7 +425,7 @@ export class XrmUiTest {
             }
         };
 
-        await openInternal();
+        return openInternal();
     }
 
     /**
