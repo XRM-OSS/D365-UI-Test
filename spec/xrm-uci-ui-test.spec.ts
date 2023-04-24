@@ -5,9 +5,9 @@ import * as path from "path";
 import { TestUtils } from "../src/utils/TestUtils";
 
 const xrmTest = new XrmUiTest();
-let browser: playwright.Browser = undefined;
-let context: playwright.BrowserContext = undefined;
-let page: playwright.Page = undefined;
+let browser: playwright.Browser;
+let context: playwright.BrowserContext;
+let page: playwright.Page;
 
 describe("Basic operations UCI", () => {
     beforeAll(async() => {
@@ -32,28 +32,23 @@ describe("Basic operations UCI", () => {
     });
 
     test("It should log in", async () => {
-        jest.setTimeout(120000);
-
         const settingsPath = path.join(__dirname, "../../settings.txt");
         const settingsFound = fs.existsSync(settingsPath);
         const config = settingsFound ? fs.readFileSync(settingsPath, {encoding: "utf-8"}) : `${process.env.D365_UI_TEST_URL ?? process.env.CRM_URL ?? ""},${process.env.D365_UI_TEST_USERNAME ?? process.env.USER_NAME ?? ""},${process.env.D365_UI_TEST_PASSWORD ?? process.env.USER_PASSWORD ?? ""},${process.env.D365_UI_TEST_MFA_SECRET ?? process.env.MFA_SECRET ?? ""}`;
         const [url, user, password, mfaSecret] = config.split(",");
 
         await xrmTest.open(url, { userName: user, password: password, mfaSecret: mfaSecret ?? undefined });
-    });
+    }, 120000);
 
     test("It should set string field", TestUtils.takeScreenShotOnFailure(() => page, path.resolve("reports", "dialogError.png"), async () => {
-        jest.setTimeout(120000);
-
         await xrmTest.Navigation.openCreateForm("account");
         await xrmTest.Attribute.setValue("name", "Test name");
 
         await xrmTest.Entity.save(true);
         await xrmTest.Entity.delete();
-    }));
+    }), 120000);
 
     test("It should set option field", async () => {
-        jest.setTimeout(60000);
         await xrmTest.Navigation.openCreateForm("account");
 
         await xrmTest.Attribute.setValues({
@@ -62,10 +57,9 @@ describe("Basic operations UCI", () => {
 
         const value = await xrmTest.Attribute.getValue("address1_shippingmethodcode");
         expect(value).toBe(1);
-    });
+    }, 60000);
 
     test("It should survive navigation popup", async () => {
-        jest.setTimeout(60000);
         await xrmTest.Navigation.openCreateForm("account");
 
         await xrmTest.Attribute.setValues({
@@ -75,7 +69,7 @@ describe("Basic operations UCI", () => {
         await xrmTest.Entity.save(true);
         await xrmTest.Attribute.setValue("name", "Updated");
         await xrmTest.Navigation.openCreateForm("account");
-    });
+    }, 60000);
 
     /*
     test("It should set quick create fields", async () => {

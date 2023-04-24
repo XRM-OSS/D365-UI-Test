@@ -415,7 +415,7 @@ export class XrmUiTest {
                 if (retryCount < 3) {
                     const waitTime = 5000 * (retryCount + 1);
 
-                    console.log(`Failed to log in, waiting ${waitTime}ms and retrying. Retry number ${(retryCount + 1)}`);
+                    console.log(`Failed to log in, waiting ${waitTime}ms and retrying. Try number ${(retryCount + 1)}`);
 
                     await this.page.waitForTimeout(waitTime);
                     return openInternal(retryCount + 1);

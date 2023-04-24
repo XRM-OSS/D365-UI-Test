@@ -97,16 +97,17 @@
   <span class="hljs-attr">always:</span> <span class="hljs-literal">true</span>
 
 <span class="hljs-attr">pool:</span>
-  <span class="hljs-attr">vmImage:</span> <span class="hljs-string">&#x27;ubuntu-latest&#x27;</span>
+  <span class="hljs-attr">vmImage:</span> <span class="hljs-string">&#x27;ubuntu-22.04&#x27;</span>
 
 <span class="hljs-attr">steps:</span>
 <span class="hljs-bullet">-</span> <span class="hljs-attr">task:</span> <span class="hljs-string">NodeTool@0</span>
   <span class="hljs-attr">inputs:</span>
-    <span class="hljs-attr">versionSpec:</span> <span class="hljs-string">&#x27;10.x&#x27;</span>
+    <span class="hljs-attr">versionSpec:</span> <span class="hljs-string">&#x27;18.x&#x27;</span>
   <span class="hljs-attr">displayName:</span> <span class="hljs-string">&#x27;Install Node.js&#x27;</span>
 
 <span class="hljs-bullet">-</span> <span class="hljs-attr">script:</span> <span class="hljs-string">|
     npm ci
+	npx playwright install-deps
     npm run test
 </span>  <span class="hljs-attr">displayName:</span> <span class="hljs-string">&#x27;npm install and build&#x27;</span>
   <span class="hljs-attr">env:</span>

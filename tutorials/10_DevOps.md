@@ -30,13 +30,17 @@ pool:
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '10.x'
+    versionSpec: '18.x'
   displayName: 'Install Node.js'
 
 - script: |
     npm ci
+    npx playwright install-deps
+  displayName: "Install Playwright Browsers"
+
+- script: |
     npm run test
-  displayName: 'npm install and build'
+  displayName: 'Run tests'
   env:
     D365_UI_TEST_URL: $(crmUrl)
     D365_UI_TEST_USERNAME: $(userName)
